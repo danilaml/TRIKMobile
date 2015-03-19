@@ -5,9 +5,11 @@ QT += qml quick widgets
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    scriptgenerator.cpp
+    scriptgenerator.cpp \
+    connector.cpp
 
-HEADERS += scriptgenerator.h
+HEADERS += scriptgenerator.h \
+    connector.h
 
 RESOURCES += qml.qrc
 
