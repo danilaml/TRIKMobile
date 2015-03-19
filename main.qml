@@ -20,6 +20,10 @@ ApplicationWindow {
                 onTriggered: messageDialog.show(qsTr("Open action triggered"));
             }
             MenuItem {
+                text: qsTr("&Set ip")
+                onTriggered: robotIpDialog.open();
+            }
+            MenuItem {
                 text: qsTr("E&xit")
                 onTriggered: Qt.quit();
             }
@@ -43,14 +47,8 @@ ApplicationWindow {
             return result;
         }
 
-        button1.onClicked: myDialog.open()
-//        button1.onClicked: listModel1.append({
-//                                                "name" : "Grey",
-//                                                "colorCode" : "grey"
-//                                            })
-        //button2.onClicked: messageDialog.show(qsTr("Button 2 pressed"))
+        button1.onClicked: addScriptDialog.open()
         button2.onClicked: removeElement()
-        //button3.onClicked: sendPressed("Testing")
         button3.onClicked: {
             console.log(getActionsList());
             sendPressed(getActionsList());
@@ -69,7 +67,18 @@ ApplicationWindow {
     }
 
     Dialog {
-        id: myDialog
+        id : robotIpDialog
+        title: qsTr("Set robot ip")
+        standardButtons: StandardButton.Ok | StandardButton.Cancel
+
+        TextField {
+            placeholderText: qsTr("Enter robot ip")
+            validator: RegExpValidator {regExp: /([0-9]|\.)+/}
+        }
+    }
+
+    Dialog {
+        id: addScriptDialog
         title: qsTr("Choose action")
         standardButtons: StandardButton.Ok | StandardButton.Cancel
 

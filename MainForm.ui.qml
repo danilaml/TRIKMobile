@@ -58,7 +58,6 @@ Item {
         anchors.bottom: gridLayout1.top
         anchors.bottomMargin: 1
         anchors.horizontalCenter: parent.horizontalCenter
-        //anchors.right: parent.right
         delegate: Item {
             x: 5
             width: 80
@@ -66,11 +65,6 @@ Item {
             Row {
                 id: row1
                 spacing: 10
-//                Rectangle {
-//                    width: 40
-//                    height: 40
-//                    color: colorCode
-//                }
 
                 Rectangle {
                     width: 100
@@ -88,22 +82,18 @@ Item {
             id: listModel1
             ListElement {
                 name: "Forward"
-//                colorCode: "grey"
             }
 
             ListElement {
                 name: "Backwards"
-//                colorCode: "red"
             }
 
             ListElement {
                 name: "Left"
-                colorCode: "blue"
             }
 
             ListElement {
                 name: "Right"
-//                colorCode: "green"
             }
         }
     }
