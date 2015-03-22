@@ -21,7 +21,9 @@ void ScriptGenerator::handleSend(const QVariant &scriptList) {
     //qDebug() << scriptList.toStringList();
     for (const QString &names : scriptList.toStringList()) {
         qDebug() << scripts.value(names);
-		//Connector connector();
+//		Connector connector = new Connector(ipKey);
+//		connector.uploadProgram("ProgramName", names);
+//		connector.runProgram("ProgramName");
     }
 }
 
