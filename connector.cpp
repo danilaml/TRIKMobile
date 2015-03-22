@@ -59,6 +59,23 @@ bool Connector::uploadProgram(const QString &programName)
 	return true;
 }
 
+bool Connector::uploadProgram(const QString &programName, const QString programScript)
+{
+	if (programScript.isEmpty())
+	{
+		return false;
+	}
+	connect();
+	if (!mControlConnection.isConnected())
+	{
+		return false;
+	}
+	const QString &fileNameOnARobot = QFileInfo(programName).fileName();
+	mControlConnection.send("file:" + fileNameOnARobot + ":" + programScript);
+	return true;
+}
+
+
 bool Connector::runProgram(const QString &programName)
 {
 	connect();

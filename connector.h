@@ -16,6 +16,8 @@ public:
 	/// Reads generated program from a file and uploads it to a robot using "file" command.
 	bool uploadProgram(const QString &programName);
 
+	bool uploadProgram(const QString &programName, const QString programScript);
+
 	/// Sends a command to run previously uploaded file in a robot.
 	bool runProgram(const QString &programName);
 
