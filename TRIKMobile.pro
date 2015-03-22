@@ -6,10 +6,12 @@ CONFIG += c++11
 
 SOURCES += main.cpp \
     scriptgenerator.cpp \
-    connector.cpp
+    connector.cpp \
+    connectorhandler.cpp
 
 HEADERS += scriptgenerator.h \
-    connector.h
+    connector.h \
+    connectorhandler.h
 
 RESOURCES += qml.qrc
 

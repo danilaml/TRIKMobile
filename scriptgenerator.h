@@ -1,5 +1,4 @@
-#ifndef SCRIPTGENERATOR_H
-#define SCRIPTGENERATOR_H
+#pragma once
 
 #include <QObject>
 #include <QMap>
@@ -20,5 +19,3 @@ private:
     QMap<QString, QString> scripts;
 
 };
-
-#endif // SCRIPTGENERATOR_H
