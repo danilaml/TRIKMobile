@@ -71,7 +71,7 @@ bool Connector::uploadProgram(const QString &programName, const QString programS
 		return false;
 	}
 	const QString &fileNameOnARobot = QFileInfo(programName).fileName();
-	mControlConnection.send((5 + fileNameOnARobot.length() + programScript.length()) + "file:" + fileNameOnARobot + ":" + programScript);
+	mControlConnection.send("file:" + fileNameOnARobot + ":" + programScript);
 	return true;
 }
 
