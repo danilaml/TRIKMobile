@@ -76,6 +76,9 @@ private:
 
 	QString mCurrentIP;
 
+
+	ConnectorHandler mControlConnection;
+
 	ConnectorHandler mTelemetryConnection;
 
 	bool mIsConnected;
@@ -89,7 +92,5 @@ private:
 	static QString readAll(QString const &fileName);
 
 	const QString mServerIpSettingsKey;
-
-	ConnectorHandler mControlConnection;
 
 };

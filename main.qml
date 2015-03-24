@@ -50,8 +50,11 @@ ApplicationWindow {
         button1.onClicked: addScriptDialog.open()
         button2.onClicked: removeElement()
         button3.onClicked: {
-            console.log(getActionsList());
-            sendPressed(getActionsList());
+            console.log(robotIpDialog.ip);
+            var actionsAndIp = getActionsList();
+            actionsAndIp.push(robotIpDialog.ip);
+            console.log(actionsAndIp);
+            sendPressed(actionsAndIp);
         }
 
     }
@@ -71,7 +74,12 @@ ApplicationWindow {
         title: qsTr("Set robot ip")
         standardButtons: StandardButton.Ok | StandardButton.Cancel
 
+        property string ip: "127.0.0.1"
+
+        onAccepted: ip = ipField.text
+
         TextField {
+            id: ipField
             placeholderText: qsTr("Enter robot ip")
             validator: RegExpValidator {regExp: /([0-9]|\.)+/}
         }
