@@ -10,6 +10,8 @@ ApplicationWindow {
     visible: true
 
     signal sendPressed(var msg)
+    signal runPressed(string msg)
+    signal stopPressed()
 
     menuBar: MenuBar {
         Menu {
@@ -56,6 +58,8 @@ ApplicationWindow {
             console.log(actionsAndIp);
             sendPressed(actionsAndIp);
         }
+        button4.onClicked: runPressed("test")
+        button5.onClicked: stopPressed()
 
     }
 
@@ -74,7 +78,7 @@ ApplicationWindow {
         title: qsTr("Set robot ip")
         standardButtons: StandardButton.Ok | StandardButton.Cancel
 
-        property string ip: "127.0.0.1"
+        property string ip: "192.168.1.1"
 
         onAccepted: ip = ipField.text
 

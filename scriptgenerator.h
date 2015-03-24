@@ -2,6 +2,7 @@
 
 #include <QObject>
 #include <QMap>
+#include "connector.h"
 
 class ScriptGenerator : public QObject
 {
@@ -14,8 +15,10 @@ public:
 
 public slots:
 	void handleSend(const QVariant &scriptList);
+	void handleRun(const QString &name);
+	void handleStop();
 
 private:
-	QMap<QString, QString> scripts;
-
+	QMap<QString, QString> mScripts;
+	Connector mConnector;
 };
