@@ -2,20 +2,23 @@
 
 #include <QObject>
 #include <QMap>
+#include "connector.h"
 
 class ScriptGenerator : public QObject
 {
-    Q_OBJECT
+	Q_OBJECT
 public:
-    explicit ScriptGenerator(QObject *parent = 0);
-    ~ScriptGenerator();
+	explicit ScriptGenerator(QObject *parent = 0);
+	~ScriptGenerator();
 
 //signals:
 
 public slots:
-    void handleSend(const QVariant &scriptList);
+	void handleSend(const QVariant &scriptList);
+	void handleRun(const QString &name);
+	void handleStop();
 
 private:
-    QMap<QString, QString> scripts;
-
+	QMap<QString, QString> mScripts;
+	Connector mConnector;
 };

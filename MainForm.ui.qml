@@ -8,6 +8,8 @@ Item {
     height: 640
 
     property alias listView1: listView1
+    property alias button5: button5
+    property alias button4: button4
     property alias button3: button3
     property alias button2: button2
     property alias button1: button1
@@ -17,6 +19,8 @@ Item {
         id: gridLayout1
         x: 0
         height: 46
+        columns: 3
+        rows: 2
         anchors.top: parent.verticalCenter
         anchors.topMargin: 140
         anchors.right: parent.right
@@ -45,6 +49,19 @@ Item {
             id: button3
             text: qsTr("Send")
             antialiasing: false
+            Layout.fillWidth: true
+        }
+
+        Button {
+            id: button4
+            text: qsTr("Run")
+            Layout.fillWidth: true
+        }
+
+        Button {
+            id: button5
+            width: 75
+            text: qsTr("Stop")
             Layout.fillWidth: true
         }
     }
@@ -97,4 +114,5 @@ Item {
             }
         }
     }
+
 }
