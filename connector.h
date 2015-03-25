@@ -13,6 +13,8 @@ public:
 	explicit Connector(const QString &serverIpSettingsKey);
 	~Connector();
 
+	void changeServerIP(const QString &newServerIP);
+
 	/// Reads generated program from a file and uploads it to a robot using "file" command.
 	bool uploadProgram(const QString &programName);
 
@@ -91,6 +93,6 @@ private:
 	/// @returns All contents of a file.
 	static QString readAll(QString const &fileName);
 
-	const QString mServerIpSettingsKey;
+	QString mServerIpSettingsKey;
 
 };

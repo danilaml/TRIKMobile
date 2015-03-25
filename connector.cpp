@@ -24,6 +24,14 @@ Connector::~Connector()
 	disconnect();
 }
 
+void Connector::changeServerIP(const QString &newServerIP)
+{
+	if (mServerIpSettingsKey != newServerIP)
+	{
+		mServerIpSettingsKey = newServerIP;
+	}
+}
+
 QString Connector::readAll(QString const &fileName)
 {
 	QFile file(fileName);
