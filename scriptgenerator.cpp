@@ -2,7 +2,7 @@
 #include <QDebug>
 #include <QVariant>
 
-ScriptGenerator::ScriptGenerator(QObject *parent) : QObject(parent), mConnector("192.168.1.1")
+QmlSignalHandler::QmlSignalHandler(QObject *parent) : QObject(parent), mConnector("192.168.1.1")
 {
 	mScripts["Forward"] = "Forward script";
 	mScripts["Backwards"] = "Backwards script";
@@ -10,12 +10,12 @@ ScriptGenerator::ScriptGenerator(QObject *parent) : QObject(parent), mConnector(
 	mScripts["Left"] = "Left script";
 }
 
-ScriptGenerator::~ScriptGenerator()
+QmlSignalHandler::~QmlSignalHandler()
 {
 
 }
 
-void ScriptGenerator::handleSend(const QVariant &scriptList)
+void QmlSignalHandler::handleSend(const QVariant &scriptList)
 {
     //qDebug() << scriptList.toStringList();
 	QStringList list = scriptList.toStringList();
@@ -51,12 +51,12 @@ void ScriptGenerator::handleSend(const QVariant &scriptList)
 	//	test.runProgram("test");
 }
 
-void ScriptGenerator::handleRun(const QString &name)
+void QmlSignalHandler::handleRun(const QString &name)
 {
 	mConnector.runProgram(name);
 }
 
-void ScriptGenerator::handleStop()
+void QmlSignalHandler::handleStop()
 {
 	mConnector.stopRobot();
 }

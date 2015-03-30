@@ -4,12 +4,12 @@
 #include <QMap>
 #include "connector.h"
 
-class ScriptGenerator : public QObject
+class QmlSignalHandler : public QObject
 {
 	Q_OBJECT
 public:
-	explicit ScriptGenerator(QObject *parent = 0);
-	~ScriptGenerator();
+	explicit QmlSignalHandler(QObject *parent = 0);
+	~QmlSignalHandler();
 
 //signals:
 

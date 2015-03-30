@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 	engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
 	QObject *appwindow = engine.rootObjects().first();
-	ScriptGenerator mysg;
+	QmlSignalHandler mysg;
 	QObject::connect(appwindow, SIGNAL(sendPressed(QVariant)), &mysg, SLOT(handleSend(QVariant)));
 
 	return app.exec();
