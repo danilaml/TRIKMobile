@@ -2,7 +2,7 @@
 #include <QDebug>
 #include <QVariant>
 
-ScriptGenerator::ScriptGenerator(QObject *parent) : mConnector("192.168.1.1"), QObject(parent)
+ScriptGenerator::ScriptGenerator(QObject *parent) : QObject(parent), mConnector("192.168.1.1")
 {
 	mScripts["Forward"] = "Forward script";
 	mScripts["Backwards"] = "Backwards script";
