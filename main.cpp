@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
-#include "scriptgenerator.h"
+#include "qmlsignalhandler.h"
 
 int main(int argc, char *argv[])
 {

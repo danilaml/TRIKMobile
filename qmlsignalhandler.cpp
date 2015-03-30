@@ -1,4 +1,4 @@
-#include "scriptgenerator.h"
+#include "qmlsignalhandler.h"
 #include <QDebug>
 #include <QVariant>
 

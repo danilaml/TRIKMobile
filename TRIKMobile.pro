@@ -5,19 +5,20 @@ QT += qml quick widgets
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    scriptgenerator.cpp \
     connector.cpp \
     connectorhandler.cpp \
     blocks/abstractblock.cpp \
     blocks/forwardblock.cpp \
-    blocks/backwardblock.cpp
+    blocks/backwardblock.cpp \
+    qmlsignalhandler.cpp
 
-HEADERS += scriptgenerator.h \
+HEADERS += \
     connector.h \
     connectorhandler.h \
     blocks/abstractblock.h \
     blocks/forwardblock.h \
-    blocks/backwardblock.h
+    blocks/backwardblock.h \
+    qmlsignalhandler.h
 
 RESOURCES += qml.qrc \
     templates.qrc
