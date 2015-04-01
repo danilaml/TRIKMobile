@@ -10,7 +10,8 @@ SOURCES += main.cpp \
     blocks/abstractblock.cpp \
     blocks/forwardblock.cpp \
     blocks/backwardblock.cpp \
-    qmlsignalhandler.cpp
+    qmlsignalhandler.cpp \
+    scriptgenerator.cpp
 
 HEADERS += \
     connector.h \
@@ -18,7 +19,8 @@ HEADERS += \
     blocks/abstractblock.h \
     blocks/forwardblock.h \
     blocks/backwardblock.h \
-    qmlsignalhandler.h
+    qmlsignalhandler.h \
+    scriptgenerator.h
 
 RESOURCES += qml.qrc \
     templates.qrc

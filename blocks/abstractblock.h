@@ -1,19 +1,23 @@
 #pragma once
 
 #include <QObject>
+#include <QSharedPointer>
 
 class AbstractBlock : public QObject
 {
 	Q_OBJECT
 public:
-	AbstractBlock(AbstractBlock *n, QObject *parent = 0);
+	AbstractBlock(QSharedPointer<AbstractBlock> n, QObject *parent = 0);
 	virtual ~AbstractBlock();
 
 	virtual QString toString(int ident = 0) const = 0;
 
-	AbstractBlock* getNext() const;
+	QSharedPointer<AbstractBlock> getNext() const;
 
 protected:
-	AbstractBlock *mNext;
+	QString readAll(QString &filename) const;
+	QString readAll(const char* filename) const;
+
+	QSharedPointer<AbstractBlock> mNext;
 
 };
