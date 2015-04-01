@@ -73,7 +73,7 @@ private:
 	/// Socket that holds connection.
 	QTcpSocket mSocket;
 
-	/// Reference to error reporter.
+//	/// Reference to error reporter.
 //	qReal::ErrorReporterInterface *mErrorReporter; // Does not have ownership.
 
 	QString mCurrentIP;
