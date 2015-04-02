@@ -17,6 +17,7 @@ public slots:
 	void handleSend(const QVariant &scriptList);
 	void handleRun(const QString &name);
 	void handleStop();
+	void hadleIpChange(const QString &newIp);
 
 private:
 	QMap<QString, QString> mScripts;

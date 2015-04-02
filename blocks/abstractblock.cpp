@@ -2,6 +2,11 @@
 #include "QTextStream"
 #include "abstractblock.h"
 
+AbstractBlock::AbstractBlock(QObject *parent) : QObject(parent)
+{
+
+}
+
 AbstractBlock::AbstractBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : QObject(parent), mNext(n)
 {
 
@@ -17,7 +22,7 @@ QSharedPointer<AbstractBlock> AbstractBlock::getNext() const
 	return mNext;
 }
 
-QString AbstractBlock::readAll(QString &filename) const
+QString AbstractBlock::readTemplate(QString &filename) const
 {
 	QFile templ(filename);
 	QString res;
@@ -34,9 +39,9 @@ QString AbstractBlock::readAll(QString &filename) const
 	return res;
 }
 
-QString AbstractBlock::readAll(const char* filename) const
+QString AbstractBlock::readTemplate(const char* filename) const
 {
-	QFile templ(filename);
+	QFile templ(QStringLiteral(":/trikQts/templates/") + filename);
 	QString res;
 	if (!templ.open(QIODevice::ReadOnly | QIODevice::Text)) {
 		qDebug("failed to open"); //TODO: add filename
@@ -49,6 +54,23 @@ QString AbstractBlock::readAll(const char* filename) const
 	templ.close();
 
 	return res;
+}
+
+QString AbstractBlock::addIndent(QString const &code, int indent) const
+{
+	qDebug("HERE IN INDENT");
+	if (!indent) {
+		return code;
+	}
+
+	QStringList const lines = code.split("\n", QString::SkipEmptyParts);
+	QString const indentString(indent, '\t');
+	QStringList result;
+	for (QString const &line : lines) {
+		result << indentString + line;
+	}
+
+	return result.join('\n');
 }
 
 
