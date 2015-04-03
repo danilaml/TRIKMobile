@@ -5,7 +5,7 @@ BackwardBlock::BackwardBlock(QObject *parent) : AbstractBlock(parent)
 
 }
 
-BackwardBlock::BackwardBlock(QSharedPointer<AbstractBlock> &n, QObject *parent) : AbstractBlock(n, parent)
+BackwardBlock::BackwardBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
 {
 
 }
