@@ -12,6 +12,7 @@ ApplicationWindow {
     signal sendPressed(var msg)
     signal runPressed(string msg)
     signal stopPressed()
+    signal ipChanged(string ip)
 
     menuBar: MenuBar {
         Menu {
@@ -52,11 +53,9 @@ ApplicationWindow {
         button1.onClicked: addScriptDialog.open()
         button2.onClicked: removeElement()
         button3.onClicked: {
-            console.log(robotIpDialog.ip);
-            var actionsAndIp = getActionsList();
-            actionsAndIp.push(robotIpDialog.ip);
-            console.log(actionsAndIp);
-            sendPressed(actionsAndIp);
+            var actions = getActionsList();
+            console.log(actions);
+            sendPressed(actions);
         }
         button4.onClicked: runPressed("test")
         button5.onClicked: stopPressed()
@@ -80,11 +79,11 @@ ApplicationWindow {
 
         property string ip: "192.168.1.1"
 
-        onAccepted: ip = ipField.text
+        onAccepted: {ip = ipField.text; ipChanged(ip)}
 
         TextField {
             id: ipField
-            placeholderText: qsTr("Enter robot ip")
+            placeholderText: "192.168.1.1"
             validator: RegExpValidator {regExp: /([0-9]|\.)+/}
         }
     }

@@ -1,8 +1,11 @@
 #include "forwardblock.h"
-#include "QFile"
-#include "QTextStream"
 
-ForwardBlock::ForwardBlock(AbstractBlock *n, QObject *parent) : AbstractBlock(n, parent)
+ForwardBlock::ForwardBlock(QObject *parent) : AbstractBlock(parent)
+{
+
+}
+
+ForwardBlock::ForwardBlock(QSharedPointer<AbstractBlock> &n, QObject *parent) : AbstractBlock(n, parent)
 {
 
 }
@@ -12,19 +15,30 @@ ForwardBlock::~ForwardBlock()
 
 }
 
-QString ForwardBlock::toString(int ident) const
+QString ForwardBlock::toString(int indent) const
 {
-	QFile templ(":/engines/forward.t");
-	QString res = "";
-	if (!templ.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		qDebug("failed to open forward.t");
-		return res;
-	}
-	QTextStream input;
-	input.setDevice(&templ);
-	input.setCodec("UTF-8");
-	res = input.readAll();
-	templ.close();
-	return res.replace("@@POWER@@", QString::number(mPower));
+	QString res = readTemplate("engines/forward.t");
+	res.replace("@@PORT@@",QString::number(mPort)).replace("@@POWER@@", QString::number(mPower));
+	return addIndent(res, indent);
 }
+int ForwardBlock::power() const
+{
+	return mPower;
+}
+
+void ForwardBlock::setPower(int power)
+{
+	mPower = power;
+}
+int ForwardBlock::port() const
+{
+	return mPort;
+}
+
+void ForwardBlock::setPort(int port)
+{
+	mPort = port;
+}
+
+
 
