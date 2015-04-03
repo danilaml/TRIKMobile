@@ -7,7 +7,7 @@ AbstractBlock::AbstractBlock(QObject *parent) : QObject(parent)
 
 }
 
-AbstractBlock::AbstractBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : QObject(parent), mNext(n)
+AbstractBlock::AbstractBlock(QSharedPointer<AbstractBlock> &n, QObject *parent) : QObject(parent), mNext(n)
 {
 
 }

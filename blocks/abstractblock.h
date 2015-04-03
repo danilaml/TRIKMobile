@@ -8,7 +8,7 @@ class AbstractBlock : public QObject
 	Q_OBJECT
 public:
 	explicit AbstractBlock(QObject *parent = 0);
-	AbstractBlock(QSharedPointer<AbstractBlock> n, QObject *parent = 0);
+	AbstractBlock(QSharedPointer<AbstractBlock> &n, QObject *parent = 0);
 	virtual ~AbstractBlock();
 
 	virtual QString toString(int indent = 0) const = 0;

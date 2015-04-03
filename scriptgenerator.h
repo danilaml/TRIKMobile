@@ -26,5 +26,5 @@ private:
 	QString readTemplate(const char *filename) const;
 
 	QMap<QString, QString> constants;
-	QStringList vars;
+	QStringList variables;
 };

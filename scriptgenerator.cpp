@@ -31,12 +31,15 @@ QString ScriptGenerator::generate(QSharedPointer<AbstractBlock> root) const
 	resultCode.replace("@@TERMINATEHOOKS@@", "");
 	resultCode.replace("@@USERISRHOOKS@@", "");
 
-	QString consts;
+	QString constsAndVars;
 	for (const QString &constName : constants.keys()) {
-		consts += QString("var %1 = %2\n").arg(constName, constants.value(constName));
+		constsAndVars += QString("var %1 = %2;\n").arg(constName, constants.value(constName));
+	}
+	for (const QString &varName : variables) {
+		constsAndVars += QString("var %1;").arg(varName);
 	}
 
-	resultCode.replace("@@VARIABLES@@", consts);
+	resultCode.replace("@@VARIABLES@@", constsAndVars);
 	resultCode.replace(QRegExp("\n(\n)+"), "\n\n");
 
 	return resultCode;
@@ -77,12 +80,12 @@ QString ScriptGenerator::readTemplate(const char* filename) const
 }
 QStringList ScriptGenerator::getVars() const
 {
-	return vars;
+	return variables;
 }
 
 void ScriptGenerator::setVars(const QStringList &value)
 {
-	vars = value;
+	variables = value;
 }
 
 QMap<QString, QString> ScriptGenerator::getConstants() const

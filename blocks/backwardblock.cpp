@@ -5,7 +5,7 @@ BackwardBlock::BackwardBlock(QObject *parent) : AbstractBlock(parent)
 
 }
 
-BackwardBlock::BackwardBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
+BackwardBlock::BackwardBlock(QSharedPointer<AbstractBlock> &n, QObject *parent) : AbstractBlock(n, parent)
 {
 
 }
@@ -17,8 +17,9 @@ BackwardBlock::~BackwardBlock()
 
 QString BackwardBlock::toString(int indent) const
 {
-	QString res = readTemplate("qrc:/engines/backward.t");
-	return addIndent(res.replace("@@POWER@@", QString::number(mPower)), indent);
+	QString res = readTemplate("engines/backward.t");
+	res.replace("@@PORT@@",QString::number(mPort)).replace("@@POWER@@", QString::number(mPower));
+	return addIndent(res, indent);
 }
 int BackwardBlock::power() const
 {
@@ -29,4 +30,14 @@ void BackwardBlock::setPower(int power)
 {
 	mPower = power;
 }
+int BackwardBlock::port() const
+{
+	return mPort;
+}
+
+void BackwardBlock::setPort(int port)
+{
+	mPort = port;
+}
+
 

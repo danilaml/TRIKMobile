@@ -28,6 +28,7 @@ void QmlSignalHandler::handleSend(const QVariant &scriptList)
 
 	QSharedPointer<ForwardBlock> test(new ForwardBlock());
 	test->setPower(42);
+	test->setPort(1);
 
 	qDebug() << scriptgen.generate(test);
 	for (const QString &names : list)
