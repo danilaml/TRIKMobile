@@ -58,7 +58,6 @@ QString AbstractBlock::readTemplate(const char* filename) const
 
 QString AbstractBlock::addIndent(QString const &code, int indent) const
 {
-	qDebug("HERE IN INDENT");
 	if (!indent) {
 		return code;
 	}

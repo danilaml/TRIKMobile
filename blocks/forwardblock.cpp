@@ -5,7 +5,7 @@ ForwardBlock::ForwardBlock(QObject *parent) : AbstractBlock(parent)
 
 }
 
-ForwardBlock::ForwardBlock(QSharedPointer<AbstractBlock> &n, QObject *parent) : AbstractBlock(n, parent)
+ForwardBlock::ForwardBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
 {
 
 }
