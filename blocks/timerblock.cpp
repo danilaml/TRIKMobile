@@ -5,7 +5,7 @@ TimerBlock::TimerBlock(QObject *parent) : AbstractBlock(parent)
 
 }
 
-TimerBlock::TimerBlock(QSharedPointer<AbstractBlock> &n, QObject *parent) : AbstractBlock(n, parent)
+TimerBlock::TimerBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
 {
 
 }

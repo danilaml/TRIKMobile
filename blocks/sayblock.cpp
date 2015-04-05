@@ -5,7 +5,7 @@ SayBlock::SayBlock(QObject *parent) : AbstractBlock(parent)
 
 }
 
-SayBlock::SayBlock(QSharedPointer<AbstractBlock> &n, QObject *parent) : AbstractBlock(n, parent)
+SayBlock::SayBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
 {
 
 }

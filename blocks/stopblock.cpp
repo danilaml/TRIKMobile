@@ -5,7 +5,7 @@ StopBlock::StopBlock(QObject *parent) : AbstractBlock(parent)
 
 }
 
-StopBlock::StopBlock(QSharedPointer<AbstractBlock> &n, QObject *parent) : AbstractBlock(n, parent)
+StopBlock::StopBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
 {
 
 }

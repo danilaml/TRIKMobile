@@ -7,7 +7,7 @@ class SayBlock : public AbstractBlock
 	Q_OBJECT
 public:
 	explicit SayBlock(QObject *parent = 0);
-	SayBlock(QSharedPointer<AbstractBlock> &n, QObject *parent = 0);
+	SayBlock(QSharedPointer<AbstractBlock> n, QObject *parent = 0);
 	virtual ~SayBlock();
 
 	virtual QString toString(int indent = 0) const;
