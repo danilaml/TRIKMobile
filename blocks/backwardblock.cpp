@@ -21,6 +21,7 @@ QString BackwardBlock::toString(int indent) const
 	res.replace("@@PORT@@",QString::number(mPort)).replace("@@POWER@@", QString::number(mPower));
 	return addIndent(res, indent);
 }
+
 int BackwardBlock::power() const
 {
 	return mPower;
@@ -30,6 +31,7 @@ void BackwardBlock::setPower(int power)
 {
 	mPower = power;
 }
+
 int BackwardBlock::port() const
 {
 	return mPort;
