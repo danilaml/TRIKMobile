@@ -3,6 +3,7 @@
 #include "qmlsignalhandler.h"
 #include "scriptgenerator.h"
 #include "blocks/forwardblock.h"
+#include "blocks/sayblock.h"
 
 QmlSignalHandler::QmlSignalHandler(QObject *parent) : QObject(parent), mConnector("192.168.1.1")
 {
@@ -30,7 +31,12 @@ void QmlSignalHandler::handleSend(const QVariant &scriptList)
 	test->setPower(42);
 	test->setPort(1);
 
-	qDebug() << scriptgen.generate(test);
+	QSharedPointer<SayBlock> test2(new SayBlock());
+	test2->setText("\"Hello!\"");s
+
+	qDebug() << scriptgen.generate(test2);
+	mConnector.changeServerIP("192.168.77.1");
+	mConnector.uploadProgram("test", scriptgen.generate(test2));
 	for (const QString &names : list)
 	{
 		qDebug() << mScripts.value(names);
