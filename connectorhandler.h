@@ -9,8 +9,6 @@ public:
 
 	explicit ConnectorHandler(int port);
 
-//	~ConnectorHandler();
-
 	bool connect(const QHostAddress &serverAddress);
 
 	bool isConnected();

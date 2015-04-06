@@ -2,17 +2,13 @@
 
 #include <QtNetwork/QHostAddress>
 #include <QtCore/QFileInfo>
+#include <QtCore/QDebug>
 
 ConnectorHandler::ConnectorHandler(int port)
 	:mPort(port)
 {
 	QObject::connect(&mSocket, SIGNAL(readyRead()), this, SLOT(onIncomingData()), Qt::DirectConnection);
 }
-
-//ConnectorHandler::~ConnectorHandler()
-//{
-
-//}
 
 bool ConnectorHandler::connect(const QHostAddress &serverAddress)
 {
@@ -23,10 +19,10 @@ bool ConnectorHandler::connect(const QHostAddress &serverAddress)
 	mSocket.connectToHost(serverAddress, static_cast<quint16>(mPort));
 	const bool result = mSocket.waitForConnected(3000);
 
-//	if (!result)
-//	{
-//		QLOG_ERROR() << mSocket.errorString();
-//	}
+	if (!result)
+	{
+		qDebug() << mSocket.errorString();
+	}
 
 	mBuffer.clear();
 	mExpectedBytes = 0;
@@ -50,10 +46,10 @@ void ConnectorHandler::send(const QString &data)
 	dataByteArray = QByteArray::number(dataByteArray.size()) + ':' + dataByteArray;
 	mSocket.write(dataByteArray);
 
-//	if (!mSocket.waitForBytesWritten(3000))
-//	{
-//		QLOG_ERROR() << "Unable to send data" << data << "to" << mSocket.peerAddress();
-//	}
+	if (!mSocket.waitForBytesWritten(3000))
+	{
+		qDebug() << "Unable to send data" << data << "to" << mSocket.peerAddress();
+	}
 }
 void ConnectorHandler::onIncomingData()
 {
@@ -80,11 +76,11 @@ void ConnectorHandler::onIncomingData()
 				mBuffer = mBuffer.mid(delimiterIndex + 1);
 				bool ok = false;
 				mExpectedBytes = length.toInt(&ok);
-//				if (!ok)
-//				{
-//					QLOG_ERROR() << "Malformed message, can not determine message length from this:" << length;
-//					mExpectedBytes = 0;
-//				}
+				if (!ok)
+				{
+					qDebug() << "Malformed message, can not determine message length from this:" << length;
+					mExpectedBytes = 0;
+				}
 			}
 		}
 		else

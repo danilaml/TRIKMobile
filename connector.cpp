@@ -2,6 +2,7 @@
 
 #include <QtNetwork/QHostAddress>
 #include <QtCore/QFileInfo>
+#include <QtCore/QDebug>
 
 static const uint controlPort = 8888;
 static const uint telemetryPort = 9000;
@@ -197,11 +198,11 @@ void Connector::connect()
 //	const QString server = qReal::SettingsManager::value(mServerIpSettingsKey).toString();
 	const QString server = mServerIpSettingsKey;
 	QHostAddress hostAddress(server);
-//	if (hostAddress.isNull())
-//	{
-//		QLOG_ERROR() << "Unable to resolve host.";
-//		return;
-//	}
+	if (hostAddress.isNull())
+	{
+		qDebug() << "Unable to resolve host.";
+		return;
+	}
 
 //	if (mControlConnection.isConnected() && mTelemetryConnection.isConnected())
 	if (mControlConnection.isConnected())
