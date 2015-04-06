@@ -4,6 +4,7 @@ import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
 
 ApplicationWindow {
+    id: mainwindow
     title: qsTr("TRIKMobile")
     width: 640
     height: 480
@@ -79,7 +80,7 @@ ApplicationWindow {
 
         property string ip: "192.168.1.1"
 
-        onAccepted: {ip = ipField.text; ipChanged(ip)}
+        onAccepted: {ip = ipField.text; mainwindow.ipChanged(ip); console.log(ip)}
 
         TextField {
             id: ipField

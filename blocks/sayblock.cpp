@@ -18,7 +18,7 @@ SayBlock::~SayBlock()
 QString SayBlock::toString(int indent) const
 {
 	QString res = readTemplate("say.t");
-	res.replace("@@TEXT@@",mText);
+	res.replace("@@TEXT@@","\"" + mText + "\"");
 	return addIndent(res, indent);
 }
 

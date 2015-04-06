@@ -27,20 +27,26 @@ void QmlSignalHandler::handleSend(const QVariant &scriptList)
 	ScriptGenerator scriptgen;
 	scriptgen.setConstants(consts);
 
-	QSharedPointer<ForwardBlock> test(new ForwardBlock());
-	test->setPower(42);
-	test->setPort(1);
+	QSharedPointer<ForwardBlock> test1(new ForwardBlock());
+	test1->setPower(42);
+	test1->setPort(1);
 
-	QSharedPointer<SayBlock> test2(new SayBlock());
-	test2->setText("\"Hello!\"");s
+	QSharedPointer<SayBlock> test2(new SayBlock(test1));
+	test2->setText("\"This is test block\"");
+
+//	QSharedPointer<SayBlock> test2(new SayBlock());
+//	test2->setText("\"Hello!\"");
 
 	qDebug() << scriptgen.generate(test2);
-	mConnector.changeServerIP("192.168.77.1");
-	mConnector.uploadProgram("test", scriptgen.generate(test2));
+//	mConnector.changeServerIP("192.168.77.1");
+//	mConnector.uploadProgram("test", scriptgen.generate(test2));
+
 	for (const QString &names : list)
 	{
 		qDebug() << mScripts.value(names);
 	}
+
+	mConnector.uploadProgram("test", scriptgen.generate(test2));
 }
 
 void QmlSignalHandler::handleRun(const QString &name)
