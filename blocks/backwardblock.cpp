@@ -22,7 +22,7 @@ QString BackwardBlock::toString(int indent) const
 	if (!mNext.isNull()) {
 		res.append(mNext->toString());
 	}
-	return addIndent(res.append(mNext->toString()), indent);
+	return addIndent(res, indent);
 }
 
 int BackwardBlock::power() const
