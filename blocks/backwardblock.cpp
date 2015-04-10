@@ -18,8 +18,11 @@ BackwardBlock::~BackwardBlock()
 QString BackwardBlock::toString(int indent) const
 {
 	QString res = readTemplate("engines/backward.t");
-	res.replace("@@PORT@@",QString::number(mPort)).replace("@@POWER@@", QString::number(mPower));
-	return addIndent(res, indent);
+	res.replace("@@PORT@@", mPort).replace("@@POWER@@", QString::number(mPower));
+	if (!mNext.isNull()) {
+		res.append(mNext->toString());
+	}
+	return addIndent(res.append(mNext->toString()), indent);
 }
 
 int BackwardBlock::power() const
@@ -32,12 +35,12 @@ void BackwardBlock::setPower(int power)
 	mPower = power;
 }
 
-int BackwardBlock::port() const
+QString BackwardBlock::port() const
 {
 	return mPort;
 }
 
-void BackwardBlock::setPort(int port)
+void BackwardBlock::setPort(const QString &port)
 {
 	mPort = port;
 }

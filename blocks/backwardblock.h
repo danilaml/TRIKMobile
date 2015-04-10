@@ -14,10 +14,10 @@ public:
 
 	int power() const;
 	void setPower(int power);
-	int port() const;
-	void setPort(int port);
+	QString port() const;
+	void setPort(const QString &port);
 
 private:
 	int mPower;
-	int mPort;
+	QString mPort;
 };

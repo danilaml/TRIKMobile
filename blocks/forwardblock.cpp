@@ -18,7 +18,10 @@ ForwardBlock::~ForwardBlock()
 QString ForwardBlock::toString(int indent) const
 {
 	QString res = readTemplate("engines/forward.t");
-	res.replace("@@PORT@@",QString::number(mPort)).replace("@@POWER@@", QString::number(mPower));
+	res.replace("@@PORT@@", mPort).replace("@@POWER@@", QString::number(mPower));
+	if (!mNext.isNull()) {
+		res.append(mNext->toString());
+	}
 	return addIndent(res, indent);
 }
 
@@ -32,12 +35,12 @@ void ForwardBlock::setPower(int power)
 	mPower = power;
 }
 
-int ForwardBlock::port() const
+QString ForwardBlock::port() const
 {
 	return mPort;
 }
 
-void ForwardBlock::setPort(int port)
+void ForwardBlock::setPort(const QString &port)
 {
 	mPort = port;
 }

@@ -20,27 +20,20 @@ QmlSignalHandler::~QmlSignalHandler()
 
 void QmlSignalHandler::handleSend(const QVariant &scriptList)
 {
-    //qDebug() << scriptList.toStringList();
+	//qDebug() << scriptList.toStringList();
 	QStringList list = scriptList.toStringList();
 	QMap<QString, QString> consts;
 	consts.insert("pi", "3.14159265");
 	ScriptGenerator scriptgen;
 	scriptgen.setConstants(consts);
 
-	QSharedPointer<ForwardBlock> test1(new ForwardBlock());
-	test1->setPower(42);
-	test1->setPort(1);
-
-	QSharedPointer<SayBlock> test2(new SayBlock(test1));
+	QSharedPointer<SayBlock> test2(new SayBlock());
 	test2->setText("\"This is test block\"");
+	QSharedPointer<ForwardBlock> test1(new ForwardBlock(test2));
+	test1->setPower(42);
+	test1->setPort("M1");
 
-//	QSharedPointer<SayBlock> test2(new SayBlock());
-//	test2->setText("\"Hello!\"");
-
-	qDebug() << scriptgen.generate(test2);
-//	mConnector.changeServerIP("192.168.77.1");
-//	mConnector.uploadProgram("test", scriptgen.generate(test2));
-
+	qDebug() << scriptgen.generate(test1);
 	for (const QString &names : list)
 	{
 		qDebug() << mScripts.value(names);
