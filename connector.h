@@ -39,7 +39,7 @@ public:
 	/// Disconnects from robot.
 	void disconnect();
 
-//	void setErrorReporter(qReal::ErrorReporterInterface *errorReporter);
+	//	void setErrorReporter(qReal::ErrorReporterInterface *errorReporter);
 
 signals:
 
@@ -73,8 +73,8 @@ private:
 	/// Socket that holds connection.
 	QTcpSocket mSocket;
 
-//	/// Reference to error reporter.
-//	qReal::ErrorReporterInterface *mErrorReporter; // Does not have ownership.
+	//	/// Reference to error reporter.
+	//	qReal::ErrorReporterInterface *mErrorReporter; // Does not have ownership.
 
 	QString mCurrentIP;
 

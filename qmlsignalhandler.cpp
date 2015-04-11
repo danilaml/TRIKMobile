@@ -17,17 +17,17 @@ QmlSignalHandler::~QmlSignalHandler()
 
 void QmlSignalHandler::handleSend(const QVariant &scriptList)
 {
-    //qDebug() << scriptList.toStringList();
+	//qDebug() << scriptList.toStringList();
 	QStringList list = scriptList.toStringList();
 	for (const QString &names : list)
 	{
 		qDebug() << mScripts.value(names);
-//		const QString &names2 = "var __interpretation_started_timestamp__;var pi = 3.14159265;var main = function(){__interpretation_started_timestamp__ = Date.now();brick.display().setBackground(\"white\");while (true) {if (brick.sensor(A1).read() > 50) {brick.sadSmile();} else {brick.smile();}script.wait(10);}}";
-//		Connector connector("192.168.1.1");
-//		connector.uploadProgram("ProgramName", names2);
-//		connector.runProgram("ProgramName");
-//		connector.stopRobot();
-    }
+		//		const QString &names2 = "var __interpretation_started_timestamp__;var pi = 3.14159265;var main = function(){__interpretation_started_timestamp__ = Date.now();brick.display().setBackground(\"white\");while (true) {if (brick.sensor(A1).read() > 50) {brick.sadSmile();} else {brick.smile();}script.wait(10);}}";
+		//		Connector connector("192.168.1.1");
+		//		connector.uploadProgram("ProgramName", names2);
+		//		connector.runProgram("ProgramName");
+		//		connector.stopRobot();
+	}
 	//	Connector test(list.last());
 	//	test.uploadProgram("test", "ar __interpretation_started_timestamp__;"
 	//						"var pi = 3.14159265;"
