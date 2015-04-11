@@ -134,7 +134,7 @@ void Connector::processControlMessage(const QString &message)
 	const QString infoMarker("info: ");
 	const QString versionMarker("version: ");
 	const QString fromRobotString("From robot: ");
-	const QString requiredVersion("1.0.0");
+	const QString requiredVersion("3.0.2");
 	if (message.startsWith(versionMarker))
 	{
 		mVersionTimer.stop();
