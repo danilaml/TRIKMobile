@@ -14,7 +14,9 @@ SOURCES += main.cpp \
     scriptgenerator.cpp \
     blocks/timerblock.cpp \
     blocks/stopblock.cpp \
-    blocks/sayblock.cpp
+    blocks/sayblock.cpp \
+    blocks/smileblock.cpp \
+    blocks/sadsmileblock.cpp
 
 HEADERS += \
     connector.h \
@@ -26,7 +28,9 @@ HEADERS += \
     scriptgenerator.h \
     blocks/timerblock.h \
     blocks/stopblock.h \
-    blocks/sayblock.h
+    blocks/sayblock.h \
+    blocks/smileblock.h \
+    blocks/sadsmileblock.h
 
 RESOURCES += qml.qrc \
     templates.qrc

@@ -19,6 +19,9 @@ QString TimerBlock::toString(int indent) const
 {
 	QString res = readTemplate("wait/timer.t");
 	res.replace("@@DELAY@@",QString::number(mDelay));
+	if (!mNext.isNull()) {
+		res.append(mNext->toString());
+	}
 	return addIndent(res, indent);
 }
 
