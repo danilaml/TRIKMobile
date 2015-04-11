@@ -18,8 +18,8 @@ ForBlock::~ForBlock()
 QString ForBlock::toString(int indent) const
 {
 	QString res = readTemplate("conditional/for.t");
-	res.replace("@@BODY@@", mBody).replace("@@ITERATOR_TYPE@@", mIteratorType).replace("@@ITERATOR@@", mIterator);
-	res.replace("@@INITIAL_VALUE@@", mInitialValue).replace("@@BOUND@@", mBound);
+	res.replace("@@ITERATOR_TYPE@@", mIteratorType).replace("@@ITERATOR@@", mIterator);
+	res.replace("@@INITIAL_VALUE@@", mInitialValue).replace("@@BOUND@@", mBound).replace("@@BODY@@", mBody);
 	if (!mNext.isNull()) {
 		res.append(mNext->toString());
 	}

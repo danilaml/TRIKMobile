@@ -18,7 +18,7 @@ IfElseBlock::~IfElseBlock()
 QString IfElseBlock::toString(int indent) const
 {
 	QString res = readTemplate("conditional/ifElse.t");
-	res.replace("@@THEN_BODY@@", mThenBody).replace("@@ELSE_BODY@@",mElseBody).replace("@@CONDITION@@", mCondition);
+	res.replace("@@CONDITION@@", mCondition).replace("@@THEN_BODY@@", mThenBody).replace("@@ELSE_BODY@@",mElseBody);
 	if (!mNext.isNull()) {
 		res.append(mNext->toString());
 	}
