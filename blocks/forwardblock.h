@@ -6,11 +6,18 @@ class ForwardBlock : public AbstractBlock
 {
 	Q_OBJECT
 public:
-	ForwardBlock(AbstractBlock *n, QObject *parent = 0);
+	explicit ForwardBlock(QObject *parent = 0);
+	ForwardBlock(QSharedPointer<AbstractBlock> n, QObject *parent = 0);
 	virtual ~ForwardBlock();
 
-	virtual QString toString(int ident = 0) const;
+	virtual QString toString(int indent = 0) const;
+
+	int power() const;
+	void setPower(int power);
+	QString port() const;
+	void setPort(const QString &port);
 
 private:
 	int mPower;
+	QString mPort;
 };

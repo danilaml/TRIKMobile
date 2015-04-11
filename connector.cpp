@@ -15,9 +15,9 @@ Connector::Connector(const QString &serverIpSettingsKey)
 {
 	QObject::connect(&mControlConnection, &ConnectorHandler::messageReceived
 					 , this, &Connector::processControlMessage);
-//	QObject::connect(&mTelemetryConnection, &TcpConnectionHandler::messageReceived
-//					 , this, &TcpRobotCommunicator::processTelemetryMessage);
-//	QObject::connect(&mVersionTimer, &QTimer::timeout, this, &TcpRobotCommunicator::versionTimeOut);
+	//	QObject::connect(&mTelemetryConnection, &TcpConnectionHandler::messageReceived
+	//					 , this, &TcpRobotCommunicator::processTelemetryMessage);
+	//	QObject::connect(&mVersionTimer, &QTimer::timeout, this, &TcpRobotCommunicator::versionTimeOut);
 }
 
 Connector::~Connector()

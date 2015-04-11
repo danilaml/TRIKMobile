@@ -1,8 +1,11 @@
 #include "backwardblock.h"
-#include "QFile"
-#include "QTextStream"
 
-BackwardBlock::BackwardBlock(AbstractBlock *n, QObject *parent) : AbstractBlock(n, parent)
+BackwardBlock::BackwardBlock(QObject *parent) : AbstractBlock(parent)
+{
+
+}
+
+BackwardBlock::BackwardBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
 {
 
 }
@@ -12,18 +15,34 @@ BackwardBlock::~BackwardBlock()
 
 }
 
-QString BackwardBlock::toString(int ident) const
+QString BackwardBlock::toString(int indent) const
 {
-	QFile templ(":/engines/backward.t");
-	QString res = "";
-	if (!templ.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		qDebug("failed to open backward.t");
-		return res;
+	QString res = readTemplate("engines/backward.t");
+	res.replace("@@PORT@@", mPort).replace("@@POWER@@", QString::number(mPower));
+	if (!mNext.isNull()) {
+		res.append(mNext->toString());
 	}
-	QTextStream input;
-	input.setDevice(&templ);
-	input.setCodec("UTF-8");
-	res = input.readAll();
-	templ.close();
-	return res.replace("@@POWER@@", QString::number(mPower));
+	return addIndent(res, indent);
 }
+
+int BackwardBlock::power() const
+{
+	return mPower;
+}
+
+void BackwardBlock::setPower(int power)
+{
+	mPower = power;
+}
+
+QString BackwardBlock::port() const
+{
+	return mPort;
+}
+
+void BackwardBlock::setPort(const QString &port)
+{
+	mPort = port;
+}
+
+
