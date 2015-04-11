@@ -1,12 +1,14 @@
-#ifndef SADSMILEBLOCK_H
-#define SADSMILEBLOCK_H
+#pragma once
 
+#include "blocks/abstractblock.h"
 
-class SadSmileBlock
+class SadSmileBlock : public AbstractBlock
 {
+	Q_OBJECT
 public:
-	SadSmileBlock();
-	~SadSmileBlock();
-};
+	explicit SadSmileBlock(QObject *parent = 0);
+	SadSmileBlock(QSharedPointer<AbstractBlock> n, QObject *parent = 0);
+	virtual ~SadSmileBlock();
 
-#endif // SADSMILEBLOCK_H
+	virtual QString toString(int indent = 0) const;
+};
