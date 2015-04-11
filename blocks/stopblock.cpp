@@ -34,5 +34,3 @@ void StopBlock::setPort(int port)
 {
 	mPort = port;
 }
-
-

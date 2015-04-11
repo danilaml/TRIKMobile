@@ -16,7 +16,14 @@ SOURCES += main.cpp \
     blocks/stopblock.cpp \
     blocks/sayblock.cpp \
     blocks/smileblock.cpp \
-    blocks/sadsmileblock.cpp
+    blocks/sadsmileblock.cpp \
+    blocks/dowhileblock.cpp \
+    blocks/forblock.cpp \
+    blocks/ifblock.cpp \
+    blocks/ifelseblock.cpp \
+    blocks/infiniteblock.cpp \
+    blocks/negationblock.cpp \
+    blocks/whiledoblock.cpp
 
 HEADERS += \
     connector.h \
@@ -30,7 +37,14 @@ HEADERS += \
     blocks/stopblock.h \
     blocks/sayblock.h \
     blocks/smileblock.h \
-    blocks/sadsmileblock.h
+    blocks/sadsmileblock.h \
+    blocks/dowhileblock.h \
+    blocks/forblock.h \
+    blocks/ifblock.h \
+    blocks/ifelseblock.h \
+    blocks/infiniteblock.h \
+    blocks/negationblock.h \
+    blocks/whiledoblock.h
 
 RESOURCES += qml.qrc \
     templates.qrc

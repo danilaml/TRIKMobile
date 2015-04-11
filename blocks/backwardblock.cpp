@@ -44,5 +44,3 @@ void BackwardBlock::setPort(const QString &port)
 {
 	mPort = port;
 }
-
-

@@ -44,6 +44,3 @@ void ForwardBlock::setPort(const QString &port)
 {
 	mPort = port;
 }
-
-
-

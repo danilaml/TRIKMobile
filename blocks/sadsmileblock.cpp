@@ -23,4 +23,3 @@ QString SadSmileBlock::toString(int indent) const
 	}
 	return addIndent(res, indent);
 }
-

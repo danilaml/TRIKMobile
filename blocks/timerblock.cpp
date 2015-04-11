@@ -34,5 +34,3 @@ void TimerBlock::setDelay(int delay)
 {
 	mDelay = delay;
 }
-
-
