@@ -1,2 +1,2 @@
 # TRIKMobile
-TRIK for mobile devices
+TRIK for mobile devices.
