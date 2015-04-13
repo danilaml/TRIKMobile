@@ -18,7 +18,7 @@ IfElseBlock::~IfElseBlock()
 QString IfElseBlock::toString(int indent) const
 {
 	QString res = readTemplate("conditional/ifElse.t");
-	res.replace("@@CONDITION@@", mCondition).replace("@@THEN_BODY@@", mThenBody).replace("@@ELSE_BODY@@",mElseBody);
+	res.replace("@@CONDITION@@", mCondition).replace("@@THEN_BODY@@", mThenBody->toString()).replace("@@ELSE_BODY@@",mElseBody->toString());
 	if (!mNext.isNull()) {
 		res.append(mNext->toString());
 	}
@@ -35,22 +35,22 @@ void IfElseBlock::setCondition(const QString &condition)
 	mCondition = condition;
 }
 
-QString IfElseBlock::thenBody() const
+QSharedPointer<AbstractBlock> IfElseBlock::thenBody() const
 {
 	return mThenBody;
 }
 
-void IfElseBlock::setThenBody(const QString &thenBody)
+void IfElseBlock::setThenBody(const QSharedPointer<AbstractBlock> &thenBody)
 {
 	mThenBody = thenBody;
 }
 
-QString IfElseBlock::elseBody() const
+QSharedPointer<AbstractBlock> IfElseBlock::elseBody() const
 {
 	return mElseBody;
 }
 
-void IfElseBlock::setElseBody(const QString &elseBody)
+void IfElseBlock::setElseBody(const QSharedPointer<AbstractBlock> &elseBody)
 {
 	mElseBody = elseBody;
 }

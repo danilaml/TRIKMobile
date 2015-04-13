@@ -19,7 +19,7 @@ QString ForBlock::toString(int indent) const
 {
 	QString res = readTemplate("conditional/for.t");
 	res.replace("@@ITERATOR_TYPE@@", mIteratorType).replace("@@ITERATOR@@", mIterator);
-	res.replace("@@INITIAL_VALUE@@", mInitialValue).replace("@@BOUND@@", mBound).replace("@@BODY@@", mBody);
+	res.replace("@@INITIAL_VALUE@@", mInitialValue).replace("@@BOUND@@", mBound).replace("@@BODY@@", mBody->toString());
 	if (!mNext.isNull()) {
 		res.append(mNext->toString());
 	}
@@ -66,12 +66,12 @@ void ForBlock::setBound(const QString &bound)
 	mBound = bound;
 }
 
-QString ForBlock::body() const
+QSharedPointer<AbstractBlock> ForBlock::body() const
 {
-	return mBody;
+    return mBody;
 }
 
-void ForBlock::setBody(const QString &body)
+void ForBlock::setBody(const QSharedPointer<AbstractBlock> &body)
 {
-	mBody = body;
+    mBody = body;
 }

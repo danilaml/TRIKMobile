@@ -18,19 +18,19 @@ DoWhileBlock::~DoWhileBlock()
 QString DoWhileBlock::toString(int indent) const
 {
 	QString res = readTemplate("conditional/doWhile.t");
-	res.replace("@@BODY@@", mBody).replace("@@CONDITION@@", mCondition);
+	res.replace("@@BODY@@", mBody->toString()).replace("@@CONDITION@@", mCondition);
 	if (!mNext.isNull()) {
 		res.append(mNext->toString());
 	}
 	return addIndent(res, indent);
 }
 
-QString DoWhileBlock::body() const
+QSharedPointer<AbstractBlock> DoWhileBlock::body() const
 {
 	return mBody;
 }
 
-void DoWhileBlock::setBody(const QString &body)
+void DoWhileBlock::setBody(const QSharedPointer<AbstractBlock> &body)
 {
 	mBody = body;
 }

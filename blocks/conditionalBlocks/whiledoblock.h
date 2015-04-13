@@ -14,10 +14,11 @@ public:
 
 	QString condition() const;
 	void setCondition(const QString &condition);
-	QString body() const;
-	void setBody(const QString &body);
+
+	QSharedPointer<AbstractBlock> body() const;
+	void setBody(const QSharedPointer<AbstractBlock> &body);
 
 private:
 	QString mCondition;
-	QString mBody;
+	QSharedPointer<AbstractBlock> mBody;
 };

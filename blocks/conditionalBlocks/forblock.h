@@ -24,13 +24,13 @@ public:
 	QString bound() const;
 	void setBound(const QString &bound);
 
-	QString body() const;
-	void setBody(const QString &body);
+	QSharedPointer<AbstractBlock> body() const;
+	void setBody(const QSharedPointer<AbstractBlock> &body);
 
 private:
 	QString mIteratorType;
 	QString mIterator;
 	QString mInitialValue;
 	QString mBound;
-	QString mBody;
+	QSharedPointer<AbstractBlock> mBody;
 };

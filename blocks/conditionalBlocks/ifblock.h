@@ -15,10 +15,10 @@ public:
 	QString condition() const;
 	void setCondition(const QString &condition);
 
-	QString thenBody() const;
-	void setThenBody(const QString &thenBody);
+	QSharedPointer<AbstractBlock> thenBody() const;
+	void setThenBody(const QSharedPointer<AbstractBlock> &thenBody);
 
 private:
 	QString mCondition;
-	QString mThenBody;
+	QSharedPointer<AbstractBlock> mThenBody;
 };

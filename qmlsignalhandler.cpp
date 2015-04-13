@@ -2,7 +2,7 @@
 #include <QVariant>
 #include "qmlsignalhandler.h"
 #include "scriptgenerator.h"
-#include "blocks/forwardblock.h"
+#include "blocks/enginesBlocks/forwardblock.h"
 #include "blocks/sayblock.h"
 
 QmlSignalHandler::QmlSignalHandler(QObject *parent) : QObject(parent), mConnector("192.168.1.1")

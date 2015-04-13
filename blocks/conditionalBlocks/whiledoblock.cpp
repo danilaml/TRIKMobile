@@ -18,7 +18,7 @@ WhileDoBlock::~WhileDoBlock()
 QString WhileDoBlock::toString(int indent) const
 {
 	QString res = readTemplate("conditional/whileDo.t");
-	res.replace("@@CONDITION@@", mCondition).replace("@@BODY@@", mBody);
+	res.replace("@@CONDITION@@", mCondition).replace("@@BODY@@", mBody->toString());
 	if (!mNext.isNull()) {
 		res.append(mNext->toString());
 	}
@@ -35,12 +35,12 @@ void WhileDoBlock::setCondition(const QString &condition)
 	mCondition = condition;
 }
 
-QString WhileDoBlock::body() const
+QSharedPointer<AbstractBlock> WhileDoBlock::body() const
 {
-	return mBody;
+    return mBody;
 }
 
-void WhileDoBlock::setBody(const QString &body)
+void WhileDoBlock::setBody(const QSharedPointer<AbstractBlock> &body)
 {
-	mBody = body;
+    mBody = body;
 }

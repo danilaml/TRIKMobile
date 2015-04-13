@@ -12,12 +12,13 @@ public:
 
 	virtual QString toString(int indent = 0) const;
 
-	QString body() const;
-	void setBody(const QString &body);
+	QSharedPointer<AbstractBlock> body() const;
+	void setBody(const QSharedPointer<AbstractBlock> &body);
+
 	QString condition() const;
 	void setCondition(const QString &condition);
 
 private:
-	QString mBody;
+	QSharedPointer<AbstractBlock> mBody;
 	QString mCondition;
 };

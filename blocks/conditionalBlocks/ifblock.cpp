@@ -18,7 +18,7 @@ IfBlock::~IfBlock()
 QString IfBlock::toString(int indent) const
 {
 	QString res = readTemplate("conditional/if.t");
-	res.replace("@@THEN_BODY@@", mThenBody).replace("@@CONDITION@@", mCondition);
+	res.replace("@@CONDITION@@", mCondition).replace("@@THEN_BODY@@", mThenBody->toString());
 	if (!mNext.isNull()) {
 		res.append(mNext->toString());
 	}
@@ -35,12 +35,12 @@ void IfBlock::setCondition(const QString &condition)
 	mCondition = condition;
 }
 
-QString IfBlock::thenBody() const
+QSharedPointer<AbstractBlock> IfBlock::thenBody() const
 {
-	return mThenBody;
+    return mThenBody;
 }
 
-void IfBlock::setThenBody(const QString &thenBody)
+void IfBlock::setThenBody(const QSharedPointer<AbstractBlock> &thenBody)
 {
-	mThenBody = thenBody;
+    mThenBody = thenBody;
 }
