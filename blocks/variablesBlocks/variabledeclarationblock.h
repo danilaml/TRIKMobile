@@ -12,13 +12,9 @@ public:
 
 	virtual QString toString(int indent = 0) const;
 
-	QString type() const;
-	void setType(const QString &type);
-
 	QString name() const;
 	void setName(const QString &name);
 
 private:
-	QString mType;
 	QString mName;
 };

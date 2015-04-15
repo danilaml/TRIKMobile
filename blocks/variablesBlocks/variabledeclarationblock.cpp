@@ -18,21 +18,11 @@ VariableDeclarationBlock::~VariableDeclarationBlock()
 QString VariableDeclarationBlock::toString(int indent) const
 {
 	QString res = readTemplate("variables/variableDeclaration.t");
-	res.replace("@@TYPE@@", mType).replace("@@NAME@@", mName);
+	res.replace("@@TYPE@@", "var").replace("@@NAME@@", mName);
 	if (!mNext.isNull()) {
 		res.append(mNext->toString());
 	}
 	return addIndent(res, indent);
-}
-
-QString VariableDeclarationBlock::type() const
-{
-	return mType;
-}
-
-void VariableDeclarationBlock::setType(const QString &type)
-{
-	mType = type;
 }
 
 QString VariableDeclarationBlock::name() const

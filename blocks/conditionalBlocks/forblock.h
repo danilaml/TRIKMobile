@@ -12,9 +12,6 @@ public:
 
 	virtual QString toString(int indent = 0) const;
 
-	QString iteratorType() const;
-	void setIteratorType(const QString &iteratorType);
-
 	QString iterator() const;
 	void setIterator(const QString &iterator);
 
@@ -28,7 +25,6 @@ public:
 	void setBody(const QSharedPointer<AbstractBlock> &body);
 
 private:
-	QString mIteratorType;
 	QString mIterator;
 	QString mInitialValue;
 	QString mBound;
