@@ -12,11 +12,15 @@ int main(int argc, char *argv[])
 	QQmlApplicationEngine engine;
 //	engine.load(QUrl(QStringLiteral("qrc:/BlocksModel.qml")));
 
-	BlockModel bmodel;
-	auto blocks = (QList<AbstractBlock *>() << new ForwardBlock());
-	bmodel.setItems(blocks);
+	BlockModel bmodel2;
+	bmodel2.setItems(QList<AbstractBlock *>() << new ForwardBlock() << new ForwardBlock());
+	auto fwblock = new ForwardBlock();
+	fwblock->setChildren(QList<BlockModel *>() << &bmodel2);
+	auto blocks = (QList<AbstractBlock *>() << new ForwardBlock() << fwblock);
+	BlockModel bmodel1;
+	bmodel1.setItems(blocks);
 
-	engine.rootContext()->setContextProperty("blockModel", &bmodel);
+	engine.rootContext()->setContextProperty("blockModel", &bmodel1);
 	engine.load(QUrl(QStringLiteral("qrc:/BlocksModel.qml")));
 //	QQmlApplicationEngine engine;
 //	engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

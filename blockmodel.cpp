@@ -29,8 +29,10 @@ QVariant BlockModel::data(const QModelIndex &index, int role) const
 		return mItems.count();
 	else if (role == ChildrenCountRole)
 		return mItems.at(itemRow)->childrenCount();
-	else if (role == ChildrenModel)
-		return QVariant::fromValue(mItems.at(itemRow)->children());
+	else if (role == ChildrenOneModel)
+		return QVariant::fromValue(mItems.at(itemRow)->children().at(0));
+	else if (role == ChildrenTwoModel)
+		return QVariant::fromValue(mItems.at(itemRow)->children().at(1));
 
 	return QVariant::fromValue(mItems.at(itemRow)->getPropertyNames());
 }
@@ -42,7 +44,8 @@ QHash<int, QByteArray> BlockModel::roleNames() const
 	roles[ItemsCountRole] = "itemsCount";
 	roles[ChildrenCountRole] = "childrenCount";
 	roles[PropertyNamesRole] = "propertyNames";
-	roles[ChildrenModel] = "childrenModel";
+	roles[ChildrenOneModel] = "childrenOneModel";
+	roles[ChildrenTwoModel] = "childrenTwoModel";
 
 //    int roleStartIdx = FixedRolesEnd;
 //    for (int i = roleStartIdx, t = 0; i < roleStartIdx + m_roles.count(); i++, t++)

@@ -13,7 +13,8 @@ public:
 		TypeRole = Qt::UserRole + 1,
 		ItemsCountRole,
 		ChildrenCountRole,
-		ChildrenModel,
+		ChildrenOneModel,
+		ChildrenTwoModel,
 		PropertyNamesRole,
 		FixedRolesEnd
 	};

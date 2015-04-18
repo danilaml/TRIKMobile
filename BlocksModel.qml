@@ -24,8 +24,8 @@ ApplicationWindow {
                     item.textLabel = blockType
                     if (childrenCount)
                     {
-                        item.folderChildren = childrenModel
-                        item.childrenHeight = (childrenModel.rowCount() * 35)
+                        item.folderChildren = childrenOneModel
+                        item.childrenHeight = (childrenOneModel.rowCount() * 35)
                     }
                     else
                     {
