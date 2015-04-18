@@ -1,0 +1,65 @@
+#include "blockmodel.h"
+#include "blocks/abstractblock.h"
+
+BlockModel::BlockModel(QObject *parent)
+{
+
+}
+
+BlockModel::~BlockModel()
+{
+
+}
+
+int BlockModel::rowCount(const QModelIndex &parent) const
+{
+	return mItems.count();
+}
+
+QVariant BlockModel::data(const QModelIndex &index, int role) const
+{
+	if (index.row() < 0 || index.row() >= mItems.count())
+		return QVariant();
+
+	int itemRow = index.row();
+
+	if (role == TypeRole)
+		return mItems.at(itemRow)->blockType();
+	else if (role == ItemsCountRole)
+		return mItems.count();
+	else if (role == ChildrenCountRole)
+		return mItems.at(itemRow)->childrenCount();
+	else if (role == ChildrenModel)
+		return QVariant::fromValue(mItems.at(itemRow)->children());
+
+	return QVariant::fromValue(mItems.at(itemRow)->getPropertyNames());
+}
+
+QHash<int, QByteArray> BlockModel::roleNames() const
+{
+	QHash<int, QByteArray> roles;
+	roles[TypeRole] = "blockType";
+	roles[ItemsCountRole] = "itemsCount";
+	roles[ChildrenCountRole] = "childrenCount";
+	roles[PropertyNamesRole] = "propertyNames";
+	roles[ChildrenModel] = "childrenModel";
+
+//    int roleStartIdx = FixedRolesEnd;
+//    for (int i = roleStartIdx, t = 0; i < roleStartIdx + m_roles.count(); i++, t++)
+//        roles[i] = m_roles.at(t).toLatin1();
+
+//	qDebug() << "Returned" << roles.count() << "roles";
+
+	return roles;
+}
+QList<AbstractBlock *> BlockModel::items() const
+{
+	return mItems;
+}
+
+void BlockModel::setItems(const QList<AbstractBlock *> &items)
+{
+	mItems = items;
+}
+
+

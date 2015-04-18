@@ -2,6 +2,8 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>MainForm.ui.qml</file>
-        <file>BlocksArea.qml</file>
+        <file>BlocksModel.qml</file>
+        <file>LeafDelegate.qml</file>
+        <file>SimpleNodeDelegate.qml</file>
     </qresource>
 </RCC>

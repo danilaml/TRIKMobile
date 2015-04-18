@@ -9,24 +9,26 @@ SOURCES += main.cpp \
     connectorhandler.cpp \
     blocks/abstractblock.cpp \
     blocks/forwardblock.cpp \
-    blocks/backwardblock.cpp \
+#    blocks/backwardblock.cpp \
     qmlsignalhandler.cpp \
     scriptgenerator.cpp \
-    blocks/timerblock.cpp \
-    blocks/stopblock.cpp \
-    blocks/sayblock.cpp
+#    blocks/timerblock.cpp \
+#    blocks/stopblock.cpp \
+#    blocks/sayblock.cpp \
+    blockmodel.cpp
 
 HEADERS += \
     connector.h \
     connectorhandler.h \
     blocks/abstractblock.h \
     blocks/forwardblock.h \
-    blocks/backwardblock.h \
+#    blocks/backwardblock.h \
     qmlsignalhandler.h \
     scriptgenerator.h \
-    blocks/timerblock.h \
-    blocks/stopblock.h \
-    blocks/sayblock.h
+#    blocks/timerblock.h \
+#    blocks/stopblock.h \
+#    blocks/sayblock.h \
+    blockmodel.h
 
 RESOURCES += qml.qrc \
     templates.qrc
