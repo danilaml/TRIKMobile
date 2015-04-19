@@ -37,7 +37,7 @@ void QmlSignalHandler::handleSend(const QVariant &scriptList)
 	test1->setPort("M1");
 
 	qDebug() << scriptgen.generate(test1);
-	mConnector.uploadProgram("test", scriptgen.generate(test2));
+	mConnector.uploadProgram("test", scriptgen.generate(test1));
 	for (const QString &names : list)
 	{
 		qDebug() << mScripts.value(names);

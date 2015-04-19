@@ -1,6 +1,6 @@
 #include "forwardblock.h"
 
-ForwardBlock::ForwardBlock(QObject *parent) : AbstractBlock(parent), mPort("M1"), mPower("100")
+ForwardBlock::ForwardBlock(QObject *parent) : AbstractBlock(parent), mPower("100"), mPort("M1")
 {
 	propertyNames << "power" << "port";
 }

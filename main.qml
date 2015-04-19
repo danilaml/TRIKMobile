@@ -103,7 +103,9 @@ ApplicationWindow {
         TextField {
             id: ipField
             placeholderText: "192.168.1.1"
-            validator: RegExpValidator {regExp: /([0-9]|\.)+/}
+            validator: RegExpValidator {
+                regExp: /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
+            }
         }
     }
 

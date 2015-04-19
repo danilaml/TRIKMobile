@@ -3,7 +3,7 @@
 #include <QQmlContext>
 #include "qmlsignalhandler.h"
 #include "blockmodel.h"
-#include "blocks/forwardblock.h"
+#include "blocks/enginesBlocks/forwardblock.h"
 
 int main(int argc, char *argv[])
 {
@@ -24,15 +24,13 @@ int main(int argc, char *argv[])
 
 	engine.rootContext()->setContextProperty("blockModel", &bmodel1);
 	engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-//	QQmlApplicationEngine engine;
-//	engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
-//	QObject *appwindow = engine.rootObjects().first();
-//	QmlSignalHandler mysg;
-//	QObject::connect(appwindow, SIGNAL(sendPressed(QVariant)), &mysg, SLOT(handleSend(QVariant)));
-//	QObject::connect(appwindow, SIGNAL(runPressed(QString)), &mysg, SLOT(handleRun(QString)));
-//	QObject::connect(appwindow, SIGNAL(ipChanged(QString)), &mysg, SLOT(hadleIpChange(QString)));
-//	QObject::connect(appwindow, SIGNAL(stopPressed()), &mysg, SLOT(handleStop()));
+	QObject *appwindow = engine.rootObjects().first();
+	QmlSignalHandler mysg;
+	QObject::connect(appwindow, SIGNAL(sendPressed(QVariant)), &mysg, SLOT(handleSend(QVariant)));
+	QObject::connect(appwindow, SIGNAL(runPressed(QString)), &mysg, SLOT(handleRun(QString)));
+	QObject::connect(appwindow, SIGNAL(ipChanged(QString)), &mysg, SLOT(hadleIpChange(QString)));
+	QObject::connect(appwindow, SIGNAL(stopPressed()), &mysg, SLOT(handleStop()));
 
 	return app.exec();
 }
