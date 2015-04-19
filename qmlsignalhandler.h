@@ -11,7 +11,7 @@ public:
 	explicit QmlSignalHandler(QObject *parent = 0);
 	~QmlSignalHandler();
 
-//signals:
+	//signals:
 
 public slots:
 	void handleSend(const QVariant &scriptList);

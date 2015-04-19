@@ -71,5 +71,3 @@ QString AbstractBlock::addIndent(QString const &code, int indent) const
 
 	return result.join('\n');
 }
-
-
