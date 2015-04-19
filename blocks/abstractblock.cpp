@@ -20,6 +20,11 @@ AbstractBlock::~AbstractBlock()
 	}
 }
 
+QString AbstractBlock::statusString() const
+{
+	return "not implemented";
+}
+
 int AbstractBlock::childrenCount() const
 {
 	return mChildren.count();

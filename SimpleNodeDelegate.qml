@@ -8,12 +8,14 @@ Rectangle {
     color: "transparent"
 
     property string textLabel
+    property string statusString
     property var folderChildren
     property bool isExpanded: false
     property int childrenHeight: 0
     property int variableHeight: 0
 
     signal toggled(bool expanded, int newHeight)
+
 
     Text {
         id: nodeLabel
@@ -31,6 +33,7 @@ Rectangle {
             isExpanded = !isExpanded
             nodeContainer.toggled(isExpanded, childrenHeight)
         }
+        onPressAndHold: console.log(this + "pressed and holded")
     }
 
     Rectangle {
@@ -53,16 +56,19 @@ Rectangle {
         visible: isExpanded
         x: 30
         y: nodeLabel.height
+        width: parent.width - x
         height: isExpanded ? (childrenHeight + variableHeight) : 0
+        //height: childrenHeight
         model: folderChildren
         delegate:
             Component {
                 Loader {
-                    width: 350 //parent.width
+                    width: parent.width
                     //height: 35
                     source: childrenCount ? "SimpleNodeDelegate.qml" : "LeafDelegate.qml"
                     onLoaded: {
                         item.textLabel = blockType
+                        item.statusString = statusString
                         if (childrenCount)
                         {
                             item.folderChildren = childrenModel
@@ -70,7 +76,7 @@ Rectangle {
                         }
                         else
                         {
-                            item.propetyNames = propertyNames
+                            item.propertyNames = propertyNames
                         }
                     }
                     Connections {

@@ -16,6 +16,7 @@ public:
 		ChildrenOneModel,
 		ChildrenTwoModel,
 		PropertyNamesRole,
+		StatusStringRole,
 		FixedRolesEnd
 	};
 

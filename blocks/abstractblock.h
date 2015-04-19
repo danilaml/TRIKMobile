@@ -15,6 +15,7 @@ public:
 
 	virtual QString toString(int indent = 0) const = 0;
 	virtual QString blockType() const = 0;
+	virtual QString statusString() const;
 
 	int childrenCount() const;
 	QList<BlockModel *> children() const;

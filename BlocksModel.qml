@@ -6,13 +6,13 @@ import QtQuick.Dialogs 1.2
 ApplicationWindow {
     id: mainwindow
     title: qsTr("TRIKMobile")
-    width: 640
-    height: 480
+    width: 540
+    height: 960
     visible: true
 
     ListView {
         id: blockModelView
-        width: 350
+        width: 540
         height: 600
         model: blockModel
         delegate:
@@ -22,6 +22,7 @@ ApplicationWindow {
                 source: childrenCount ? "SimpleNodeDelegate.qml" : "LeafDelegate.qml"
                 onLoaded: {
                     item.textLabel = blockType
+                    item.statusString = statusString
                     if (childrenCount)
                     {
                         item.folderChildren = childrenOneModel
@@ -29,7 +30,7 @@ ApplicationWindow {
                     }
                     else
                     {
-                        item.propertyNames = "test"//propertyNames;
+                        item.propertyNames = propertyNames;
                     }
                 }
             }

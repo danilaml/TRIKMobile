@@ -5,26 +5,28 @@ Rectangle {
     width: 350
     height: 35
 
-    color: "transparent"
-    //color: "steelblue"
+    //color: "transparent"
+    color: "steelblue"
 
     property string textLabel
-    property string propertyNames
+    property string statusString
+    property var propertyNames
 //    property string lCurrency
 
     signal clicked
 
     Text {
-        width: 150
+        id: labelText
+        //width: 150
         height: parent.height
         text: textLabel
         verticalAlignment: Text.AlignVCenter
     }
     Text {
-        x: 150
+        x: labelText.width + 5 //150
         width: 100
         height: parent.height
-        text: propertyNames
+        text: statusString//propertyNames.toString()
         verticalAlignment: Text.AlignVCenter
     }
     Rectangle {
@@ -36,7 +38,9 @@ Rectangle {
 
     MouseArea {
         anchors.fill: parent
-        onClicked: leafDelegate.clicked()
+        height: parent.height
+        //onClicked: leafDelegate.clicked()
+        onPressAndHold: console.log(this + "pressed and holded")
     }
 }
 

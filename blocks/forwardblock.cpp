@@ -2,7 +2,7 @@
 
 ForwardBlock::ForwardBlock(QObject *parent) : AbstractBlock(parent)
 {
-
+	propertyNames << "power" << "port";
 }
 
 //ForwardBlock::ForwardBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
