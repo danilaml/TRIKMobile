@@ -1,9 +1,10 @@
-import QtQuick 2.0
+import QtQuick 2.4
+import QtQuick.Window 2.2
 
 Rectangle {
     id: leafDelegate
-    width: 350
-    height: 35
+    width: parent.width
+    height: 9 * dpm
 
     //color: "transparent"
     color: "steelblue"
@@ -11,7 +12,8 @@ Rectangle {
     property string textLabel
     property string statusString
     property var propertyNames
-//    property string lCurrency
+
+    property int dpm: Screen.pixelDensity
 
     signal clicked
 
@@ -24,7 +26,7 @@ Rectangle {
     }
     Text {
         x: labelText.width + 5 //150
-        width: 100
+        //width: 100
         height: parent.height
         text: statusString//propertyNames.toString()
         verticalAlignment: Text.AlignVCenter

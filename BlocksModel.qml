@@ -12,21 +12,26 @@ ApplicationWindow {
 
     ListView {
         id: blockModelView
-        width: 540
+        width: parent.width//540
         height: 600
         model: blockModel
+
+        property int dpm: Screen.pixelDensity //dots per mm
+
         delegate:
             Component {
             Loader {
                 width: parent.width
                 source: childrenCount ? "SimpleNodeDelegate.qml" : "LeafDelegate.qml"
                 onLoaded: {
+                    console.warn(Screen.pixelDensity + ", " + blockModelView.dpm)
+                    console.log(Screen.pixelDensity + ", " + blockModelView.dpm)
                     item.textLabel = blockType
                     item.statusString = statusString
                     if (childrenCount)
                     {
                         item.folderChildren = childrenOneModel
-                        item.childrenHeight = (childrenOneModel.rowCount() * 35)
+                        item.childrenHeight = (childrenOneModel.rowCount() * 9 * blockModelView.dpm)
                     }
                     else
                     {

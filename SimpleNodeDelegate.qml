@@ -1,8 +1,9 @@
-import QtQuick 2.0
+import QtQuick 2.4
+import QtQuick.Window 2.2
 
 Rectangle {
     id: nodeContainer
-    width: 350
+    width: parent.width
     height: nodeLabel.height + nodeChildrenView.height
 
     color: "transparent"
@@ -14,6 +15,8 @@ Rectangle {
     property int childrenHeight: 0
     property int variableHeight: 0
 
+    property int dpm: Screen.pixelDensity
+
     signal toggled(bool expanded, int newHeight)
 
 
@@ -21,14 +24,14 @@ Rectangle {
         id: nodeLabel
         x: 45
         width: parent.width
-        height: 35
+        height: 9 * dpm
         text: textLabel
         verticalAlignment: Text.AlignVCenter
     }
 
     MouseArea {
         width: parent.width
-        height: 35
+        height: 9 * dpm
         onClicked: {
             isExpanded = !isExpanded
             nodeContainer.toggled(isExpanded, childrenHeight)
@@ -39,7 +42,7 @@ Rectangle {
     Rectangle {
         height: 1
         width: parent.width
-        y: 34
+        y: 9 * dpm - 1
         color: "black"
     }
 
@@ -72,7 +75,7 @@ Rectangle {
                         if (childrenCount)
                         {
                             item.folderChildren = childrenModel
-                            item.childrenHeight = (childrenModel.rowCount() * 35)
+                            item.childrenHeight = (childrenModel.rowCount() * 9 * dpm)
                         }
                         else
                         {
