@@ -14,10 +14,10 @@ Connector::Connector(const QString &serverIpSettingsKey)
 	, mServerIpSettingsKey(serverIpSettingsKey)
 {
 	QObject::connect(&mControlConnection, &ConnectorHandler::messageReceived
-   , this, &Connector::processControlMessage);
-//	QObject::connect(&mTelemetryConnection, &TcpConnectionHandler::messageReceived
-//	, this, &TcpRobotCommunicator::processTelemetryMessage);
-//	QObject::connect(&mVersionTimer, &QTimer::timeout, this, &TcpRobotCommunicator::versionTimeOut);
+					 , this, &Connector::processControlMessage);
+	QObject::connect(&mTelemetryConnection, &ConnectorHandler::messageReceived
+					 , this, &Connector::processTelemetryMessage);
+	QObject::connect(&mVersionTimer, &QTimer::timeout, this, &Connector::versionTimeOut);
 }
 
 Connector::~Connector()
@@ -37,10 +37,11 @@ QString Connector::readAll(QString const &fileName)
 {
 	QFile file(fileName);
 	file.open(QIODevice::ReadOnly | QIODevice::Text);
-//	if (!file.isOpen())
-//	{
-//		throw qReal::Exception((fileName + " - file open operation failed").toUtf8());
-//	}
+
+	if (!file.isOpen())
+	{
+		qDebug() << fileName << " - file open operation failed";
+	}
 
 	QTextStream input;
 	input.setDevice(&file);
@@ -99,7 +100,8 @@ bool Connector::runProgram(const QString &programName)
 
 bool Connector::runDirectCommand(const QString &directCommand, bool asScript)
 {
-	if (!mControlConnection.isConnected()) {
+	if (!mControlConnection.isConnected())
+	{
 		return false;
 	}
 	const QString command = asScript ? "directScript" : "direct";
@@ -109,7 +111,8 @@ bool Connector::runDirectCommand(const QString &directCommand, bool asScript)
 
 bool Connector::stopRobot()
 {
-	if (!mControlConnection.isConnected()) {
+	if (!mControlConnection.isConnected())
+	{
 		return false;
 	}
 	mControlConnection.send("stop");
@@ -118,94 +121,95 @@ bool Connector::stopRobot()
 
 void Connector::requestData(const QString &sensor)
 {
-//	if (!mTelemetryConnection.isConnected()) {
-//		return;
-//	}
-//	mTelemetryConnection.send("sensor:" + sensor);
+	if (!mTelemetryConnection.isConnected())
+	{
+		return;
+	}
+	mTelemetryConnection.send("sensor:" + sensor);
 }
-
-//void Connector::setErrorReporter(qReal::ErrorReporterInterface *errorReporter)
-//{
-//	mErrorReporter = errorReporter;
-//}
 
 void Connector::processControlMessage(const QString &message)
 {
 	const QString errorMarker("error: ");
 	const QString infoMarker("info: ");
 	const QString versionMarker("version: ");
-	const QString fromRobotString(tr("From robot: "));
-//	if (message.startsWith(versionMarker) && mErrorReporter)
-//	{
-//		mVersionTimer.stop();
-//		const QString currentVersion = message.mid(versionMarker.length());
-//		if (currentVersion != requiredVersion)
-//		{
-//			mErrorReporter->addError(tr("TRIK runtime version is too old, please update it by pressing "
-//										"'Upload Runtime' button on toolbar"));
-//		}
-//	}
-//	else if (message.startsWith(errorMarker) && mErrorReporter) {
-//		mErrorReporter->addError(fromRobotString + message.mid(errorMarker.length()));
-//	}
-//	else if (message.startsWith(infoMarker) && mErrorReporter) {
-//		mErrorReporter->addInformation(fromRobotString + message.mid(infoMarker.length()));
-//	}
-//	else
-//	{
-//		QLOG_INFO() << "Incoming message of unknown type: " << message;
-//	}
+	const QString fromRobotString("From robot: ");
+	const QString requiredVersion("3.0.2");
+	if (message.startsWith(versionMarker))
+	{
+		mVersionTimer.stop();
+		const QString currentVersion = message.mid(versionMarker.length());
+		if (currentVersion != requiredVersion)
+		{
+			qDebug() << "TRIK runtime version is too old, please update it by pressing 'Upload Runtime' button on toolbar";
+		}
+	}
+	else if (message.startsWith(errorMarker))
+	{
+		qDebug() << fromRobotString << message.mid(errorMarker.length());
+	}
+	else if (message.startsWith(infoMarker))
+	{
+		qDebug() << fromRobotString << message.mid(infoMarker.length());
+	}
+	else
+	{
+		qDebug() << "Incoming message of unknown type: " << message;
+	}
 }
 
 void Connector::processTelemetryMessage(const QString &message)
 {
-//	const QString sensorMarker("sensor:");
-//	if (message.startsWith(sensorMarker)) {
-//		QString data(message);
-//		data.remove(0, sensorMarker.length());
-//		QStringList portAndValue = data.split(":");
-//		if (portAndValue[1].startsWith('(')) {
-//			portAndValue[1].remove(0, 1);
-//			portAndValue[1].remove(portAndValue[1].length() - 1, 1);
-//			QStringList stringValues = portAndValue[1].split(",");
-//			QVector<int> values;
-//			for (const QString &value : stringValues) {
-//				values.push_back(value.toInt());
-//			}
-//			emit newVectorSensorData(portAndValue[0], values);
-//		} else {
-//			emit newScalarSensorData(portAndValue[0], portAndValue[1].toInt());
-//		}
-//	} else {
-//		QLOG_INFO() << "Incoming message of unknown type: " << message;
-//	}
+	const QString sensorMarker("sensor:");
+	if (message.startsWith(sensorMarker))
+	{
+		QString data(message);
+		data.remove(0, sensorMarker.length());
+		QStringList portAndValue = data.split(":");
+		if (portAndValue[1].startsWith('('))
+		{
+			portAndValue[1].remove(0, 1);
+			portAndValue[1].remove(portAndValue[1].length() - 1, 1);
+			QStringList stringValues = portAndValue[1].split(",");
+			QVector<int> values;
+			for (const QString &value : stringValues)
+			{
+				values.push_back(value.toInt());
+			}
+			emit newVectorSensorData(portAndValue[0], values);
+		} else {
+			emit newScalarSensorData(portAndValue[0], portAndValue[1].toInt());
+		}
+	} else {
+		qDebug() << "Incoming message of unknown type: " << message;
+	}
 }
 
 void Connector::versionTimeOut()
 {
-//	mVersionTimer.stop();
-//	mErrorReporter->addError(tr("Current TRIK runtime version can not be received"));
+	mVersionTimer.stop();
+	qDebug() << "Current TRIK runtime version can not be received";
 }
 
 void Connector::versionRequest()
 {
-//	mControlConnection.send("version");
-//	mVersionTimer.start(3000);
+	mControlConnection.send("version");
+	mVersionTimer.start(3000);
 }
 
 void Connector::connect()
 {
-//	const QString server = qReal::SettingsManager::value(mServerIpSettingsKey).toString();
 	const QString server = mServerIpSettingsKey;
 	QHostAddress hostAddress(server);
+
 	if (hostAddress.isNull())
 	{
-		qDebug() << "Unable to resolve host.";
+		qDebug() << "Unable to resolve host";
 		return;
 	}
 
-//	if (mControlConnection.isConnected() && mTelemetryConnection.isConnected())
-	if (mControlConnection.isConnected())
+//	if (mControlConnection.isConnected())
+	if (mControlConnection.isConnected() && mTelemetryConnection.isConnected())
 	{
 		if (mCurrentIP == server)
 		{
@@ -214,8 +218,8 @@ void Connector::connect()
 		disconnect();
 	}
 	mCurrentIP = server;
-//	const bool result = mControlConnection.connect(hostAddress) && mTelemetryConnection.connect(hostAddress);
-	const bool result = mControlConnection.connect(hostAddress);
+//	const bool result = mControlConnection.connect(hostAddress);
+	const bool result = mControlConnection.connect(hostAddress) && mTelemetryConnection.connect(hostAddress);
 	versionRequest();
 	emit connected(result, QString());
 }
@@ -223,6 +227,6 @@ void Connector::connect()
 void Connector::disconnect()
 {
 	mControlConnection.disconnect();
-	//mTelemetryConnection.disconnect();
+	mTelemetryConnection.disconnect();
 	emit disconnected();
 }

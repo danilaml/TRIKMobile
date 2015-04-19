@@ -18,7 +18,10 @@ StopBlock::~StopBlock()
 QString StopBlock::toString(int indent) const
 {
 	QString res = readTemplate("engines/stop.t");
-	res.replace("@@PORT@@",QString::number(mPort));
+	res.replace("@@PORT@@", QString::number(mPort));
+	if (!mNext.isNull()) {
+		res.append(mNext->toString());
+	}
 	return addIndent(res, indent);
 }
 
@@ -31,5 +34,3 @@ void StopBlock::setPort(int port)
 {
 	mPort = port;
 }
-
-

@@ -79,6 +79,7 @@ QString AbstractBlock::addIndent(QString const &code, int indent) const
 
 	return result.join('\n');
 }
+
 QList<QString> AbstractBlock::getPropertyNames() const
 {
 	return propertyNames;
@@ -98,6 +99,4 @@ void AbstractBlock::setChildren(const QList<BlockModel *> &children)
 {
 	mChildren = children;
 }
-
-
 
