@@ -33,7 +33,7 @@ void QmlSignalHandler::handleSend(const QVariant &scriptList)
 //	test1->setPower(42);
 //	test1->setPort("M1");
 	ForwardBlock* test1 = new ForwardBlock();
-	test1->setPower(42);
+	test1->setPower("42");
 	test1->setPort("M1");
 
 	qDebug() << scriptgen.generate(test1);

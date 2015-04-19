@@ -21,16 +21,16 @@ Rectangle {
         id: labelText
         //width: 150
         height: parent.height
-        text: textLabel
+        text: textLabel + " " + statusString
         verticalAlignment: Text.AlignVCenter
     }
-    Text {
-        x: labelText.width + 5 //150
-        //width: 100
-        height: parent.height
-        text: statusString//propertyNames.toString()
-        verticalAlignment: Text.AlignVCenter
-    }
+//    Text {
+//        x: labelText.width + 5 //150
+//        //width: 100
+//        height: parent.height
+//        text: statusString//propertyNames.toString()
+//        verticalAlignment: Text.AlignVCenter
+//    }
     Rectangle {
         height: 1
         width: parent.width

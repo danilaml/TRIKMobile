@@ -4,16 +4,16 @@ import QtQuick.Layouts 1.1
 
 Item {
     id: item1
-    width: 480
-    height: 640
+    width: 540
+    height: 960
 
-    property alias listView1: listView1
+//    property alias listView1: listView1
     property alias button5: button5
     property alias button4: button4
     property alias button3: button3
     property alias button2: button2
     property alias button1: button1
-    property alias listModel1: listModel1
+//    property alias listModel1: listModel1
 
     GridLayout {
         id: gridLayout1
@@ -66,53 +66,53 @@ Item {
         }
     }
 
-    ListView {
-        id: listView1
-        x: 129
-        width: 110
-        anchors.top: parent.top
-        anchors.topMargin: 5
-        anchors.bottom: gridLayout1.top
-        anchors.bottomMargin: 1
-        anchors.horizontalCenter: parent.horizontalCenter
-        delegate: Item {
-            x: 5
-            width: 80
-            height: 40
-            Row {
-                id: row1
-                spacing: 10
+//    ListView {
+//        id: listView1
+//        x: 129
+//        width: 110
+//        anchors.top: parent.top
+//        anchors.topMargin: 5
+//        anchors.bottom: gridLayout1.top
+//        anchors.bottomMargin: 1
+//        anchors.horizontalCenter: parent.horizontalCenter
+//        delegate: Item {
+//            x: 5
+//            width: 80
+//            height: 40
+//            Row {
+//                id: row1
+//                spacing: 10
 
-                Rectangle {
-                    width: 100
-                    height: 35
-                    color: "lightgrey"
-                    Text {
-                        text: name
-                        font.bold: true
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-                }
-            }
-        }
-        model: ListModel {
-            id: listModel1
-            ListElement {
-                name: "Forward"
-            }
+//                Rectangle {
+//                    width: 100
+//                    height: 35
+//                    color: "lightgrey"
+//                    Text {
+//                        text: name
+//                        font.bold: true
+//                        anchors.verticalCenter: parent.verticalCenter
+//                    }
+//                }
+//            }
+//        }
+//        model: ListModel {
+//            id: listModel1
+//            ListElement {
+//                name: "Forward"
+//            }
 
-            ListElement {
-                name: "Backwards"
-            }
+//            ListElement {
+//                name: "Backwards"
+//            }
 
-            ListElement {
-                name: "Left"
-            }
+//            ListElement {
+//                name: "Left"
+//            }
 
-            ListElement {
-                name: "Right"
-            }
-        }
-    }
+//            ListElement {
+//                name: "Right"
+//            }
+//        }
+//    }
 
 }

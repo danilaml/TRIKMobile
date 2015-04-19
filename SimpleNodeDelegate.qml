@@ -23,11 +23,19 @@ Rectangle {
     Text {
         id: nodeLabel
         x: 45
-        width: parent.width
+        //width: parent.width
         height: 9 * dpm
-        text: textLabel
+        text: textLabel + " " + statusString
         verticalAlignment: Text.AlignVCenter
     }
+
+//    Text {
+//        x: nodeLabel.x + nodeLabel.width + 5 //150
+//        //width: 100
+//        height: parent.height
+//        text: statusString//propertyNames.toString()
+//        verticalAlignment: Text.AlignVCenter
+//    }
 
     MouseArea {
         width: parent.width

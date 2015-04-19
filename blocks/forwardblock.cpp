@@ -1,6 +1,6 @@
 #include "forwardblock.h"
 
-ForwardBlock::ForwardBlock(QObject *parent) : AbstractBlock(parent)
+ForwardBlock::ForwardBlock(QObject *parent) : AbstractBlock(parent), mPort("M1"), mPower("100")
 {
 	propertyNames << "power" << "port";
 }
@@ -18,7 +18,7 @@ ForwardBlock::~ForwardBlock()
 QString ForwardBlock::toString(int indent) const
 {
 	QString res = readTemplate("engines/forward.t");
-	res.replace("@@PORT@@", mPort).replace("@@POWER@@", QString::number(mPower));
+	res.replace("@@PORT@@", mPort).replace("@@POWER@@", mPower);
 //	if (!mNext.isNull()) {
 //		res.append(mNext->toString());
 //	}
@@ -30,12 +30,17 @@ QString ForwardBlock::blockType() const
 	return "forwardblock";
 }
 
-int ForwardBlock::power() const
+QString ForwardBlock::statusString() const
+{
+	return QString("Port: %1, Power: %2").arg(mPort, mPower);
+}
+
+QString ForwardBlock::power() const
 {
 	return mPower;
 }
 
-void ForwardBlock::setPower(int power)
+void ForwardBlock::setPower(const QString &power)
 {
 	mPower = power;
 }
