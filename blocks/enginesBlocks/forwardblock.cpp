@@ -27,7 +27,7 @@ QString ForwardBlock::toString(int indent) const
 
 QString ForwardBlock::blockType() const
 {
-	return "forwardblock";
+	return "forwardBlock";
 }
 
 QString ForwardBlock::statusString() const

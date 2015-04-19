@@ -16,10 +16,13 @@ QString InfiniteBlock::toString(int indent) const
 	QString res = readTemplate("conditional/infinite.t");
 	QString body;
 	if (mChildren.size() > 0) {
-		for (auto child : mChildren.at(0)->items()) {
-			body += child->toString(1);
-		}
+		body = mChildren.at(0)->toString(1);
 	}
 	res.replace("@@BODY@@", body);
 	return addIndent(res, indent);
+}
+
+QString InfiniteBlock::blockType() const
+{
+	return "infiniteBlock";
 }
