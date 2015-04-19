@@ -3,6 +3,7 @@
 #include <QObject>
 #include <QMap>
 #include "connector.h"
+#include "blockmodel.h"
 
 class QmlSignalHandler : public QObject
 {
@@ -11,15 +12,16 @@ public:
 	explicit QmlSignalHandler(QObject *parent = 0);
 	~QmlSignalHandler();
 
-	//signals:
+	BlockModel *model() const;
+	void setModel(BlockModel *model);
 
 public slots:
-	void handleSend(const QVariant &scriptList);
+	void handleSend();
 	void handleRun(const QString &name);
 	void handleStop();
 	void hadleIpChange(const QString &newIp);
 
 private:
-	QMap<QString, QString> mScripts;
 	Connector mConnector;
+	BlockModel *mModel;
 };

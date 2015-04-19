@@ -11,7 +11,7 @@ ApplicationWindow {
     height: 960
     visible: true
 
-    signal sendPressed(var msg)
+    signal sendPressed()
     signal runPressed(string msg)
     signal stopPressed()
     signal ipChanged(string ip)
@@ -71,11 +71,7 @@ ApplicationWindow {
 
             button1.onClicked: addScriptDialog.open()
             button2.onClicked: removeElement()
-            button3.onClicked: {
-                var actions = getActionsList();
-                console.log(actions);
-                sendPressed(actions);
-            }
+            button3.onClicked: sendPressed()
             button4.onClicked: runPressed("test")
             button5.onClicked: stopPressed()
         }

@@ -26,6 +26,8 @@ public:
 	Q_INVOKABLE int rowCount(const QModelIndex &parent = QModelIndex()) const;
 	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
+	QString toString(int indent = 0);
+
 	QList<AbstractBlock *> items() const;
 	void setItems(const QList<AbstractBlock *> &items);
 

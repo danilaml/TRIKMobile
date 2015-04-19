@@ -39,6 +39,15 @@ QVariant BlockModel::data(const QModelIndex &index, int role) const
 	return QVariant::fromValue(mItems.at(itemRow)->getPropertyNames());
 }
 
+QString BlockModel::toString(int indent)
+{
+	QString res;
+	for (auto block : mItems) {
+		res += block->toString(indent).append("\n");
+	}
+	return res;
+}
+
 QHash<int, QByteArray> BlockModel::roleNames() const
 {
 	QHash<int, QByteArray> roles;

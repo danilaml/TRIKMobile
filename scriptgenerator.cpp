@@ -1,5 +1,6 @@
 #include <QFile>
 #include <QTextStream>
+#include "blockmodel.h"
 #include "scriptgenerator.h"
 
 ScriptGenerator::ScriptGenerator(QObject *parent) : QObject(parent)
@@ -18,7 +19,7 @@ ScriptGenerator::~ScriptGenerator()
 
 }
 
-QString ScriptGenerator::generate(AbstractBlock *root) const
+QString ScriptGenerator::generate(BlockModel *root) const
 {
 	QString resultCode = readTemplate("main.t");
 	QString mainCode = root->toString(1);

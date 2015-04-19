@@ -3,7 +3,8 @@
 #include <QObject>
 #include <QMap>
 #include <QStringList>
-#include "blocks/abstractblock.h"
+
+class BlockModel;
 
 class ScriptGenerator : public QObject
 {
@@ -13,7 +14,7 @@ public:
 	//ScriptGenerator(QMap<QString, QString> &consts, QObject *parent = 0);
 	~ScriptGenerator();
 
-	QString generate(AbstractBlock *root) const;
+	QString generate(BlockModel *root) const;
 
 	QMap<QString, QString> getConstants() const;
 	void setConstants(const QMap<QString, QString> &value);
