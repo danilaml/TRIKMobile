@@ -13,7 +13,7 @@ public:
 	//ScriptGenerator(QMap<QString, QString> &consts, QObject *parent = 0);
 	~ScriptGenerator();
 
-	QString generate(QSharedPointer<AbstractBlock> root) const;
+	QString generate(AbstractBlock *root) const;
 
 	QMap<QString, QString> getConstants() const;
 	void setConstants(const QMap<QString, QString> &value);

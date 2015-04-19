@@ -18,7 +18,7 @@ ScriptGenerator::~ScriptGenerator()
 
 }
 
-QString ScriptGenerator::generate(QSharedPointer<AbstractBlock> root) const
+QString ScriptGenerator::generate(AbstractBlock *root) const
 {
 	QString resultCode = readTemplate("main.t");
 	QString mainCode = root->toString(1);

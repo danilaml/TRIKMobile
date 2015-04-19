@@ -2,6 +2,9 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>MainForm.ui.qml</file>
-        <file>BlocksArea.qml</file>
+        <file>BlocksView.qml</file>
+        <file>LeafDelegate.qml</file>
+        <file>SimpleNodeDelegate.qml</file>
+        <file>ButtonsGrid.qml</file>
     </qresource>
 </RCC>

@@ -7,10 +7,9 @@ CONFIG += c++11
 SOURCES += main.cpp \
     connector.cpp \
     connectorhandler.cpp \
-    blocks/abstractblock.cpp \
     qmlsignalhandler.cpp \
     scriptgenerator.cpp \
-    blocks/sayblock.cpp \
+    blocks/abstractblock.cpp \
     blocks/accelerometerBlocks/accelerometerxblock.cpp \
     blocks/backgroundColorsBlocks/greenblock.cpp \
     blocks/conditionalBlocks/dowhileblock.cpp \
@@ -41,14 +40,14 @@ SOURCES += main.cpp \
     blocks/variablesBlocks/variabledeclarationblock.cpp \
     blocks/videosensorsBlocks/detectlineblock.cpp \
     blocks/ledColorsBlocks/ledgreenblock.cpp
+    blockmodel.cpp
 
 HEADERS += \
     connector.h \
     connectorhandler.h \
-    blocks/abstractblock.h \
     qmlsignalhandler.h \
     scriptgenerator.h \
-    blocks/sayblock.h \
+    blocks/abstractblock.h \
     blocks/accelerometerBlocks/accelerometerxblock.h \
     blocks/backgroundColorsBlocks/greenblock.h \
     blocks/conditionalBlocks/dowhileblock.h \
@@ -79,6 +78,7 @@ HEADERS += \
     blocks/variablesBlocks/variabledeclarationblock.h \
     blocks/videosensorsBlocks/detectlineblock.h \
     blocks/ledColorsBlocks/ledgreenblock.h
+    blockmodel.h
 
 RESOURCES += qml.qrc \
     templates.qrc

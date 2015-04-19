@@ -27,10 +27,13 @@ void QmlSignalHandler::handleSend(const QVariant &scriptList)
 	ScriptGenerator scriptgen;
 	scriptgen.setConstants(consts);
 
-	QSharedPointer<SayBlock> test2(new SayBlock());
-	test2->setText("This is test block");
-	QSharedPointer<ForwardBlock> test1(new ForwardBlock(test2));
-	test1->setPower(42);
+//	QSharedPointer<SayBlock> test2(new SayBlock());
+//	test2->setText("This is test block");
+//	QSharedPointer<ForwardBlock> test1(new ForwardBlock(test2));
+//	test1->setPower(42);
+//	test1->setPort("M1");
+	ForwardBlock* test1 = new ForwardBlock();
+	test1->setPower("42");
 	test1->setPort("M1");
 
 	qDebug() << scriptgen.generate(test1);

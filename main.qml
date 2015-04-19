@@ -2,12 +2,13 @@ import QtQuick 2.4
 import QtQuick.Controls 1.3
 import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
+import QtQuick.Layouts 1.1
 
 ApplicationWindow {
     id: mainwindow
     title: qsTr("TRIKMobile")
-    width: 640
-    height: 480
+    width: 540
+    height: 960
     visible: true
 
     signal sendPressed(var msg)
@@ -33,34 +34,51 @@ ApplicationWindow {
             }
         }
     }
+    Item {
+        width: parent.width
+        height: parent.height
 
-    MainForm {
-        id: mftest
-        anchors.fill: parent
-
-        function removeElement() {
-            if (listModel1.count)
-                listModel1.remove(listModel1.count - 1)
+        BlocksView {
+            id: blockModelView
+            width: parent.width//540
+            height: parent.height - buttons.height//720
+            model: blockModel
         }
 
-        function getActionsList() {
-            var result = [];
-            for (var i = 0; i < listModel1.count; i++) {
-                result.push(listModel1.get(i).name);
+        ButtonsGrid {
+            id: buttons
+            //anchors.top: blockModelView.bottom
+            width: parent.width
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            anchors.rightMargin: 5
+            anchors.bottomMargin: 5
+            anchors.leftMargin: 5
+
+            function removeElement() {
+                if (listModel1.count)
+                    listModel1.remove(listModel1.count - 1)
             }
-            return result;
-        }
 
-        button1.onClicked: addScriptDialog.open()
-        button2.onClicked: removeElement()
-        button3.onClicked: {
-            var actions = getActionsList();
-            console.log(actions);
-            sendPressed(actions);
-        }
-        button4.onClicked: runPressed("test")
-        button5.onClicked: stopPressed()
+            function getActionsList() {
+                var result = [];
+                for (var i = 0; i < listModel1.count; i++) {
+                    result.push(listModel1.get(i).name);
+                }
+                return result;
+            }
 
+            button1.onClicked: addScriptDialog.open()
+            button2.onClicked: removeElement()
+            button3.onClicked: {
+                var actions = getActionsList();
+                console.log(actions);
+                sendPressed(actions);
+            }
+            button4.onClicked: runPressed("test")
+            button5.onClicked: stopPressed()
+        }
     }
 
     MessageDialog {
@@ -100,8 +118,8 @@ ApplicationWindow {
         }
 
         onAccepted : {
-            //console.log(myComboBox.textAt(myComboBox.currentIndex))
-            mftest.listModel1.append({"name":myComboBox.textAt(myComboBox.currentIndex)})
+            console.log(myComboBox.textAt(myComboBox.currentIndex))
+            //mftest.listModel1.append({"name":myComboBox.textAt(myComboBox.currentIndex)})
         }
 
     }

@@ -1,25 +1,33 @@
 #include <QFile>
 #include "QTextStream"
 #include "abstractblock.h"
+#include "blockmodel.h"
 
 AbstractBlock::AbstractBlock(QObject *parent) : QObject(parent)
 {
 
 }
 
-AbstractBlock::AbstractBlock(QSharedPointer<AbstractBlock> &n, QObject *parent) : QObject(parent), mNext(n)
+AbstractBlock::AbstractBlock(QList<BlockModel *> n, QObject *parent) : QObject(parent), mChildren(n)
 {
 
 }
 
 AbstractBlock::~AbstractBlock()
 {
-
+	for (auto child : mChildren) {
+		delete child;
+	}
 }
 
-QSharedPointer<AbstractBlock> AbstractBlock::getNext() const
+QString AbstractBlock::statusString() const
 {
-	return mNext;
+	return "not implemented";
+}
+
+int AbstractBlock::childrenCount() const
+{
+	return mChildren.count();
 }
 
 QString AbstractBlock::readTemplate(QString &filename) const
@@ -71,3 +79,24 @@ QString AbstractBlock::addIndent(QString const &code, int indent) const
 
 	return result.join('\n');
 }
+
+QList<QString> AbstractBlock::getPropertyNames() const
+{
+	return propertyNames;
+}
+
+void AbstractBlock::setPropertyNames(const QList<QString> &value)
+{
+	propertyNames = value;
+}
+
+QList<BlockModel *> AbstractBlock::children() const
+{
+	return mChildren;
+}
+
+void AbstractBlock::setChildren(const QList<BlockModel *> &children)
+{
+	mChildren = children;
+}
+
