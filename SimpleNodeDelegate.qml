@@ -71,6 +71,7 @@ Rectangle {
         height: isExpanded ? (childrenHeight + variableHeight) : 0
         //height: childrenHeight
         model: folderChildren
+        interactive: false
         delegate:
             Component {
                 Loader {

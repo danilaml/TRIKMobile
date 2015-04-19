@@ -43,6 +43,7 @@ ApplicationWindow {
             width: parent.width//540
             height: parent.height - buttons.height//720
             model: blockModel
+            clip: true
         }
 
         ButtonsGrid {
