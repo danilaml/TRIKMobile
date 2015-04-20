@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import QtQuick.Window 2.2
+import QtQuick.Controls 1.3
 
 Rectangle {
     id: nodeContainer
@@ -14,6 +15,7 @@ Rectangle {
     property bool isExpanded: false
     property int childrenHeight: 0
     property int variableHeight: 0
+    property var propertyMap
 
     property int dpm: Screen.pixelDensity
 
@@ -44,7 +46,20 @@ Rectangle {
             isExpanded = !isExpanded
             nodeContainer.toggled(isExpanded, childrenHeight)
         }
-        onPressAndHold: console.log(this + "pressed and holded")
+        onPressAndHold: {
+            console.log(this + "pressed and held")
+            contextMenu.popup()
+        }
+    }
+
+    Menu {
+        id: contextMenu
+        MenuItem {
+            text: "Edit"
+        }
+        MenuItem {
+            text: "Delete"
+        }
     }
 
     Rectangle {

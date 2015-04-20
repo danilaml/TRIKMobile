@@ -1,14 +1,11 @@
 #include "forwardblock.h"
 
-ForwardBlock::ForwardBlock(QObject *parent) : AbstractBlock(parent), mPower("100"), mPort("M1")
+ForwardBlock::ForwardBlock(QObject *parent) : AbstractBlock(parent)
 {
 	propertyNames << "power" << "port";
+	propertyMap["power"] = "100";
+	propertyMap["port"] = "M1";
 }
-
-//ForwardBlock::ForwardBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
-//{
-
-//}
 
 ForwardBlock::~ForwardBlock()
 {
@@ -18,10 +15,8 @@ ForwardBlock::~ForwardBlock()
 QString ForwardBlock::toString(int indent) const
 {
 	QString res = readTemplate("engines/forward.t");
-	res.replace("@@PORT@@", mPort).replace("@@POWER@@", mPower);
-//	if (!mNext.isNull()) {
-//		res.append(mNext->toString());
-//	}
+	res.replace("@@PORT@@", getProp("port")).replace("@@POWER@@", getProp("power"));
+
 	return addIndent(res, indent);
 }
 
@@ -32,25 +27,25 @@ QString ForwardBlock::blockType() const
 
 QString ForwardBlock::statusString() const
 {
-	return QString("Port: %1, Power: %2").arg(mPort, mPower);
+	return QString("Port: %1, Power: %2").arg(getProp("port"), getProp("power"));
 }
 
 QString ForwardBlock::power() const
 {
-	return mPower;
+	return getProp("port");
 }
 
 void ForwardBlock::setPower(const QString &power)
 {
-	mPower = power;
+	propertyMap["power"] = power;
 }
 
 QString ForwardBlock::port() const
 {
-	return mPort;
+	return getProp("port");
 }
 
 void ForwardBlock::setPort(const QString &port)
 {
-	mPort = port;
+	propertyMap["port"] = port;
 }

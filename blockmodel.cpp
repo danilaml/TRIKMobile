@@ -8,7 +8,7 @@ BlockModel::BlockModel(QObject *parent)
 
 BlockModel::~BlockModel()
 {
-
+	//clear();
 }
 
 int BlockModel::rowCount(const QModelIndex &parent) const
@@ -35,8 +35,23 @@ QVariant BlockModel::data(const QModelIndex &index, int role) const
 		return QVariant::fromValue(mItems.at(itemRow)->children().at(1));
 	else if (role == StatusStringRole)
 		return QVariant::fromValue(mItems.at(itemRow)->statusString());
+	else if (role == PropertyMapRole)
+		return /*QVariant::fromValue(*/mItems.at(itemRow)->getPropertyMap();
 
 	return QVariant::fromValue(mItems.at(itemRow)->getPropertyNames());
+}
+
+void BlockModel::clear()
+{
+	if (mItems.isEmpty())
+		return;
+	beginRemoveRows(QModelIndex(), 0, mItems.count() - 1);
+	for (auto block : mItems)
+	{
+		delete block;
+	}
+	mItems.clear();
+	endRemoveRows();
 }
 
 QString BlockModel::toString(int indent)
@@ -55,6 +70,7 @@ QHash<int, QByteArray> BlockModel::roleNames() const
 	roles[ItemsCountRole] = "itemsCount";
 	roles[ChildrenCountRole] = "childrenCount";
 	roles[PropertyNamesRole] = "propertyNames";
+	roles[PropertyMapRole] = "propertyMap";
 	roles[StatusStringRole] = "statusString";
 	roles[ChildrenOneModel] = "childrenOneModel";
 	roles[ChildrenTwoModel] = "childrenTwoModel";

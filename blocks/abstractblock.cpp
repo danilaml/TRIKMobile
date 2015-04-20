@@ -80,14 +80,29 @@ QString AbstractBlock::addIndent(QString const &code, int indent) const
 	return result.join('\n');
 }
 
+QString AbstractBlock::getProp(const QString &key) const
+{
+	return propertyMap[key].toString();
+}
+QVariantMap AbstractBlock::getPropertyMap() const
+{
+    return propertyMap;
+}
+
+void AbstractBlock::setPropertyMap(const QVariantMap &value)
+{
+    propertyMap = value;
+}
+
+
 QList<QString> AbstractBlock::getPropertyNames() const
 {
-	return propertyNames;
+    return propertyNames;
 }
 
 void AbstractBlock::setPropertyNames(const QList<QString> &value)
 {
-	propertyNames = value;
+    propertyNames = value;
 }
 
 QList<BlockModel *> AbstractBlock::children() const

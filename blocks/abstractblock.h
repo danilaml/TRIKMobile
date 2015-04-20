@@ -2,6 +2,7 @@
 
 #include <QObject>
 #include <QList>
+#include <QVariantMap>
 
 class BlockModel;
 
@@ -24,11 +25,16 @@ public:
 	QList<QString> getPropertyNames() const;
 	void setPropertyNames(const QList<QString> &value);
 
+	QVariantMap getPropertyMap() const;
+	void setPropertyMap(const QVariantMap &value);
+
 protected:
 	QString readTemplate(QString &filename) const;
 	QString readTemplate(const char* filename) const;
 	QString addIndent(const QString &code, int indent) const;
+	QString getProp(const QString &key) const;
 
 	QList<QString> propertyNames;
+	QVariantMap propertyMap;
 	QList<BlockModel *> mChildren;
 };

@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import QtQuick.Window 2.2
+import QtQuick.Controls 1.3
 
 Rectangle {
     id: leafDelegate
@@ -12,6 +13,7 @@ Rectangle {
     property string textLabel
     property string statusString
     property var propertyNames
+    property var propertyMap
 
     property int dpm: Screen.pixelDensity
 
@@ -42,7 +44,20 @@ Rectangle {
         anchors.fill: parent
         height: parent.height
         //onClicked: leafDelegate.clicked()
-        onPressAndHold: console.log(this + "pressed and holded")
+        onPressAndHold: {
+            console.log(this + "pressed and held")
+            contextMenu.popup()
+        }
+    }
+
+    Menu {
+        id: contextMenu
+        MenuItem {
+            text: "Edit"
+        }
+        MenuItem {
+            text: "Delete"
+        }
     }
 }
 
