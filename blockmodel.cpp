@@ -1,7 +1,8 @@
+#include <QDebug>
 #include "blockmodel.h"
 #include "blocks/abstractblock.h"
 
-BlockModel::BlockModel(QObject *parent)
+BlockModel::BlockModel(QObject *parent) : QAbstractListModel(parent)
 {
 
 }
@@ -13,6 +14,7 @@ BlockModel::~BlockModel()
 
 int BlockModel::rowCount(const QModelIndex &parent) const
 {
+	Q_UNUSED(parent);
 	return mItems.count();
 }
 
@@ -36,9 +38,32 @@ QVariant BlockModel::data(const QModelIndex &index, int role) const
 	else if (role == StatusStringRole)
 		return QVariant::fromValue(mItems.at(itemRow)->statusString());
 	else if (role == PropertyMapRole)
-		return /*QVariant::fromValue(*/mItems.at(itemRow)->getPropertyMap();
+		return mItems.at(itemRow)->getPropertyMap();
 
 	return QVariant::fromValue(mItems.at(itemRow)->getPropertyNames());
+}
+
+bool BlockModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+	qDebug() << value << " : " << roleNames()[role] << " " << value.toMap();
+
+	if (index.row() < 0 || index.row() >= mItems.count())
+		return false;
+
+	qDebug() << mItems.at(index.row())->getPropertyMap();
+	if (role == PropertyMapRole) {
+		mItems.at(index.row())->setPropertyMap(value.toMap());
+	}
+	emit dataChanged(index,index);
+	return true;
+}
+
+Qt::ItemFlags BlockModel::flags(const QModelIndex &index) const
+{
+	if (!index.isValid())
+		return Qt::ItemIsEnabled;
+
+	return QAbstractListModel::flags(index) | Qt::ItemIsEditable;
 }
 
 void BlockModel::clear()

@@ -44,6 +44,7 @@ ApplicationWindow {
             height: parent.height - buttons.height//720
             model: blockModel
             clip: true
+//            test: blockModel.rowCount()
         }
 
         ButtonsGrid {

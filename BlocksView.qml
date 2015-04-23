@@ -14,17 +14,11 @@ ListView {
             width: parent.width
             source: childrenCount ? "SimpleNodeDelegate.qml" : "LeafDelegate.qml"
             onLoaded: {
-                item.propertyMap = propertyMap
                 item.textLabel = blockType
-                item.statusString = statusString
                 if (childrenCount)
                 {
                     item.folderChildren = childrenOneModel
                     item.childrenHeight = (childrenOneModel.rowCount() * 9 * Screen.pixelDensity)
-                }
-                else
-                {
-                    item.propertyNames = propertyNames;
                 }
             }
         }
