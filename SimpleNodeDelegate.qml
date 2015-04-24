@@ -10,12 +10,10 @@ Rectangle {
     color: "transparent"
 
     property string textLabel
-    property string statusString
     property var folderChildren
     property bool isExpanded: false
     property int childrenHeight: 0
     property int variableHeight: 0
-    property var propertyMap
 
     property int dpm: Screen.pixelDensity
 
@@ -25,7 +23,6 @@ Rectangle {
     Text {
         id: nodeLabel
         x: 45
-        //width: parent.width
         height: 9 * dpm
         text: textLabel + " " + statusString
         verticalAlignment: Text.AlignVCenter
@@ -84,33 +81,26 @@ Rectangle {
         y: nodeLabel.height
         width: parent.width - x
         height: isExpanded ? (childrenHeight + variableHeight) : 0
-        //height: childrenHeight
         model: folderChildren
         interactive: false
         delegate:
             Component {
-                Loader {
-                    width: parent.width
-                    //height: 35
-                    source: childrenCount ? "SimpleNodeDelegate.qml" : "LeafDelegate.qml"
-                    onLoaded: {
-                        item.textLabel = blockType
-                        item.statusString = statusString
-                        if (childrenCount)
-                        {
-                            item.folderChildren = childrenModel
-                            item.childrenHeight = (childrenModel.rowCount() * 9 * dpm)
-                        }
-                        else
-                        {
-                            item.propertyNames = propertyNames
-                        }
-                    }
-                    Connections {
-                         target: item
-                         onToggled: childToggled(item.isExpanded, item.childrenHeight)
+            Loader {
+                width: parent.width
+                source: childrenCount ? "SimpleNodeDelegate.qml" : "LeafDelegate.qml"
+                onLoaded: {
+                    item.textLabel = blockType
+                    if (childrenCount)
+                    {
+                        item.folderChildren = childrenModel
+                        item.childrenHeight = (childrenModel.rowCount() * 9 * dpm)
                     }
                 }
+                Connections {
+                    target: item
+                    onToggled: childToggled(item.isExpanded, item.childrenHeight)
+                }
+            }
         }
     }
 }
