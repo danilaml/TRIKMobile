@@ -1,5 +1,4 @@
-#ifndef BLOCKMODEL_H
-#define BLOCKMODEL_H
+#pragma once
 
 #include <QAbstractListModel>
 
@@ -38,5 +37,3 @@ protected:
 	QHash<int, QByteArray> roleNames() const;
 	QList<AbstractBlock *> mItems;
 };
-
-#endif // BLOCKMODEL_H
