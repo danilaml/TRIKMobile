@@ -18,17 +18,12 @@ Rectangle {
 
     Text {
         id: labelText
+        x: parent.x + 5
         height: parent.height
         text: textLabel + " " + statusString
         verticalAlignment: Text.AlignVCenter
     }
-//    Text {
-//        x: labelText.width + 5 //150
-//        //width: 100
-//        height: parent.height
-//        text: statusString//propertyNames.toString()
-//        verticalAlignment: Text.AlignVCenter
-//    }
+
     Rectangle {
         height: 1
         width: parent.width
@@ -53,7 +48,7 @@ Rectangle {
         }
         MenuItem {
             text: "Delete"
-            onTriggered: {console.log(index);removeBlock(index)}
+            onTriggered: removeBlock(index)
         }
     }
 

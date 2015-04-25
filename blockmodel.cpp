@@ -9,7 +9,7 @@ BlockModel::BlockModel(QObject *parent) : QAbstractListModel(parent)
 
 BlockModel::~BlockModel()
 {
-	//clear();
+	clear();
 }
 
 int BlockModel::rowCount(const QModelIndex &parent) const
@@ -90,13 +90,7 @@ void BlockModel::clear()
 {
 	if (mItems.isEmpty())
 		return;
-	beginRemoveRows(QModelIndex(), 0, mItems.count() - 1);
-	for (auto block : mItems)
-	{
-		delete block;
-	}
-	mItems.clear();
-	endRemoveRows();
+	removeRows(0, mItems.count());
 }
 
 QString BlockModel::toString(int indent)

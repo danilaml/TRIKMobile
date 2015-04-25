@@ -4,13 +4,13 @@ import QtQuick.Layouts 1.1
 
 GridLayout {
     id: gridLayout1
-    columns: 3
-    rows: 2
+    columns: 4
+    rows: 1
 
     property alias button5: button5
     property alias button4: button4
     property alias button3: button3
-    property alias button2: button2
+//    property alias button2: button2
     property alias button1: button1
 
     Button {
@@ -18,11 +18,11 @@ GridLayout {
         text: qsTr("Add")
         Layout.fillWidth: true
     }
-    Button {
-        id: button2
-        text: qsTr("Remove")
-        Layout.fillWidth: true
-    }
+//    Button {
+//        id: button2
+//        text: qsTr("Remove")
+//        Layout.fillWidth: true
+//    }
     Button {
         id: button3
         text: qsTr("Send")

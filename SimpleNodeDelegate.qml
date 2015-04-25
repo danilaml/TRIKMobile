@@ -22,19 +22,11 @@ Rectangle {
 
     Text {
         id: nodeLabel
-        x: 45
+        x: parent.x + 5
         height: 9 * dpm
         text: textLabel + " " + statusString
         verticalAlignment: Text.AlignVCenter
     }
-
-//    Text {
-//        x: nodeLabel.x + nodeLabel.width + 5 //150
-//        //width: 100
-//        height: parent.height
-//        text: statusString//propertyNames.toString()
-//        verticalAlignment: Text.AlignVCenter
-//    }
 
     MouseArea {
         width: parent.width
@@ -56,6 +48,7 @@ Rectangle {
         }
         MenuItem {
             text: "Delete"
+            onTriggered: removeBlock(index)
         }
     }
 
@@ -83,6 +76,15 @@ Rectangle {
         height: isExpanded ? (childrenHeight + variableHeight) : 0
         model: folderChildren
         interactive: false
+        displaced: Transition {
+            NumberAnimation { properties: "x,y"; duration: 100 }
+        }
+        remove: Transition {
+            NumberAnimation { properties: "opacity,height"; to: 0; duration: 100 }
+        }
+        Behavior on height {
+            NumberAnimation { duration: 100 }
+        }
         delegate:
             Component {
             Loader {
@@ -99,7 +101,10 @@ Rectangle {
                 Connections {
                     target: item
                     onToggled: childToggled(item.isExpanded, item.childrenHeight)
-                    onRemoveBlock: folderChildren.removeRow(index)
+                    onRemoveBlock: {
+                        folderChildren.removeRow(index);
+                        childrenHeight -= 9 * dpm;
+                    }
                 }
             }
         }

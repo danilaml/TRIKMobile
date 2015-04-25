@@ -1,5 +1,5 @@
 #include <QFile>
-#include "QTextStream"
+#include <QTextStream>
 #include "abstractblock.h"
 #include "blockmodel.h"
 

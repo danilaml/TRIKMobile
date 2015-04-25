@@ -45,7 +45,6 @@ ApplicationWindow {
             model: blockModel
             clip: true
             onRemoveBlock: blockModel.removeRow(index)
-//            test: blockModel.rowCount()
         }
 
         ButtonsGrid {
@@ -59,12 +58,7 @@ ApplicationWindow {
             anchors.bottomMargin: 5
             anchors.leftMargin: 5
 
-            function removeElement() {
- //               blockModel
-            }
-
             button1.onClicked: addScriptDialog.open()
-            button2.onClicked: removeElement()
             button3.onClicked: sendPressed()
             button4.onClicked: runPressed("test")
             button5.onClicked: stopPressed()

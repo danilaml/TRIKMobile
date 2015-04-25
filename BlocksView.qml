@@ -9,6 +9,15 @@ ListView {
 //    model: blockModel
     signal removeBlock(int index)
 
+    displaced: Transition {
+        NumberAnimation { properties: "x,y"; duration: 100 }
+    }
+    remove: Transition {
+        ParallelAnimation {
+            NumberAnimation { property: "opacity"; to: 0; duration: 100 }
+            NumberAnimation { properties: "height"; to: 0; duration: 100 }
+        }
+    }
     delegate:
         Component {
         Loader {
@@ -19,7 +28,7 @@ ListView {
                 if (childrenCount)
                 {
                     item.folderChildren = childrenOneModel
-                    item.childrenHeight = (childrenOneModel.rowCount() * 9 * Screen.pixelDensity)
+                    item.childrenHeight = (childrenOneModel.rowCount() * 9 * parseInt(Screen.pixelDensity,10))
                 }
             }
             Connections {

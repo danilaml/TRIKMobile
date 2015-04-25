@@ -13,16 +13,16 @@ int main(int argc, char *argv[])
 	QQmlApplicationEngine engine;
 //	engine.load(QUrl(QStringLiteral("qrc:/BlocksView.qml")));
 
-	BlockModel bmodel2;
-	bmodel2.setItems(QList<AbstractBlock *>() << new ForwardBlock() << new ForwardBlock());
+	BlockModel *bmodel2 = new BlockModel();
+	bmodel2->setItems(QList<AbstractBlock *>() << new ForwardBlock() << new ForwardBlock());
 	auto infblock = new InfiniteBlock();
-	infblock->setChildren(QList<BlockModel *>() << &bmodel2);
-	auto blocks = (QList<AbstractBlock *>() << new ForwardBlock() << infblock);
-	BlockModel bmodel1;
-	bmodel1.setItems(blocks);
+	infblock->setChildren(QList<BlockModel *>() << bmodel2);
+	auto blocks = (QList<AbstractBlock *>() << new ForwardBlock() << infblock << new ForwardBlock());
+	BlockModel *bmodel1 = new BlockModel();
+	bmodel1->setItems(blocks);
 
 	QmlSignalHandler mysg;
-	mysg.setModel(&bmodel1);
+	mysg.setModel(bmodel1);
 
 	engine.rootContext()->setContextProperty("blockModel", mysg.model());
 	engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
