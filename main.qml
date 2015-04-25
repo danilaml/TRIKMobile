@@ -44,6 +44,7 @@ ApplicationWindow {
             height: parent.height - buttons.height//720
             model: blockModel
             clip: true
+            onRemoveBlock: blockModel.removeRow(index)
 //            test: blockModel.rowCount()
         }
 
@@ -59,16 +60,7 @@ ApplicationWindow {
             anchors.leftMargin: 5
 
             function removeElement() {
-                if (listModel1.count)
-                    listModel1.remove(listModel1.count - 1)
-            }
-
-            function getActionsList() {
-                var result = [];
-                for (var i = 0; i < listModel1.count; i++) {
-                    result.push(listModel1.get(i).name);
-                }
-                return result;
+ //               blockModel
             }
 
             button1.onClicked: addScriptDialog.open()

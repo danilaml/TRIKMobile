@@ -66,6 +66,26 @@ Qt::ItemFlags BlockModel::flags(const QModelIndex &index) const
 	return QAbstractListModel::flags(index) | Qt::ItemIsEditable;
 }
 
+bool BlockModel::removeRow(int row, const QModelIndex &parent)
+{
+	return removeRows(row, 1, parent);
+}
+
+bool BlockModel::removeRows(int row, int count, const QModelIndex &parent)
+{
+	if (count == 0 || mItems.isEmpty())
+		return true;
+	//if (count < 0 || row + count < mItems)
+	beginRemoveRows(parent, row, row + count - 1);
+	for (int i = row; i < row + count; ++i)
+	{
+		AbstractBlock *item = mItems.takeAt(row);
+		delete item;
+	}
+	endRemoveRows();
+	return true;
+}
+
 void BlockModel::clear()
 {
 	if (mItems.isEmpty())

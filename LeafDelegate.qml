@@ -14,7 +14,7 @@ Rectangle {
 
     property int dpm: Screen.pixelDensity
 
-    signal clicked
+    signal removeBlock(int index)
 
     Text {
         id: labelText
@@ -39,7 +39,6 @@ Rectangle {
     MouseArea {
         anchors.fill: parent
         height: parent.height
-        //onClicked: leafDelegate.clicked()
         onPressAndHold: {
             console.log(this + "pressed and held")
             contextMenu.popup()
@@ -54,6 +53,7 @@ Rectangle {
         }
         MenuItem {
             text: "Delete"
+            onTriggered: {console.log(index);removeBlock(index)}
         }
     }
 

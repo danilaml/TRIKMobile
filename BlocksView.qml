@@ -7,6 +7,7 @@ ListView {
 //    width: parent.width//540
 //    height: 600
 //    model: blockModel
+    signal removeBlock(int index)
 
     delegate:
         Component {
@@ -20,6 +21,10 @@ ListView {
                     item.folderChildren = childrenOneModel
                     item.childrenHeight = (childrenOneModel.rowCount() * 9 * Screen.pixelDensity)
                 }
+            }
+            Connections {
+                target: item
+                onRemoveBlock: removeBlock(index)
             }
         }
     }

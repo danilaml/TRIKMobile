@@ -4,7 +4,6 @@ import QtQuick.Layouts 1.1
 
 GridLayout {
     id: gridLayout1
-    //height: 960
     columns: 3
     rows: 2
 
@@ -13,14 +12,6 @@ GridLayout {
     property alias button3: button3
     property alias button2: button2
     property alias button1: button1
-    //        anchors.top: parent.verticalCenter
-    //        anchors.topMargin: 140
-    //        anchors.right: parent.right
-    //        anchors.bottom: parent.bottom
-    //        anchors.left: parent.left
-    //        anchors.rightMargin: 5
-    //        anchors.bottomMargin: 0
-    //        anchors.leftMargin: 5
 
     Button {
         id: button1

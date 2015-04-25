@@ -18,7 +18,7 @@ Rectangle {
     property int dpm: Screen.pixelDensity
 
     signal toggled(bool expanded, int newHeight)
-
+    signal removeBlock(int index)
 
     Text {
         id: nodeLabel
@@ -92,13 +92,14 @@ Rectangle {
                     item.textLabel = blockType
                     if (childrenCount)
                     {
-                        item.folderChildren = childrenModel
+                        item.folderChildren = childrenOneModel
                         item.childrenHeight = (childrenModel.rowCount() * 9 * dpm)
                     }
                 }
                 Connections {
                     target: item
                     onToggled: childToggled(item.isExpanded, item.childrenHeight)
+                    onRemoveBlock: folderChildren.removeRow(index)
                 }
             }
         }

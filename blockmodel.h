@@ -21,13 +21,15 @@ public:
 		FixedRolesEnd
 	};
 
-	BlockModel(QObject *parent = 0);
+	explicit BlockModel(QObject *parent = 0);
 	~BlockModel();
 
 	Q_INVOKABLE int rowCount(const QModelIndex &parent = QModelIndex()) const;
 	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 	bool setData(const QModelIndex &index, const QVariant &value, int role);
 	Qt::ItemFlags flags(const QModelIndex &index) const;
+	Q_INVOKABLE bool removeRow(int row, const QModelIndex &parent = QModelIndex());
+	bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
 	void clear();
 
 	QString toString(int indent = 0);
