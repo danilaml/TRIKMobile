@@ -17,5 +17,4 @@ public:
 	void setPower(const QString &power);
 	QString port() const;
 	void setPort(const QString &port);
-
 };

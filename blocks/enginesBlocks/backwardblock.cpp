@@ -2,12 +2,9 @@
 
 BackwardBlock::BackwardBlock(QObject *parent) : AbstractBlock(parent)
 {
-
-}
-
-BackwardBlock::BackwardBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
-{
-
+	propertyNames << "power" << "port";
+	propertyMap["power"] = "100";
+	propertyMap["port"] = "M1";
 }
 
 BackwardBlock::~BackwardBlock()
@@ -18,29 +15,37 @@ BackwardBlock::~BackwardBlock()
 QString BackwardBlock::toString(int indent) const
 {
 	QString res = readTemplate("engines/backward.t");
-	res.replace("@@PORT@@", mPort).replace("@@POWER@@", QString::number(mPower));
-	if (!mNext.isNull()) {
-		res.append(mNext->toString());
-	}
+	res.replace("@@PORT@@", getProp("port")).replace("@@POWER@@", getProp("power"));
+
 	return addIndent(res, indent);
 }
 
-int BackwardBlock::power() const
+QString BackwardBlock::blockType() const
 {
-	return mPower;
+	return "backwardBlock";
 }
 
-void BackwardBlock::setPower(int power)
+QString BackwardBlock::statusString() const
 {
-	mPower = power;
+	return QString("Port: %1, Power: %2").arg(getProp("port"), getProp("power"));
+}
+
+QString BackwardBlock::power() const
+{
+	return getProp("power");
+}
+
+void BackwardBlock::setPower(const QString &power)
+{
+	propertyMap["power"] = power;
 }
 
 QString BackwardBlock::port() const
 {
-	return mPort;
+	return getProp("port");
 }
 
 void BackwardBlock::setPort(const QString &port)
 {
-	mPort = port;
+	propertyMap["port"] = port;
 }

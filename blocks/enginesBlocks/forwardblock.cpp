@@ -32,7 +32,7 @@ QString ForwardBlock::statusString() const
 
 QString ForwardBlock::power() const
 {
-	return getProp("port");
+	return getProp("power");
 }
 
 void ForwardBlock::setPower(const QString &power)

@@ -5,6 +5,8 @@
 #include "blockmodel.h"
 #include "blocks/enginesBlocks/forwardblock.h"
 #include "blocks/conditionalBlocks/infiniteblock.h"
+#include "blocks/sayblock.h"
+#include "blocks/drawingBlocks/smileblock.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,7 +16,7 @@ int main(int argc, char *argv[])
 //	engine.load(QUrl(QStringLiteral("qrc:/BlocksView.qml")));
 
 	BlockModel bmodel2;
-	bmodel2.setItems(QList<AbstractBlock *>() << new ForwardBlock() << new ForwardBlock());
+	bmodel2.setItems(QList<AbstractBlock *>() << new ForwardBlock() << new SayBlock() << new SmileBlock());
 	auto infblock = new InfiniteBlock();
 	infblock->setChildren(QList<BlockModel *>() << &bmodel2);
 	auto blocks = (QList<AbstractBlock *>() << new ForwardBlock() << infblock);

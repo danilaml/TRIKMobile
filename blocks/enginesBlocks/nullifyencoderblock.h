@@ -2,17 +2,17 @@
 
 #include "blocks/abstractblock.h"
 
-class SayBlock : public AbstractBlock
+class NullifyEncoderBlock : public AbstractBlock
 {
 	Q_OBJECT
 public:
-	explicit SayBlock(QObject *parent = 0);
-	virtual ~SayBlock();
+	explicit NullifyEncoderBlock(QObject *parent = 0);
+	virtual ~NullifyEncoderBlock();
 
 	virtual QString toString(int indent = 0) const;
 	virtual QString blockType() const;
 	virtual QString statusString() const;
 
-	QString text() const;
-	void setText(const QString &text);
+	QString port() const;
+	void setPort(const QString &port);
 };

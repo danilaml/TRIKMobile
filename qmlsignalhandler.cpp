@@ -40,6 +40,7 @@ void QmlSignalHandler::hadleIpChange(const QString &newIp)
 {
 	mConnector.changeServerIP(newIp);
 }
+
 BlockModel *QmlSignalHandler::model() const
 {
 	return mModel;

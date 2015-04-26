@@ -13,7 +13,7 @@ SOURCES += main.cpp \
     blocks/conditionalBlocks/infiniteblock.cpp \
     blocks/enginesBlocks/forwardblock.cpp \
     blockmodel.cpp \
-#    blocks/accelerometerBlocks/accelerometerxblock.cpp \
+    blocks/accelerometerBlocks/accelerometerxblock.cpp \
 #    blocks/backgroundColorsBlocks/greenblock.cpp \
 #    blocks/conditionalBlocks/dowhileblock.cpp \
 #    blocks/conditionalBlocks/forblock.cpp \
@@ -22,9 +22,9 @@ SOURCES += main.cpp \
 #    blocks/conditionalBlocks/negationblock.cpp \
 #    blocks/conditionalBlocks/whiledoblock.cpp \
 #    blocks/drawingBlocks/sadsmileblock.cpp \
-#    blocks/drawingBlocks/smileblock.cpp \
-#    blocks/enginesBlocks/backwardblock.cpp \
-#    blocks/enginesBlocks/stopblock.cpp \
+    blocks/drawingBlocks/smileblock.cpp \
+    blocks/enginesBlocks/backwardblock.cpp \
+    blocks/enginesBlocks/stopblock.cpp \
 #    blocks/functionsBlocks/absblock.cpp \
 #    blocks/gamepadBlocks/gamepadbuttonblock.cpp \
 #    blocks/gyroscopeBlocks/gyroscopexblock.cpp \
@@ -41,7 +41,10 @@ SOURCES += main.cpp \
 #    blocks/variablesBlocks/variabledeclarationblock.cpp \
 #    blocks/videosensorsBlocks/detectlineblock.cpp \
 #    blocks/waitBlocks/timerblock.cpp \
-#    blocks/sayblock.cpp
+    blocks/sayblock.cpp \
+    blocks/accelerometerBlocks/accelerometeryblock.cpp \
+    blocks/accelerometerBlocks/accelerometerzblock.cpp \
+    blocks/enginesBlocks/nullifyencoderblock.cpp
 
 HEADERS += \
     connector.h \
@@ -52,7 +55,7 @@ HEADERS += \
     blocks/conditionalBlocks/infiniteblock.h \
     blocks/enginesBlocks/forwardblock.h \
     blockmodel.h \
-#    blocks/accelerometerBlocks/accelerometerxblock.h \
+    blocks/accelerometerBlocks/accelerometerxblock.h \
 #    blocks/backgroundColorsBlocks/greenblock.h \
 #    blocks/conditionalBlocks/dowhileblock.h \
 #    blocks/conditionalBlocks/forblock.h \
@@ -61,9 +64,9 @@ HEADERS += \
 #    blocks/conditionalBlocks/negationblock.h \
 #    blocks/conditionalBlocks/whiledoblock.h \
 #    blocks/drawingBlocks/sadsmileblock.h \
-#    blocks/drawingBlocks/smileblock.h \
-#    blocks/enginesBlocks/backwardblock.h \
-#    blocks/enginesBlocks/stopblock.h \
+    blocks/drawingBlocks/smileblock.h \
+    blocks/enginesBlocks/backwardblock.h \
+    blocks/enginesBlocks/stopblock.h \
 #    blocks/functionsBlocks/absblock.h \
 #    blocks/gamepadBlocks/gamepadbuttonblock.h \
 #    blocks/gyroscopeBlocks/gyroscopexblock.h \
@@ -80,7 +83,10 @@ HEADERS += \
 #    blocks/variablesBlocks/variabledeclarationblock.h \
 #    blocks/videosensorsBlocks/detectlineblock.h \
 #    blocks/waitBlocks/timerblock.h \
-#    blocks/sayblock.h
+    blocks/sayblock.h \
+    blocks/accelerometerBlocks/accelerometeryblock.h \
+    blocks/accelerometerBlocks/accelerometerzblock.h \
+    blocks/enginesBlocks/nullifyencoderblock.h
 
 RESOURCES += qml.qrc \
     templates.qrc
