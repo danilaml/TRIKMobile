@@ -17,7 +17,7 @@ SOURCES += main.cpp \
 #    blocks/backgroundColorsBlocks/greenblock.cpp \
 #    blocks/conditionalBlocks/dowhileblock.cpp \
 #    blocks/conditionalBlocks/forblock.cpp \
-#    blocks/conditionalBlocks/ifblock.cpp \
+    blocks/conditionalBlocks/ifblock.cpp \
 #    blocks/conditionalBlocks/ifelseblock.cpp \
 #    blocks/conditionalBlocks/negationblock.cpp \
 #    blocks/conditionalBlocks/whiledoblock.cpp \
@@ -59,7 +59,7 @@ HEADERS += \
 #    blocks/backgroundColorsBlocks/greenblock.h \
 #    blocks/conditionalBlocks/dowhileblock.h \
 #    blocks/conditionalBlocks/forblock.h \
-#    blocks/conditionalBlocks/ifblock.h \
+    blocks/conditionalBlocks/ifblock.h \
 #    blocks/conditionalBlocks/ifelseblock.h \
 #    blocks/conditionalBlocks/negationblock.h \
 #    blocks/conditionalBlocks/whiledoblock.h \

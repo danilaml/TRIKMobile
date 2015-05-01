@@ -7,6 +7,7 @@
 #include "blocks/conditionalBlocks/infiniteblock.h"
 #include "blocks/sayblock.h"
 #include "blocks/drawingBlocks/smileblock.h"
+#include "blocks/conditionalBlocks/ifblock.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,11 +16,16 @@ int main(int argc, char *argv[])
 	QQmlApplicationEngine engine;
 //	engine.load(QUrl(QStringLiteral("qrc:/BlocksView.qml")));
 
+	BlockModel bmodel3;
+	bmodel3.setItems(QList<AbstractBlock *>() << new SayBlock());
+	auto ifBlock = new IfBlock();
+	ifBlock->setChildren(QList<BlockModel *>() << &bmodel3);
+
 	BlockModel bmodel2;
-	bmodel2.setItems(QList<AbstractBlock *>() << new ForwardBlock() << new SayBlock() << new SmileBlock());
+	bmodel2.setItems(QList<AbstractBlock *>() << new ForwardBlock() << new SayBlock() << new SmileBlock() << ifBlock);
 	auto infblock = new InfiniteBlock();
 	infblock->setChildren(QList<BlockModel *>() << &bmodel2);
-	auto blocks = (QList<AbstractBlock *>() << new ForwardBlock() << infblock);
+	auto blocks = (QList<AbstractBlock *>() << new ForwardBlock() << infblock << ifBlock);
 	BlockModel bmodel1;
 	bmodel1.setItems(blocks);
 
