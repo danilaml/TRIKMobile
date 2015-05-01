@@ -20,11 +20,6 @@ QString ForwardBlock::toString(int indent) const
 	return addIndent(res, indent);
 }
 
-QString ForwardBlock::blockType() const
-{
-	return "forwardBlock";
-}
-
 QString ForwardBlock::statusString() const
 {
 	return QString("Port: %1, Power: %2").arg(getProp("port"), getProp("power"));

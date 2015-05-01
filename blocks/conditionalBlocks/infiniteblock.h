@@ -10,6 +10,5 @@ public:
 	virtual ~InfiniteBlock();
 
 	virtual QString toString(int indent = 0) const;
-	virtual QString blockType() const;
 
 };

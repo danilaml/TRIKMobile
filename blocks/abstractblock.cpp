@@ -5,12 +5,14 @@
 
 AbstractBlock::AbstractBlock(QObject *parent) : QObject(parent)
 {
-
 }
 
 AbstractBlock::AbstractBlock(QList<BlockModel *> n, QObject *parent) : QObject(parent), mChildren(n)
 {
+}
 
+AbstractBlock::AbstractBlock(const QString &blockType, QObject *parent) : QObject(parent), mBlockType(blockType)
+{
 }
 
 AbstractBlock::~AbstractBlock()
@@ -84,14 +86,26 @@ QString AbstractBlock::getProp(const QString &key) const
 {
 	return propertyMap[key].toString();
 }
+
+QString AbstractBlock::blockType() const
+{
+	return mBlockType;
+}
+
+void AbstractBlock::setBlockType(const QString &blockType)
+{
+	mBlockType = blockType;
+}
+
+
 QVariantMap AbstractBlock::getPropertyMap() const
 {
-    return propertyMap;
+	return propertyMap;
 }
 
 void AbstractBlock::setPropertyMap(const QVariantMap &value)
 {
-    propertyMap = value;
+	propertyMap = value;
 }
 
 

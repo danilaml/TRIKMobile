@@ -40,7 +40,8 @@ SOURCES += main.cpp \
 #    blocks/variablesBlocks/variabledeclarationblock.cpp \
 #    blocks/videosensorsBlocks/detectlineblock.cpp \
 #    blocks/ledColorsBlocks/ledgreenblock.cpp
-    blockmodel.cpp
+    blockmodel.cpp \
+    blockfactory.cpp
 
 HEADERS += \
     connector.h \
@@ -78,7 +79,8 @@ HEADERS += \
 #    blocks/variablesBlocks/variabledeclarationblock.h \
 #    blocks/videosensorsBlocks/detectlineblock.h \
 #    blocks/ledColorsBlocks/ledgreenblock.h
-    blockmodel.h
+    blockmodel.h \
+    blockfactory.h
 
 RESOURCES += qml.qrc \
     templates.qrc

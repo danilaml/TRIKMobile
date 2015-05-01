@@ -15,6 +15,7 @@ ApplicationWindow {
     signal runPressed(string msg)
     signal stopPressed()
     signal ipChanged(string ip)
+    signal addPressed(string type, string path)
 
     menuBar: MenuBar {
         Menu {
@@ -95,16 +96,19 @@ ApplicationWindow {
 
     Dialog {
         id: addScriptDialog
-        title: qsTr("Choose action")
+        title: qsTr("Choose block")
         standardButtons: StandardButton.Ok | StandardButton.Cancel
 
         ComboBox {
             id : myComboBox
-            model : ["Forward", "Backwards", "Left", "Right"]
+            model : registeredBlocks
         }
 
         onAccepted : {
+            console.log(registeredBlocks)
+            console.log(myComboBox.currentIndex)
             console.log(myComboBox.textAt(myComboBox.currentIndex))
+            addPressed(registeredBlocks[myComboBox.currentIndex],"");
             //mftest.listModel1.append({"name":myComboBox.textAt(myComboBox.currentIndex)})
         }
 
