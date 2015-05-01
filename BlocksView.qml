@@ -10,7 +10,7 @@ ListView {
     signal removeBlock(int index)
 
     displaced: Transition {
-        NumberAnimation { properties: "x,y"; duration: 100 }
+        NumberAnimation { property: "y"; duration: 100 }
     }
     remove: Transition {
         ParallelAnimation {

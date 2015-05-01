@@ -15,9 +15,13 @@ int main(int argc, char *argv[])
 
 	BlockModel *bmodel2 = new BlockModel();
 	bmodel2->setItems(QList<AbstractBlock *>() << new ForwardBlock() << new ForwardBlock());
-	auto infblock = new InfiniteBlock();
-	infblock->setChildren(QList<BlockModel *>() << bmodel2);
-	auto blocks = (QList<AbstractBlock *>() << new ForwardBlock() << infblock << new ForwardBlock());
+	auto infblock1 = new InfiniteBlock();
+	infblock1->setChildren(QList<BlockModel *>() << bmodel2);
+	BlockModel *bmodel3 = new BlockModel();
+	bmodel3->setItems(QList<AbstractBlock *>() << new ForwardBlock() << infblock1);
+	auto infblock2 = new InfiniteBlock();
+	infblock2->setChildren(QList<BlockModel *>() << bmodel3);
+	auto blocks = (QList<AbstractBlock *>() << new ForwardBlock() << infblock2 << new ForwardBlock());
 	BlockModel *bmodel1 = new BlockModel();
 	bmodel1->setItems(blocks);
 

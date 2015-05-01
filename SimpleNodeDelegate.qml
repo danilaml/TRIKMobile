@@ -77,7 +77,7 @@ Rectangle {
         model: folderChildren
         interactive: false
         displaced: Transition {
-            NumberAnimation { properties: "x,y"; duration: 100 }
+            NumberAnimation { property: "y"; duration: 100 }
         }
         remove: Transition {
             NumberAnimation { properties: "opacity,height"; to: 0; duration: 100 }
@@ -95,7 +95,7 @@ Rectangle {
                     if (childrenCount)
                     {
                         item.folderChildren = childrenOneModel
-                        item.childrenHeight = (childrenModel.rowCount() * 9 * dpm)
+                        item.childrenHeight = (childrenOneModel.rowCount() * 9 * dpm)
                     }
                 }
                 Connections {
