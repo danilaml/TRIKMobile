@@ -14,14 +14,14 @@ SOURCES += main.cpp \
     blocks/enginesBlocks/forwardblock.cpp \
     blockmodel.cpp \
     blocks/accelerometerBlocks/accelerometerxblock.cpp \
-#    blocks/backgroundColorsBlocks/greenblock.cpp \
-#    blocks/conditionalBlocks/dowhileblock.cpp \
-#    blocks/conditionalBlocks/forblock.cpp \
+    blocks/backgroundColorsBlocks/greenblock.cpp \
+    blocks/conditionalBlocks/dowhileblock.cpp \
+    blocks/conditionalBlocks/forblock.cpp \
     blocks/conditionalBlocks/ifblock.cpp \
-#    blocks/conditionalBlocks/ifelseblock.cpp \
-#    blocks/conditionalBlocks/negationblock.cpp \
-#    blocks/conditionalBlocks/whiledoblock.cpp \
-#    blocks/drawingBlocks/sadsmileblock.cpp \
+    blocks/conditionalBlocks/ifelseblock.cpp \
+    blocks/conditionalBlocks/negationblock.cpp \
+    blocks/conditionalBlocks/whiledoblock.cpp \
+    blocks/drawingBlocks/sadsmileblock.cpp \
     blocks/drawingBlocks/smileblock.cpp \
     blocks/enginesBlocks/backwardblock.cpp \
     blocks/enginesBlocks/stopblock.cpp \
@@ -40,7 +40,7 @@ SOURCES += main.cpp \
 #    blocks/typesBlocks/intblock.cpp \
 #    blocks/variablesBlocks/variabledeclarationblock.cpp \
 #    blocks/videosensorsBlocks/detectlineblock.cpp \
-#    blocks/waitBlocks/timerblock.cpp \
+    blocks/waitBlocks/timerblock.cpp \
     blocks/sayblock.cpp \
     blocks/accelerometerBlocks/accelerometeryblock.cpp \
     blocks/accelerometerBlocks/accelerometerzblock.cpp \
@@ -56,14 +56,14 @@ HEADERS += \
     blocks/enginesBlocks/forwardblock.h \
     blockmodel.h \
     blocks/accelerometerBlocks/accelerometerxblock.h \
-#    blocks/backgroundColorsBlocks/greenblock.h \
-#    blocks/conditionalBlocks/dowhileblock.h \
-#    blocks/conditionalBlocks/forblock.h \
+    blocks/backgroundColorsBlocks/greenblock.h \
+    blocks/conditionalBlocks/dowhileblock.h \
+    blocks/conditionalBlocks/forblock.h \
     blocks/conditionalBlocks/ifblock.h \
-#    blocks/conditionalBlocks/ifelseblock.h \
-#    blocks/conditionalBlocks/negationblock.h \
-#    blocks/conditionalBlocks/whiledoblock.h \
-#    blocks/drawingBlocks/sadsmileblock.h \
+    blocks/conditionalBlocks/ifelseblock.h \
+    blocks/conditionalBlocks/negationblock.h \
+    blocks/conditionalBlocks/whiledoblock.h \
+    blocks/drawingBlocks/sadsmileblock.h \
     blocks/drawingBlocks/smileblock.h \
     blocks/enginesBlocks/backwardblock.h \
     blocks/enginesBlocks/stopblock.h \
@@ -82,7 +82,7 @@ HEADERS += \
 #    blocks/typesBlocks/intblock.h \
 #    blocks/variablesBlocks/variabledeclarationblock.h \
 #    blocks/videosensorsBlocks/detectlineblock.h \
-#    blocks/waitBlocks/timerblock.h \
+    blocks/waitBlocks/timerblock.h \
     blocks/sayblock.h \
     blocks/accelerometerBlocks/accelerometeryblock.h \
     blocks/accelerometerBlocks/accelerometerzblock.h \

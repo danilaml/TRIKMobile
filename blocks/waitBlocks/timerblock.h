@@ -7,14 +7,12 @@ class TimerBlock : public AbstractBlock
 	Q_OBJECT
 public:
 	explicit TimerBlock(QObject *parent = 0);
-	TimerBlock(QSharedPointer<AbstractBlock> n, QObject *parent = 0);
 	virtual ~TimerBlock();
 
 	virtual QString toString(int indent = 0) const;
+	virtual QString blockType() const;
+	virtual QString statusString() const;
 
-	int delay() const;
-	void setDelay(int delay);
-
-private:
-	int mDelay;
+	QString delay() const;
+	void setDelay(const QString &delay);
 };

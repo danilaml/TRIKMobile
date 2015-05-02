@@ -1,13 +1,10 @@
 #include "dowhileblock.h"
+#include "blockmodel.h"
 
 DoWhileBlock::DoWhileBlock(QObject *parent) : AbstractBlock(parent)
 {
-
-}
-
-DoWhileBlock::DoWhileBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
-{
-
+	propertyNames << "condition";
+	propertyMap["condition"] = "true";
 }
 
 DoWhileBlock::~DoWhileBlock()
@@ -18,29 +15,30 @@ DoWhileBlock::~DoWhileBlock()
 QString DoWhileBlock::toString(int indent) const
 {
 	QString res = readTemplate("conditional/doWhile.t");
-	res.replace("@@BODY@@", mBody->toString()).replace("@@CONDITION@@", mCondition);
-	if (!mNext.isNull()) {
-		res.append(mNext->toString());
+	QString body;
+	if (mChildren.size() > 0) {
+		body = mChildren.at(0)->toString(1);
 	}
+	res.replace("@@BODY@@", body).replace("@@CONDITION@@", getProp("condition"));
 	return addIndent(res, indent);
 }
 
-QSharedPointer<AbstractBlock> DoWhileBlock::body() const
+QString DoWhileBlock::blockType() const
 {
-	return mBody;
+	return "doWhileBlock";
 }
 
-void DoWhileBlock::setBody(const QSharedPointer<AbstractBlock> &body)
+QString DoWhileBlock::statusString() const
 {
-	mBody = body;
+	return QString("Condition: %1").arg(getProp("condition"));
 }
 
 QString DoWhileBlock::condition() const
 {
-	return mCondition;
+	return getProp("condition");
 }
 
 void DoWhileBlock::setCondition(const QString &condition)
 {
-	mCondition = condition;
+	propertyMap["condition"] = condition;
 }

@@ -8,6 +8,8 @@
 #include "blocks/sayblock.h"
 #include "blocks/drawingBlocks/smileblock.h"
 #include "blocks/conditionalBlocks/ifblock.h"
+#include "blocks/conditionalBlocks/ifelseblock.h"
+#include "blocks/drawingBlocks/sadsmileblock.h"
 
 int main(int argc, char *argv[])
 {
@@ -21,11 +23,18 @@ int main(int argc, char *argv[])
 	auto ifBlock = new IfBlock();
 	ifBlock->setChildren(QList<BlockModel *>() << &bmodel3);
 
+	BlockModel bmodel4;
+	bmodel4.setItems(QList<AbstractBlock *>() << new SmileBlock());
+	BlockModel bmodel5;
+	bmodel5.setItems(QList<AbstractBlock *>() << new SadSmileBlock());
+	auto ifElseBlock = new IfElseBlock();
+	ifElseBlock->setChildren(QList<BlockModel *>() << &bmodel4 << &bmodel5);
+
 	BlockModel bmodel2;
 	bmodel2.setItems(QList<AbstractBlock *>() << new ForwardBlock() << new SayBlock() << new SmileBlock() << ifBlock);
 	auto infblock = new InfiniteBlock();
 	infblock->setChildren(QList<BlockModel *>() << &bmodel2);
-	auto blocks = (QList<AbstractBlock *>() << new ForwardBlock() << infblock << ifBlock);
+	auto blocks = (QList<AbstractBlock *>() << new ForwardBlock() << infblock << ifElseBlock);
 	BlockModel bmodel1;
 	bmodel1.setItems(blocks);
 

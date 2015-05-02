@@ -2,12 +2,8 @@
 
 TimerBlock::TimerBlock(QObject *parent) : AbstractBlock(parent)
 {
-
-}
-
-TimerBlock::TimerBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
-{
-
+	propertyNames << "delay";
+	propertyMap["delay"] = "1000";
 }
 
 TimerBlock::~TimerBlock()
@@ -18,19 +14,27 @@ TimerBlock::~TimerBlock()
 QString TimerBlock::toString(int indent) const
 {
 	QString res = readTemplate("wait/timer.t");
-	res.replace("@@DELAY@@",QString::number(mDelay));
-	if (!mNext.isNull()) {
-		res.append(mNext->toString());
-	}
+	res.replace("@@DELAY@@", getProp("delay"));
+
 	return addIndent(res, indent);
 }
 
-int TimerBlock::delay() const
+QString TimerBlock::blockType() const
 {
-	return mDelay;
+	return "timerBlock";
 }
 
-void TimerBlock::setDelay(int delay)
+QString TimerBlock::statusString() const
 {
-	mDelay = delay;
+	return QString("Delay: %1").arg(getProp("delay"));
+}
+
+QString TimerBlock::delay() const
+{
+	return getProp("delay");
+}
+
+void TimerBlock::setDelay(const QString &delay)
+{
+	propertyMap["delay"] = delay;
 }
