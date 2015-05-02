@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 	engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
 	QObject *appwindow = engine.rootObjects().first();
-	QObject::connect(appwindow, SIGNAL(addPressed(QString,QString)), &mysg, SLOT(handleAdd(QString,QString)));
+	QObject::connect(appwindow, SIGNAL(addBlock(QString,QString)), &mysg, SLOT(handleAdd(QString,QString)));
 	QObject::connect(appwindow, SIGNAL(sendPressed()), &mysg, SLOT(handleSend()));
 	QObject::connect(appwindow, SIGNAL(runPressed(QString)), &mysg, SLOT(handleRun(QString)));
 	QObject::connect(appwindow, SIGNAL(ipChanged(QString)), &mysg, SLOT(hadleIpChange(QString)));

@@ -8,6 +8,7 @@ ListView {
 //    height: 600
 //    model: blockModel
     signal removeBlock(int index)
+    signal addBlock(string path)
 
     displaced: Transition {
         NumberAnimation { property: "y"; duration: 100 }
@@ -34,6 +35,7 @@ ListView {
             Connections {
                 target: item
                 onRemoveBlock: removeBlock(index)
+                onAddBlock: addBlock(path)
             }
         }
     }

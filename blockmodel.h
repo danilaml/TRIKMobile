@@ -41,6 +41,9 @@ public:
 	QList<AbstractBlock *> items() const;
 	void setItems(const QList<AbstractBlock *> &items);
 
+signals:
+	void blockAdded();
+
 protected:
 	QStringList mRoles;
 	QHash<int, QByteArray> roleNames() const;

@@ -15,7 +15,7 @@ ApplicationWindow {
     signal runPressed(string msg)
     signal stopPressed()
     signal ipChanged(string ip)
-    signal addPressed(string type, string path)
+    signal addBlock(string type, string path)
 
     menuBar: MenuBar {
         Menu {
@@ -46,6 +46,10 @@ ApplicationWindow {
             model: blockModel
             clip: true
             onRemoveBlock: blockModel.removeRow(index)
+            onAddBlock: {
+                addScriptDialog.path = path;
+                addScriptDialog.open();
+            }
         }
 
         ButtonsGrid {
@@ -99,6 +103,9 @@ ApplicationWindow {
         title: qsTr("Choose block")
         standardButtons: StandardButton.Ok | StandardButton.Cancel
 
+        property string path : ""
+        property var block: null;
+
         ComboBox {
             id : myComboBox
             model : registeredBlocks
@@ -108,8 +115,8 @@ ApplicationWindow {
             console.log(registeredBlocks)
             console.log(myComboBox.currentIndex)
             console.log(myComboBox.textAt(myComboBox.currentIndex))
-            addPressed(registeredBlocks[myComboBox.currentIndex],"");
-            //mftest.listModel1.append({"name":myComboBox.textAt(myComboBox.currentIndex)})
+            addBlock(registeredBlocks[myComboBox.currentIndex],path);
+            path = "";
         }
 
     }
