@@ -38,6 +38,16 @@ void QmlSignalHandler::hadleIpChange(const QString &newIp)
 	mConnector.changeServerIP(newIp);
 }
 
+BlockFactory QmlSignalHandler::factory() const
+{
+	return mFactory;
+}
+
+void QmlSignalHandler::setFactory(const BlockFactory &factory)
+{
+	mFactory = factory;
+}
+
 BlockModel *QmlSignalHandler::model() const
 {
 	return mModel;
@@ -46,4 +56,9 @@ BlockModel *QmlSignalHandler::model() const
 void QmlSignalHandler::setModel(BlockModel *model)
 {
 	mModel = model;
+}
+
+void QmlSignalHandler::handleAdd(const QString &blockType, const QString &path)
+{
+	mModel->addBlock(mFactory.getInstance(blockType), path);
 }

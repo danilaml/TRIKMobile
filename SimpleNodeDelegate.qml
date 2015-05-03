@@ -19,6 +19,8 @@ Rectangle {
 
     signal toggled(bool expanded, int newHeight)
     signal removeBlock(int index)
+    signal addBlock(string path)
+    signal blockAdded(bool expanded)
 
     Text {
         id: nodeLabel
@@ -50,6 +52,10 @@ Rectangle {
             text: "Delete"
             onTriggered: removeBlock(index)
         }
+        MenuItem {
+            text: "Add inner block"
+            onTriggered: addBlock(index + '/')
+        }
     }
 
     Rectangle {
@@ -65,6 +71,11 @@ Rectangle {
             variableHeight += height;
         else
             variableHeight -= height;
+    }
+
+    Connections {
+        target: folderChildren
+        onBlockAdded: {childrenHeight += 9 * dpm;blockAdded(isExpanded)}
     }
 
     ListView {
@@ -104,6 +115,10 @@ Rectangle {
                     onRemoveBlock: {
                         folderChildren.removeRow(index);
                         childrenHeight -= 9 * dpm;
+                    }
+                    onAddBlock: addBlock(index + '/' + path)
+                    onBlockAdded: {
+                        if (expanded) variableHeight += 9 * dpm
                     }
                 }
             }

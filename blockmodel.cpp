@@ -4,7 +4,6 @@
 
 BlockModel::BlockModel(QObject *parent) : QAbstractListModel(parent)
 {
-
 }
 
 BlockModel::~BlockModel()
@@ -84,6 +83,30 @@ bool BlockModel::removeRows(int row, int count, const QModelIndex &parent)
 	}
 	endRemoveRows();
 	return true;
+}
+
+void BlockModel::addBlock(AbstractBlock *block, const QString &path)
+{
+	qDebug() << path;
+	if (path.contains('/')) {
+		QString modelIndex = path.section('/',0,0,QString::SectionSkipEmpty);
+		if (modelIndex.contains('.')) {
+			QStringList temp = modelIndex.split('.');
+			Q_ASSERT(temp.size() == 2);
+			int model = temp[0].toInt();
+			int submodel = temp[1].toInt();
+			mItems.at(model)->children().at(submodel)->addBlock(block, path.section('/',1));
+		} else {
+			mItems.at(modelIndex.toInt())->children().first()->addBlock(block, path.section('/',1));
+		}
+
+	} else {
+		beginInsertRows(QModelIndex(), mItems.count(), mItems.count());
+		mItems.append(block);
+		qDebug() << mItems.size() << " : " << mItems;
+		emit blockAdded();
+		endInsertRows();
+	}
 }
 
 void BlockModel::clear()

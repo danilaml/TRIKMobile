@@ -21,8 +21,3 @@ QString InfiniteBlock::toString(int indent) const
 	res.replace("@@BODY@@", body);
 	return addIndent(res, indent);
 }
-
-QString InfiniteBlock::blockType() const
-{
-	return "infiniteBlock";
-}

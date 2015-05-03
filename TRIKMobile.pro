@@ -9,10 +9,11 @@ SOURCES += main.cpp \
     connectorhandler.cpp \
     qmlsignalhandler.cpp \
     scriptgenerator.cpp \
+    blockmodel.cpp \
+    blockfactory.cpp \
     blocks/abstractblock.cpp \
     blocks/conditionalBlocks/infiniteblock.cpp \
     blocks/enginesBlocks/forwardblock.cpp \
-    blockmodel.cpp \
     blocks/accelerometerBlocks/accelerometerxblock.cpp \
     blocks/backgroundColorsBlocks/greenblock.cpp \
     blocks/conditionalBlocks/dowhileblock.cpp \
@@ -51,10 +52,11 @@ HEADERS += \
     connectorhandler.h \
     qmlsignalhandler.h \
     scriptgenerator.h \
+    blockmodel.h \
+    blockfactory.h \
     blocks/abstractblock.h \
     blocks/conditionalBlocks/infiniteblock.h \
     blocks/enginesBlocks/forwardblock.h \
-    blockmodel.h \
     blocks/accelerometerBlocks/accelerometerxblock.h \
     blocks/backgroundColorsBlocks/greenblock.h \
     blocks/conditionalBlocks/dowhileblock.h \

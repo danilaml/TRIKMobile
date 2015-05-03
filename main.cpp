@@ -42,9 +42,12 @@ int main(int argc, char *argv[])
 	mysg.setModel(bmodel1);
 
 	engine.rootContext()->setContextProperty("blockModel", mysg.model());
+	QStringList registeredBlocks = mysg.factory().registeredBlocks();
+	engine.rootContext()->setContextProperty("registeredBlocks", registeredBlocks);
 	engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
 	QObject *appwindow = engine.rootObjects().first();
+	QObject::connect(appwindow, SIGNAL(addBlock(QString,QString)), &mysg, SLOT(handleAdd(QString,QString)));
 	QObject::connect(appwindow, SIGNAL(sendPressed()), &mysg, SLOT(handleSend()));
 	QObject::connect(appwindow, SIGNAL(runPressed(QString)), &mysg, SLOT(handleRun(QString)));
 	QObject::connect(appwindow, SIGNAL(ipChanged(QString)), &mysg, SLOT(hadleIpChange(QString)));

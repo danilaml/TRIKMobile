@@ -10,7 +10,6 @@ public:
 	virtual ~ForwardBlock();
 
 	virtual QString toString(int indent = 0) const;
-	virtual QString blockType() const;
 	virtual QString statusString() const;
 
 	QString power() const;
