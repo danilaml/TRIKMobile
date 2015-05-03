@@ -14,10 +14,7 @@ ListView {
         NumberAnimation { property: "y"; duration: 100 }
     }
     remove: Transition {
-        ParallelAnimation {
-            NumberAnimation { property: "opacity"; to: 0; duration: 100 }
-            NumberAnimation { properties: "height"; to: 0; duration: 100 }
-        }
+        NumberAnimation { properties: "opacity,height"; to: 0; duration: 100 }
     }
     delegate:
         Component {
