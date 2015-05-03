@@ -7,18 +7,15 @@ class SendMessageBlock : public AbstractBlock
 	Q_OBJECT
 public:
 	explicit SendMessageBlock(QObject *parent = 0);
-	SendMessageBlock(QSharedPointer<AbstractBlock> n, QObject *parent = 0);
 	virtual ~SendMessageBlock();
 
 	virtual QString toString(int indent = 0) const;
+	virtual QString blockType() const;
+	virtual QString statusString() const;
 
-	int hullNumber() const;
-	void setHullNumber(int hullNumber);
+	QString hullNumber() const;
+	void setHullNumber(const QString hullNumber);
 
 	QString message() const;
 	void setMessage(const QString &message);
-
-private:
-	int mHullNumber;
-	QString mMessage;
 };

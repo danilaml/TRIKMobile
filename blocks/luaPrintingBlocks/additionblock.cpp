@@ -2,12 +2,9 @@
 
 AdditionBlock::AdditionBlock(QObject *parent) : AbstractBlock(parent)
 {
-
-}
-
-AdditionBlock::AdditionBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
-{
-
+	propertyNames << "left" << "right";
+	propertyMap["left"] = "1";
+	propertyMap["right"] = "2";
 }
 
 AdditionBlock::~AdditionBlock()
@@ -18,29 +15,36 @@ AdditionBlock::~AdditionBlock()
 QString AdditionBlock::toString(int indent) const
 {
 	QString res = readTemplate("luaPrinting/addition.t");
-	res.replace("@@LEFT@@", mLeft).replace("@@RIGHT@@", mRight);
-	if (!mNext.isNull()) {
-		res.append(mNext->toString());
-	}
+	res.replace("@@LEFT@@", getProp("left")).replace("@@RIGHT@@", getProp("right"));
 	return addIndent(res, indent);
+}
+
+QString AdditionBlock::blockType() const
+{
+	return "additionBlock";
+}
+
+QString AdditionBlock::statusString() const
+{
+	return QString("Left: %1, Right: %2").arg(getProp("left"), getProp("right"));
 }
 
 QString AdditionBlock::left() const
 {
-    return mLeft;
+	return getProp("left");
 }
 
 void AdditionBlock::setLeft(const QString &left)
 {
-    mLeft = left;
+	propertyMap["left"] = left;
 }
 
 QString AdditionBlock::right() const
 {
-    return mRight;
+	return getProp("right");
 }
 
 void AdditionBlock::setRight(const QString &right)
 {
-    mRight = right;
+	propertyMap["right"] = right;
 }

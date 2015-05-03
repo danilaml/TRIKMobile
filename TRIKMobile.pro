@@ -25,21 +25,21 @@ SOURCES += main.cpp \
     blocks/drawingBlocks/smileblock.cpp \
     blocks/enginesBlocks/backwardblock.cpp \
     blocks/enginesBlocks/stopblock.cpp \
-#    blocks/functionsBlocks/absblock.cpp \
-#    blocks/gamepadBlocks/gamepadbuttonblock.cpp \
-#    blocks/gyroscopeBlocks/gyroscopexblock.cpp \
-#    blocks/ledColorsBlocks/ledgreenblock.cpp \
-#    blocks/luaPrintingBlocks/additionblock.cpp \
-#    blocks/messagesBlocks/sendmessageblock.cpp \
-#    blocks/portsBlocks/gamepadbutton1portblock.cpp \
-#    blocks/sensorsBlocks/upblock.cpp \
-#    blocks/signsBlocks/equalsblock.cpp \
-#    blocks/subprogramsBlocks/implementationblock.cpp \
-#    blocks/switchBlocks/headblock.cpp \
-#    blocks/threadsBlocks/callblock.cpp \
-#    blocks/typesBlocks/intblock.cpp \
-#    blocks/variablesBlocks/variabledeclarationblock.cpp \
-#    blocks/videosensorsBlocks/detectlineblock.cpp \
+    blocks/functionsBlocks/absblock.cpp \
+    blocks/gamepadBlocks/gamepadbuttonblock.cpp \
+    blocks/gyroscopeBlocks/gyroscopexblock.cpp \
+    blocks/ledColorsBlocks/ledgreenblock.cpp \
+    blocks/luaPrintingBlocks/additionblock.cpp \
+    blocks/messagesBlocks/sendmessageblock.cpp \
+    blocks/portsBlocks/gamepadbutton1portblock.cpp \
+    blocks/sensorsBlocks/upblock.cpp \
+    blocks/signsBlocks/equalsblock.cpp \
+    blocks/subprogramsBlocks/implementationblock.cpp \
+    blocks/switchBlocks/headblock.cpp \
+    blocks/threadsBlocks/callblock.cpp \
+    blocks/typesBlocks/intblock.cpp \
+    blocks/variablesBlocks/variabledeclarationblock.cpp \
+    blocks/videosensorsBlocks/detectlineblock.cpp \
     blocks/waitBlocks/timerblock.cpp \
     blocks/sayblock.cpp \
     blocks/accelerometerBlocks/accelerometeryblock.cpp \
@@ -67,21 +67,21 @@ HEADERS += \
     blocks/drawingBlocks/smileblock.h \
     blocks/enginesBlocks/backwardblock.h \
     blocks/enginesBlocks/stopblock.h \
-#    blocks/functionsBlocks/absblock.h \
-#    blocks/gamepadBlocks/gamepadbuttonblock.h \
-#    blocks/gyroscopeBlocks/gyroscopexblock.h \
-#    blocks/ledColorsBlocks/ledgreenblock.h \
-#    blocks/luaPrintingBlocks/additionblock.h \
-#    blocks/messagesBlocks/sendmessageblock.h \
-#    blocks/portsBlocks/gamepadbutton1portblock.h \
-#    blocks/sensorsBlocks/upblock.h \
-#    blocks/signsBlocks/equalsblock.h \
-#    blocks/subprogramsBlocks/implementationblock.h \
-#    blocks/switchBlocks/headblock.h \
-#    blocks/threadsBlocks/callblock.h \
-#    blocks/typesBlocks/intblock.h \
-#    blocks/variablesBlocks/variabledeclarationblock.h \
-#    blocks/videosensorsBlocks/detectlineblock.h \
+    blocks/functionsBlocks/absblock.h \
+    blocks/gamepadBlocks/gamepadbuttonblock.h \
+    blocks/gyroscopeBlocks/gyroscopexblock.h \
+    blocks/ledColorsBlocks/ledgreenblock.h \
+    blocks/luaPrintingBlocks/additionblock.h \
+    blocks/messagesBlocks/sendmessageblock.h \
+    blocks/portsBlocks/gamepadbutton1portblock.h \
+    blocks/sensorsBlocks/upblock.h \
+    blocks/signsBlocks/equalsblock.h \
+    blocks/subprogramsBlocks/implementationblock.h \
+    blocks/switchBlocks/headblock.h \
+    blocks/threadsBlocks/callblock.h \
+    blocks/typesBlocks/intblock.h \
+    blocks/variablesBlocks/variabledeclarationblock.h \
+    blocks/videosensorsBlocks/detectlineblock.h \
     blocks/waitBlocks/timerblock.h \
     blocks/sayblock.h \
     blocks/accelerometerBlocks/accelerometeryblock.h \

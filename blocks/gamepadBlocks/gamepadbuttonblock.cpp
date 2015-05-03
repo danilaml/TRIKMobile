@@ -2,12 +2,8 @@
 
 GamepadButtonBlock::GamepadButtonBlock(QObject *parent) : AbstractBlock(parent)
 {
-
-}
-
-GamepadButtonBlock::GamepadButtonBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
-{
-
+	propertyNames << "port";
+	propertyMap["port"] = "M1";
 }
 
 GamepadButtonBlock::~GamepadButtonBlock()
@@ -18,19 +14,27 @@ GamepadButtonBlock::~GamepadButtonBlock()
 QString GamepadButtonBlock::toString(int indent) const
 {
 	QString res = readTemplate("gamepad/gamepadButton.t");
-	res.replace("@@PORT@@", QString::number(mPort));
-	if (!mNext.isNull()) {
-		res.append(mNext->toString());
-	}
+	res.replace("@@PORT@@", getProp("port"));
+
 	return addIndent(res, indent);
 }
 
-int GamepadButtonBlock::port() const
+QString GamepadButtonBlock::blockType() const
 {
-	return mPort;
+	return "gamepadButtonBlock";
 }
 
-void GamepadButtonBlock::setPort(int port)
+QString GamepadButtonBlock::statusString() const
 {
-	mPort = port;
+	return QString("Port: %1").arg(getProp("port"));
+}
+
+QString GamepadButtonBlock::port() const
+{
+	return getProp("port");
+}
+
+void GamepadButtonBlock::setPort(const QString &port)
+{
+	propertyMap["port"] = port;
 }
