@@ -7,8 +7,8 @@ class SadSmileBlock : public AbstractBlock
 	Q_OBJECT
 public:
 	explicit SadSmileBlock(QObject *parent = 0);
-	SadSmileBlock(QSharedPointer<AbstractBlock> n, QObject *parent = 0);
 	virtual ~SadSmileBlock();
 
 	virtual QString toString(int indent = 0) const;
+	virtual QString blockType() const;
 };

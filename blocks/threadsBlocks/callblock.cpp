@@ -2,12 +2,9 @@
 
 CallBlock::CallBlock(QObject *parent) : AbstractBlock(parent)
 {
-
-}
-
-CallBlock::CallBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
-{
-
+	propertyNames << "threadId" << "name";
+	propertyMap["threadId"] = "1";
+	propertyMap["name"] = "thread1";
 }
 
 CallBlock::~CallBlock()
@@ -18,29 +15,36 @@ CallBlock::~CallBlock()
 QString CallBlock::toString(int indent) const
 {
 	QString res = readTemplate("threads/call.t");
-	res.replace("@@THREAD_ID@@", QString::number(mThreadId)).replace("@@NAME@@", mName);
-	if (!mNext.isNull()) {
-		res.append(mNext->toString());
-	}
+	res.replace("@@THREAD_ID@@", getProp("threadId")).replace("@@NAME@@", getProp("name"));
 	return addIndent(res, indent);
 }
 
-int CallBlock::threadId() const
+QString CallBlock::blockType() const
 {
-    return mThreadId;
+	return "callBlock";
 }
 
-void CallBlock::setThreadId(int threadId)
+QString CallBlock::statusString() const
 {
-    mThreadId = threadId;
+	return QString("ThreadId: %1, Name: %2").arg(getProp("threadId"), getProp("name"));
+}
+
+QString CallBlock::threadId() const
+{
+	return getProp("threadId");
+}
+
+void CallBlock::setThreadId(const QString threadId)
+{
+	propertyMap["threadId"] = threadId;
 }
 
 QString CallBlock::name() const
 {
-    return mName;
+	return getProp("name");
 }
 
 void CallBlock::setName(const QString &name)
 {
-    mName = name;
+	propertyMap["name"] = name;
 }

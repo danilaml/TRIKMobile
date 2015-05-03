@@ -7,17 +7,15 @@ class BackwardBlock : public AbstractBlock
 	Q_OBJECT
 public:
 	explicit BackwardBlock(QObject *parent = 0);
-	BackwardBlock(QSharedPointer<AbstractBlock> n, QObject *parent = 0);
 	virtual ~BackwardBlock();
 
 	virtual QString toString(int indent = 0) const;
+	virtual QString blockType() const;
+	virtual QString statusString() const;
 
-	int power() const;
-	void setPower(int power);
+	QString power() const;
+	void setPower(const QString &power);
+
 	QString port() const;
 	void setPort(const QString &port);
-
-private:
-	int mPower;
-	QString mPort;
 };

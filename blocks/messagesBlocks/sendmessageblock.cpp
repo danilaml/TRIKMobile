@@ -2,12 +2,9 @@
 
 SendMessageBlock::SendMessageBlock(QObject *parent) : AbstractBlock(parent)
 {
-
-}
-
-SendMessageBlock::SendMessageBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
-{
-
+	propertyNames << "hullNumber" << "message";
+	propertyMap["hullNumber"] = "1";
+	propertyMap["message"] = "New message";
 }
 
 SendMessageBlock::~SendMessageBlock()
@@ -18,29 +15,36 @@ SendMessageBlock::~SendMessageBlock()
 QString SendMessageBlock::toString(int indent) const
 {
 	QString res = readTemplate("messages/sendMessage.t");
-	res.replace("@@HULL_NUMBER@@", QString::number(mHullNumber)).replace("@@MESSAGE@@", "\"" + mMessage + "\"");
-	if (!mNext.isNull()) {
-		res.append(mNext->toString());
-	}
+	res.replace("@@HULL_NUMBER@@", getProp("hullNumber")).replace("@@MESSAGE@@", "\"" + getProp("message") + "\"");
 	return addIndent(res, indent);
 }
 
-int SendMessageBlock::hullNumber() const
+QString SendMessageBlock::blockType() const
 {
-	return mHullNumber;
+	return "sendMessageBlock";
 }
 
-void SendMessageBlock::setHullNumber(int hullNumber)
+QString SendMessageBlock::statusString() const
 {
-	mHullNumber = hullNumber;
+	return QString("HullNumber: %1, Message: %2").arg(getProp("hullNumber"), getProp("message"));
+}
+
+QString SendMessageBlock::hullNumber() const
+{
+	return getProp("hullNumber");
+}
+
+void SendMessageBlock::setHullNumber(const QString hullNumber)
+{
+	propertyMap["hullNumber"] = hullNumber;
 }
 
 QString SendMessageBlock::message() const
 {
-	return mMessage;
+	return getProp("message");
 }
 
 void SendMessageBlock::setMessage(const QString &message)
 {
-	mMessage = message;
+	propertyMap["message"] = message;
 }

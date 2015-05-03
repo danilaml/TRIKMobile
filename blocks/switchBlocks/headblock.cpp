@@ -1,13 +1,11 @@
 #include "headblock.h"
+#include "blockmodel.h"
 
 HeadBlock::HeadBlock(QObject *parent) : AbstractBlock(parent)
 {
-
-}
-
-HeadBlock::HeadBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
-{
-
+	propertyNames << "expression" << "condition";
+	propertyMap["expression"] = "port";
+	propertyMap["condition"] = "M1";
 }
 
 HeadBlock::~HeadBlock()
@@ -18,39 +16,40 @@ HeadBlock::~HeadBlock()
 QString HeadBlock::toString(int indent) const
 {
 	QString res = readTemplate("switch/head.t");
-	res.replace("@@EXPRESSION@@", mExpression).replace("@@CONDITION@@", mCondition).replace("@@BODY@@", mBody->toString());
-	if (!mNext.isNull()) {
-		res.append(mNext->toString());
+	QString body;
+	if (mChildren.size() > 0) {
+		body = mChildren.at(0)->toString(1);
 	}
+	res.replace("@@EXPRESSION@@", getProp("expression")).replace("@@CONDITION@@", getProp("condition")).replace("@@BODY@@", body);
 	return addIndent(res, indent);
+}
+
+QString HeadBlock::blockType() const
+{
+	return "headBlock";
+}
+
+QString HeadBlock::statusString() const
+{
+	return QString("Expression: %1, Condition: %2").arg(getProp("expression"), getProp("condition"));
 }
 
 QString HeadBlock::expression() const
 {
-	return mExpression;
+	return getProp("expression");
 }
 
 void HeadBlock::setExpression(const QString &expression)
 {
-	mExpression = expression;
+	propertyMap["expression"] = expression;
 }
 
 QString HeadBlock::condition() const
 {
-	return mCondition;
+	return getProp("condition");
 }
 
 void HeadBlock::setCondition(const QString &condition)
 {
-	mCondition = condition;
-}
-
-QSharedPointer<AbstractBlock> HeadBlock::body() const
-{
-	return mBody;
-}
-
-void HeadBlock::setBody(const QSharedPointer<AbstractBlock> &body)
-{
-	mBody = body;
+	propertyMap["condition"] = condition;
 }

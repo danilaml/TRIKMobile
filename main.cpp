@@ -5,6 +5,11 @@
 #include "blockmodel.h"
 #include "blocks/enginesBlocks/forwardblock.h"
 #include "blocks/conditionalBlocks/infiniteblock.h"
+#include "blocks/sayblock.h"
+#include "blocks/drawingBlocks/smileblock.h"
+#include "blocks/conditionalBlocks/ifblock.h"
+#include "blocks/conditionalBlocks/ifelseblock.h"
+#include "blocks/drawingBlocks/sadsmileblock.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,17 +18,25 @@ int main(int argc, char *argv[])
 	QQmlApplicationEngine engine;
 //	engine.load(QUrl(QStringLiteral("qrc:/BlocksView.qml")));
 
-	BlockModel *bmodel2 = new BlockModel();
-	bmodel2->setItems(QList<AbstractBlock *>() << new ForwardBlock() << new ForwardBlock());
-	auto infblock1 = new InfiniteBlock();
-	infblock1->setChildren(QList<BlockModel *>() << bmodel2);
-	BlockModel *bmodel3 = new BlockModel();
-	bmodel3->setItems(QList<AbstractBlock *>() << new ForwardBlock() << infblock1);
-	auto infblock2 = new InfiniteBlock();
-	infblock2->setChildren(QList<BlockModel *>() << bmodel3);
-	auto blocks = (QList<AbstractBlock *>() << new ForwardBlock() << infblock2 << new ForwardBlock());
-	BlockModel *bmodel1 = new BlockModel();
-	bmodel1->setItems(blocks);
+	BlockModel bmodel3;
+	bmodel3.setItems(QList<AbstractBlock *>() << new SayBlock());
+	auto ifBlock = new IfBlock();
+	ifBlock->setChildren(QList<BlockModel *>() << &bmodel3);
+
+	BlockModel bmodel4;
+	bmodel4.setItems(QList<AbstractBlock *>() << new SmileBlock());
+	BlockModel bmodel5;
+	bmodel5.setItems(QList<AbstractBlock *>() << new SadSmileBlock());
+	auto ifElseBlock = new IfElseBlock();
+	ifElseBlock->setChildren(QList<BlockModel *>() << &bmodel4 << &bmodel5);
+
+	BlockModel bmodel2;
+	bmodel2.setItems(QList<AbstractBlock *>() << new ForwardBlock() << new SayBlock() << new SmileBlock() << ifBlock);
+	auto infblock = new InfiniteBlock();
+	infblock->setChildren(QList<BlockModel *>() << &bmodel2);
+	auto blocks = (QList<AbstractBlock *>() << new ForwardBlock() << infblock << ifElseBlock);
+	BlockModel bmodel1;
+	bmodel1.setItems(blocks);
 
 	QmlSignalHandler mysg;
 	mysg.setModel(bmodel1);

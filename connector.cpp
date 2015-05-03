@@ -208,7 +208,6 @@ void Connector::connect()
 		return;
 	}
 
-//	if (mControlConnection.isConnected())
 	if (mControlConnection.isConnected() && mTelemetryConnection.isConnected())
 	{
 		if (mCurrentIP == server)
@@ -218,7 +217,6 @@ void Connector::connect()
 		disconnect();
 	}
 	mCurrentIP = server;
-//	const bool result = mControlConnection.connect(hostAddress);
 	const bool result = mControlConnection.connect(hostAddress) && mTelemetryConnection.connect(hostAddress);
 	versionRequest();
 	emit connected(result, QString());

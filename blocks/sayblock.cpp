@@ -2,12 +2,8 @@
 
 SayBlock::SayBlock(QObject *parent) : AbstractBlock(parent)
 {
-
-}
-
-SayBlock::SayBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
-{
-
+	propertyNames << "text";
+	propertyMap["text"] = "Hello!";
 }
 
 SayBlock::~SayBlock()
@@ -18,19 +14,27 @@ SayBlock::~SayBlock()
 QString SayBlock::toString(int indent) const
 {
 	QString res = readTemplate("say.t");
-	res.replace("@@TEXT@@","\"" + mText + "\"");
-	if (!mNext.isNull()) {
-		res.append(mNext->toString());
-	}
+	res.replace("@@TEXT@@", "\"" + getProp("text") + "\"");
+
 	return addIndent(res, indent);
+}
+
+QString SayBlock::blockType() const
+{
+	return "sayBlock";
+}
+
+QString SayBlock::statusString() const
+{
+	return QString("Text: %1").arg(getProp("text"));
 }
 
 QString SayBlock::text() const
 {
-	return mText;
+	return getProp("text");
 }
 
 void SayBlock::setText(const QString &text)
 {
-	mText = text;
+	propertyMap["text"] = text;
 }

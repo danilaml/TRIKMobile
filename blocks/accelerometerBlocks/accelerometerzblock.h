@@ -2,12 +2,12 @@
 
 #include "blocks/abstractblock.h"
 
-class GyroscopeXBlock : public AbstractBlock
+class AccelerometerZBlock : public AbstractBlock
 {
 	Q_OBJECT
 public:
-	explicit GyroscopeXBlock(QObject *parent = 0);
-	virtual ~GyroscopeXBlock();
+	explicit AccelerometerZBlock(QObject *parent = 0);
+	virtual ~AccelerometerZBlock();
 
 	virtual QString toString(int indent = 0) const;
 	virtual QString blockType() const;

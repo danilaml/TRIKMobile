@@ -5,11 +5,6 @@ StopBlock::StopBlock(QObject *parent) : AbstractBlock(parent)
 
 }
 
-StopBlock::StopBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
-{
-
-}
-
 StopBlock::~StopBlock()
 {
 
@@ -18,19 +13,27 @@ StopBlock::~StopBlock()
 QString StopBlock::toString(int indent) const
 {
 	QString res = readTemplate("engines/stop.t");
-	res.replace("@@PORT@@", QString::number(mPort));
-	if (!mNext.isNull()) {
-		res.append(mNext->toString());
-	}
+	res.replace("@@PORT@@", getProp("port"));
+
 	return addIndent(res, indent);
 }
 
-int StopBlock::port() const
+QString StopBlock::blockType() const
 {
-	return mPort;
+	return "stopBlock";
 }
 
-void StopBlock::setPort(int port)
+QString StopBlock::statusString() const
 {
-	mPort = port;
+	return QString("Port: %1").arg(getProp("port"));
+}
+
+QString StopBlock::port() const
+{
+	return getProp("port");
+}
+
+void StopBlock::setPort(const QString &port)
+{
+	propertyMap["port"] = port;
 }

@@ -1,13 +1,10 @@
 #include "ifelseblock.h"
+#include "blockmodel.h"
 
 IfElseBlock::IfElseBlock(QObject *parent) : AbstractBlock(parent)
 {
-
-}
-
-IfElseBlock::IfElseBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
-{
-
+	propertyNames << "condition";
+	propertyMap["condition"] = "true";
 }
 
 IfElseBlock::~IfElseBlock()
@@ -18,39 +15,32 @@ IfElseBlock::~IfElseBlock()
 QString IfElseBlock::toString(int indent) const
 {
 	QString res = readTemplate("conditional/ifElse.t");
-	res.replace("@@CONDITION@@", mCondition).replace("@@THEN_BODY@@", mThenBody->toString()).replace("@@ELSE_BODY@@",mElseBody->toString());
-	if (!mNext.isNull()) {
-		res.append(mNext->toString());
+	QString thenBody;
+	QString elseBody;
+	if (mChildren.size() > 0) {
+		thenBody = mChildren.at(0)->toString(1);
+		elseBody = mChildren.at(1)->toString(1);
 	}
+	res.replace("@@CONDITION@@", getProp("condition")).replace("@@THEN_BODY@@", thenBody).replace("@@ELSE_BODY@@", elseBody);
 	return addIndent(res, indent);
+}
+
+QString IfElseBlock::blockType() const
+{
+	return "ifElseBlock";
+}
+
+QString IfElseBlock::statusString() const
+{
+	return QString("Condition: %1").arg(getProp("condition"));
 }
 
 QString IfElseBlock::condition() const
 {
-	return mCondition;
+	return getProp("condition");
 }
 
 void IfElseBlock::setCondition(const QString &condition)
 {
-	mCondition = condition;
-}
-
-QSharedPointer<AbstractBlock> IfElseBlock::thenBody() const
-{
-	return mThenBody;
-}
-
-void IfElseBlock::setThenBody(const QSharedPointer<AbstractBlock> &thenBody)
-{
-	mThenBody = thenBody;
-}
-
-QSharedPointer<AbstractBlock> IfElseBlock::elseBody() const
-{
-	return mElseBody;
-}
-
-void IfElseBlock::setElseBody(const QSharedPointer<AbstractBlock> &elseBody)
-{
-	mElseBody = elseBody;
+	propertyMap["condition"] = condition;
 }

@@ -2,12 +2,8 @@
 
 AbsBlock::AbsBlock(QObject *parent) : AbstractBlock(parent)
 {
-
-}
-
-AbsBlock::AbsBlock(QSharedPointer<AbstractBlock> n, QObject *parent) : AbstractBlock(n, parent)
-{
-
+	propertyNames << "argument";
+	propertyMap["argument"] = "-14";
 }
 
 AbsBlock::~AbsBlock()
@@ -18,19 +14,27 @@ AbsBlock::~AbsBlock()
 QString AbsBlock::toString(int indent) const
 {
 	QString res = readTemplate("functions/abs.t");
-	res.replace("@@ARGUMENT@@", mArgument);
-	if (!mNext.isNull()) {
-		res.append(mNext->toString());
-	}
+	res.replace("@@ARGUMENT@@", getProp("argument"));
+
 	return addIndent(res, indent);
+}
+
+QString AbsBlock::blockType() const
+{
+	return "absBlock";
+}
+
+QString AbsBlock::statusString() const
+{
+	return QString("Argument: %1").arg(getProp("argument"));
 }
 
 QString AbsBlock::argument() const
 {
-	return mArgument;
+	return getProp("argument");
 }
 
 void AbsBlock::setArgument(const QString &argument)
 {
-	mArgument = argument;
+	propertyMap["argument"] = argument;
 }
