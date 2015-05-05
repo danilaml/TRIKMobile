@@ -2,12 +2,10 @@ import QtQuick 2.4
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.3
 
-Rectangle {
+Item {
     id: nodeContainer
     width: parent.width
     height: nodeLabel.height + nodeChildrenView.height
-
-    color: "transparent"
 
     property string textLabel
     property var folderChildren
@@ -22,25 +20,38 @@ Rectangle {
     signal addBlock(string path)
     signal blockAdded(bool expanded)
 
-    Text {
-        id: nodeLabel
-        x: parent.x + 5
-        height: 9 * dpm
-        text: textLabel + " " + statusString
-        verticalAlignment: Text.AlignVCenter
-    }
-
-    MouseArea {
+    Rectangle {
+        id: rect
         width: parent.width
         height: 9 * dpm
-        onClicked: {
-            isExpanded = !isExpanded
-            nodeContainer.toggled(isExpanded, childrenHeight)
+        color: "orangered"
+
+        Text {
+            id: nodeLabel
+            x: parent.x + 5
+            height: 9 * dpm
+            text: textLabel + " " + statusString
+            verticalAlignment: Text.AlignVCenter
         }
-        onPressAndHold: {
-            console.log(this + "pressed and held")
-            contextMenu.popup()
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                isExpanded = !isExpanded
+                nodeContainer.toggled(isExpanded, childrenHeight)
+            }
+            onPressAndHold: {
+                console.log(this + "pressed and held")
+                contextMenu.popup()
+            }
         }
+    }
+
+    Rectangle {
+        height: 1
+        width: parent.width
+        y: 9 * dpm - 1
+        color: "black"
     }
 
     Menu {
@@ -56,13 +67,6 @@ Rectangle {
             text: "Add inner block"
             onTriggered: addBlock(index + '/')
         }
-    }
-
-    Rectangle {
-        height: 1
-        width: parent.width
-        y: 9 * dpm - 1
-        color: "black"
     }
 
     function childToggled(expanded, height)
@@ -82,7 +86,7 @@ Rectangle {
         id: nodeChildrenView
         visible: isExpanded
         x: 30
-        y: nodeLabel.height
+        y: rect.height
         width: parent.width - x
         height: isExpanded ? (childrenHeight + variableHeight) : 0
         model: folderChildren
@@ -103,14 +107,20 @@ Rectangle {
                 source: childrenCount ? "SimpleNodeDelegate.qml" : "LeafDelegate.qml"
                 onLoaded: {
                     item.textLabel = blockType
-                    if (childrenCount)
+                    if (childrenCount == 1)
                     {
                         item.folderChildren = childrenOneModel
-                        item.childrenHeight = (childrenOneModel.rowCount() * 9 * dpm)
+                        item.childrenHeight = childrenOneModel.rowCount() * 9 * parseInt(Screen.pixelDensity,10)
+                    } else if (childrenCount == 2) {
+                        item.thenChildren = childrenOneModel
+                        item.elseChildren = childrenTwoModel
+                        item.childrenHeight1 = childrenOneModel.rowCount() * 9 * parseInt(Screen.pixelDensity,10)
+                        item.childrenHeight2 = childrenTwoModel.rowCount() * 9 * parseInt(Screen.pixelDensity,10)
                     }
                 }
                 Connections {
                     target: item
+                    //ignoreUnknownSignal: true
                     onToggled: childToggled(item.isExpanded, item.childrenHeight)
                     onRemoveBlock: {
                         folderChildren.removeRow(index);
