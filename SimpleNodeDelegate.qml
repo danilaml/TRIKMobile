@@ -5,7 +5,7 @@ import QtQuick.Controls 1.3
 Item {
     id: nodeContainer
     width: parent.width
-    height: nodeLabel.height + nodeChildrenView.height
+    height: rect.height + nodeChildrenView.height
 
     property string textLabel
     property var folderChildren

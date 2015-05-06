@@ -13,7 +13,8 @@ Item {
     property bool isExpanded: false
     property int childrenHeight1: 0
     property int childrenHeight2: 0
-    property int variableHeight: 0
+    property int variableHeight1: 0
+    property int variableHeight2: 0
 
     property int dpm: Screen.pixelDensity
 
@@ -40,11 +41,7 @@ Item {
             anchors.fill: parent
             onClicked: {
                 isExpanded = !isExpanded
-                nodeContainer.toggled(isExpanded, childrenHeight1 + childrenHeight2)
-                nodeChildrenView1.visible = isExpanded
-                nodeChildrenView2.visible = isExpanded
-                nodeChildrenView1.height += isExpanded ? childrenHeight1 : -childrenHeight1
-                nodeChildrenView2.height += isExpanded ? childrenHeight2 : -childrenHeight2
+                nodeContainer.toggled(isExpanded, nodeChildrenView1.height + nodeChildrenView2.height)
                 console.log(nodeChildrenView1.y + " : " + nodeChildrenView2.y);
                 console.log(nodeChildrenView1.height + " : " + nodeChildrenView2.height);
             }
@@ -77,65 +74,61 @@ Item {
         }
     }
 
-    function childToggled(expanded, height)
-    {
-        if (expanded)
-            variableHeight += height;
-        else
-            variableHeight -= height;
-    }
-
     Connections {
         target: thenChildren
         onBlockAdded: {childrenHeight1 += 9 * dpm;blockAdded(isExpanded)} //rewrite
     }
+    Connections {
+        target: elseChildren
+        onBlockAdded: {childrenHeight2 += 9 * dpm;blockAdded(isExpanded)} //rewrite
+    }
 
     SimpleNodeDelegate {
         id: nodeChildrenView1
-        visible: isExpanded
+        visible: nodeContainer.isExpanded
         x: 30
-        anchors.top: rect.bottom
-        height: isExpanded ? (childrenHeight1 /*+ variableHeight*/) : 0
+        y: rect.height
+        height: nodeContainer.isExpanded ? (childrenHeight1 + variableHeight1) : 0
 
         textLabel: "then"
         folderChildren: thenChildren
 
         onToggled: {
             nodeContainer.toggled(isExpanded, childrenHeight1);
-            nodeChildrenView1.height += isExpanded ? childrenHeight1 : -childrenHeight1
-        } //childToggled(item.isExpanded, item.childrenHeight)
+            variableHeight1 += isExpanded ? childrenHeight1 : -childrenHeight1
+        }
         onRemoveBlock: {
             folderChildren.removeRow(index);
             childrenHeight1 -= 9 * dpm;
         }
-        onAddBlock: addBlock(index + '/' + path)
+        onAddBlock: nodeContainer.addBlock(index + '.1/' + path)
         onBlockAdded: {
-            if (expanded) variableHeight += 9 * dpm
+            if (expanded) variableHeight1 += 9 * dpm
         }
 
     }
     SimpleNodeDelegate {
         id: nodeChildrenView2
-        visible: isExpanded
+        visible: nodeContainer.isExpanded
         x: 30
-        y: nodeChildrenView1.y + nodeChildrenView1.height
-        //anchors.top: nodeChildrenView1.bottom
-        height: isExpanded ? (childrenHeight2 /*+ variableHeight*/) : 0
+        //y: nodeChildrenView1.y + nodeChildrenView1.height
+        anchors.top: nodeChildrenView1.bottom
+        height: nodeContainer.isExpanded ? (childrenHeight2 + variableHeight2) : 0
 
         textLabel: "else"
         folderChildren: elseChildren
 
         onToggled: {
             nodeContainer.toggled(isExpanded, childrenHeight2);
-            nodeChildrenView2.height += isExpanded ? childrenHeight2 : -childrenHeight2
-        } //childToggled(item.isExpanded, item.childrenHeight)
+            variableHeight2 += isExpanded ? childrenHeight2 : -childrenHeight2
+        }
         onRemoveBlock: {
             thenChildren.removeRow(index);
             childrenHeight2 -= 9 * dpm;
         }
-        onAddBlock: addBlock(index + '/' + path)
+        onAddBlock: nodeContainer.addBlock(index + '.2/' + path)
         onBlockAdded: {
-            if (expanded) variableHeight += 9 * dpm
+            if (expanded) variableHeight2 += 9 * dpm
         }
     }
 }
