@@ -101,7 +101,7 @@ Item {
         textLabel: "then"
         folderChildren: thenChildren
         childrenHeight: childrenHeight1
-        //isMenuEnabled: false
+        isMenuEnabled: false
 
         onToggled: {
             nodeContainer.toggled(isExpanded, childrenHeight1);
