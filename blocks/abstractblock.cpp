@@ -108,17 +108,6 @@ void AbstractBlock::setPropertyMap(const QVariantMap &value)
 	propertyMap = value;
 }
 
-
-QList<QString> AbstractBlock::getPropertyNames() const
-{
-    return propertyNames;
-}
-
-void AbstractBlock::setPropertyNames(const QList<QString> &value)
-{
-    propertyNames = value;
-}
-
 QList<BlockModel *> AbstractBlock::children() const
 {
 	return mChildren;

@@ -23,9 +23,6 @@ public:
 	QList<BlockModel *> children() const;
 	void setChildren(const QList<BlockModel *> &children);
 
-	QList<QString> getPropertyNames() const;
-	void setPropertyNames(const QList<QString> &value);
-
 	QVariantMap getPropertyMap() const;
 	void setPropertyMap(const QVariantMap &value);
 

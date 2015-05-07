@@ -10,6 +10,7 @@ Item {
     property string textLabel
     property var folderChildren
     property bool isExpanded: false
+    property bool isMenuEnabled: true
     property int childrenHeight: 0
     property int variableHeight: 0
     property int ind: index // stupid qml workaraound
@@ -43,7 +44,7 @@ Item {
             }
             onPressAndHold: {
                 console.log(this + "pressed and held")
-                contextMenu.popup()
+                if (isMenuEnabled) contextMenu.popup()
             }
         }
     }

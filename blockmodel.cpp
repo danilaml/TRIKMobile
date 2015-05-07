@@ -39,7 +39,7 @@ QVariant BlockModel::data(const QModelIndex &index, int role) const
 	else if (role == PropertyMapRole)
 		return mItems.at(itemRow)->getPropertyMap();
 
-	return QVariant::fromValue(mItems.at(itemRow)->getPropertyNames());
+	return QVariant::fromValue(mItems.at(itemRow)->getPropertyMap().keys());
 }
 
 bool BlockModel::setData(const QModelIndex &index, const QVariant &value, int role)
@@ -136,12 +136,6 @@ QHash<int, QByteArray> BlockModel::roleNames() const
 	roles[StatusStringRole] = "statusString";
 	roles[ChildrenOneModel] = "childrenOneModel";
 	roles[ChildrenTwoModel] = "childrenTwoModel";
-
-//    int roleStartIdx = FixedRolesEnd;
-//    for (int i = roleStartIdx, t = 0; i < roleStartIdx + m_roles.count(); i++, t++)
-//        roles[i] = m_roles.at(t).toLatin1();
-
-//	qDebug() << "Returned" << roles.count() << "roles";
 
 	return roles;
 }

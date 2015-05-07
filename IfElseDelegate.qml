@@ -5,7 +5,7 @@ import QtQuick.Controls 1.3
 Item {
     id: nodeContainer
     width: parent.width
-    height: rect.height + (isExpanded ? 2 * 9 * dpm  + variableHeight1 + variableHeight2: 0)//bind to nodechildrenview view height maybe?
+    height: rect.height + (isExpanded ? 2 * 9 * dpm  + variableHeight1 + variableHeight2: 0)
     clip: true // good enough, needed for "beautiful" expanding
 
     property string textLabel
@@ -101,6 +101,7 @@ Item {
         textLabel: "then"
         folderChildren: thenChildren
         childrenHeight: childrenHeight1
+        //isMenuEnabled: false
 
         onToggled: {
             nodeContainer.toggled(isExpanded, childrenHeight1);
@@ -125,6 +126,7 @@ Item {
         textLabel: "else"
         folderChildren: elseChildren
         childrenHeight: childrenHeight2
+        isMenuEnabled: false
 
         onToggled: {
             nodeContainer.toggled(isExpanded, childrenHeight2);
