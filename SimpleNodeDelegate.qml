@@ -12,6 +12,7 @@ Item {
     property bool isExpanded: false
     property int childrenHeight: 0
     property int variableHeight: 0
+    property int ind: index // stupid qml workaraound
 
     property int dpm: Screen.pixelDensity
 
@@ -126,7 +127,7 @@ Item {
                         folderChildren.removeRow(index);
                         childrenHeight -= 9 * dpm;
                     }
-                    onAddBlock: addBlock(index + '/' + path)
+                    onAddBlock: addBlock(ind + '/' + path)
                     onBlockAdded: {
                         if (expanded) variableHeight += 9 * dpm
                     }

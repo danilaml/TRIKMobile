@@ -5,12 +5,14 @@ import QtQuick.Controls 1.3
 Item {
     id: nodeContainer
     width: parent.width
-    height: nodeLabel.height + nodeChildrenView1.height + nodeChildrenView2.height
+    height: rect.height + (isExpanded ? 2 * 9 * dpm  + variableHeight1 + variableHeight2: 0)//bind to nodechildrenview view height maybe?
+    clip: true // good enough, needed for "beautiful" expanding
 
     property string textLabel
     property var thenChildren
     property var elseChildren
     property bool isExpanded: false
+    property int childrenHeight: childrenHeight1 + childrenHeight2
     property int childrenHeight1: 0
     property int childrenHeight2: 0
     property int variableHeight1: 0
@@ -22,6 +24,10 @@ Item {
     signal removeBlock(int index)
     signal addBlock(string path)
     signal blockAdded(bool expanded)
+
+    Behavior on height {
+        NumberAnimation { duration: 100 }
+    }
 
     Rectangle {
         id: rect
@@ -42,7 +48,6 @@ Item {
             onClicked: {
                 isExpanded = !isExpanded
                 nodeContainer.toggled(isExpanded, nodeChildrenView1.height + nodeChildrenView2.height)
-                console.log(nodeChildrenView1.y + " : " + nodeChildrenView2.y);
                 console.log(nodeChildrenView1.height + " : " + nodeChildrenView2.height);
             }
             onPressAndHold: {
@@ -69,29 +74,33 @@ Item {
             onTriggered: removeBlock(index)
         }
         MenuItem {
-            text: "Add inner block"
-            onTriggered: addBlock(index + '/')
+            text: "Add block to then"
+            onTriggered: addBlock('0.' + index + '/')
+        }
+        MenuItem {
+            text: "Add block to else"
+            onTriggered: addBlock('1.' + index + '/')
         }
     }
 
     Connections {
         target: thenChildren
-        onBlockAdded: {childrenHeight1 += 9 * dpm;blockAdded(isExpanded)} //rewrite
+        onBlockAdded: {childrenHeight1 += 9 * dpm;}//blockAdded(isExpanded)} //rewrite
     }
     Connections {
         target: elseChildren
-        onBlockAdded: {childrenHeight2 += 9 * dpm;blockAdded(isExpanded)} //rewrite
+        onBlockAdded: {childrenHeight2 += 9 * dpm;}//blockAdded(isExpanded)} //rewrite
     }
 
     SimpleNodeDelegate {
         id: nodeChildrenView1
         visible: nodeContainer.isExpanded
         x: 30
-        y: rect.height
-        height: nodeContainer.isExpanded ? (childrenHeight1 + variableHeight1) : 0
+        anchors.top: rect.bottom
 
         textLabel: "then"
         folderChildren: thenChildren
+        childrenHeight: childrenHeight1
 
         onToggled: {
             nodeContainer.toggled(isExpanded, childrenHeight1);
@@ -101,7 +110,7 @@ Item {
             folderChildren.removeRow(index);
             childrenHeight1 -= 9 * dpm;
         }
-        onAddBlock: nodeContainer.addBlock(index + '.1/' + path)
+        onAddBlock: nodeContainer.addBlock('0.' + path)
         onBlockAdded: {
             if (expanded) variableHeight1 += 9 * dpm
         }
@@ -111,12 +120,11 @@ Item {
         id: nodeChildrenView2
         visible: nodeContainer.isExpanded
         x: 30
-        //y: nodeChildrenView1.y + nodeChildrenView1.height
         anchors.top: nodeChildrenView1.bottom
-        height: nodeContainer.isExpanded ? (childrenHeight2 + variableHeight2) : 0
 
         textLabel: "else"
         folderChildren: elseChildren
+        childrenHeight: childrenHeight2
 
         onToggled: {
             nodeContainer.toggled(isExpanded, childrenHeight2);
@@ -126,7 +134,7 @@ Item {
             thenChildren.removeRow(index);
             childrenHeight2 -= 9 * dpm;
         }
-        onAddBlock: nodeContainer.addBlock(index + '.2/' + path)
+        onAddBlock: nodeContainer.addBlock('1.' + path)
         onBlockAdded: {
             if (expanded) variableHeight2 += 9 * dpm
         }
