@@ -93,8 +93,8 @@ void BlockModel::addBlock(AbstractBlock *block, const QString &path)
 		if (modelIndex.contains('.')) {
 			QStringList temp = modelIndex.split('.');
 			Q_ASSERT(temp.size() == 2);
-			int model = temp[0].toInt();
-			int submodel = temp[1].toInt();
+			int submodel = temp[0].toInt();
+			int model = temp[1].toInt();
 			mItems.at(model)->children().at(submodel)->addBlock(block, path.section('/',1));
 		} else {
 			mItems.at(modelIndex.toInt())->children().first()->addBlock(block, path.section('/',1));

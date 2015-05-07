@@ -70,7 +70,7 @@ Rectangle {
 
                 delegate: Row {
                     spacing: 5
-                    Label {text: propertyNames[index]}
+                    Label {text: propertyNames[index];anchors.verticalCenter: tf.verticalCenter}
                     TextField {
                         id: tf
                         placeholderText: propertyMap[propertyNames[index]]
