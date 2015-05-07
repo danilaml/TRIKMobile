@@ -3,7 +3,7 @@
 
 DoWhileBlock::DoWhileBlock(QObject *parent) : AbstractBlock(parent)
 {
-	propertyNames << "condition";
+	//propertyNames << "condition";
 	propertyMap["condition"] = "true";
 }
 

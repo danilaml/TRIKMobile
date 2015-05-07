@@ -1,5 +1,4 @@
-#ifndef BLOCKFACTORY_H
-#define BLOCKFACTORY_H
+#pragma once
 
 #include <QMap>
 #include <QList>
@@ -30,5 +29,3 @@ private:
 
 	QMap<QString, AbstractBlock*(BlockFactory::*)(const QString &)> mConstructors;
 };
-
-#endif // BLOCKFACTORY_H

@@ -2,7 +2,7 @@
 
 SendMessageBlock::SendMessageBlock(QObject *parent) : AbstractBlock(parent)
 {
-	propertyNames << "hullNumber" << "message";
+	//propertyNames << "hullNumber" << "message";
 	propertyMap["hullNumber"] = "1";
 	propertyMap["message"] = "New message";
 }

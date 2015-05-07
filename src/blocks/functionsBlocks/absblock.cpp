@@ -2,7 +2,7 @@
 
 AbsBlock::AbsBlock(QObject *parent) : AbstractBlock(parent)
 {
-	propertyNames << "argument";
+	//propertyNames << "argument";
 	propertyMap["argument"] = "-14";
 }
 

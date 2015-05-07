@@ -3,7 +3,7 @@
 
 ForBlock::ForBlock(QObject *parent) : AbstractBlock(parent)
 {
-	propertyNames << "iterator" << "initialValue" << "bound";
+	//propertyNames << "iterator" << "initialValue" << "bound";
 	propertyMap["iterator"] = "i";
 	propertyMap["initialValue"] = "0";
 	propertyMap["bound"] = "10";

@@ -2,7 +2,7 @@
 
 BackwardBlock::BackwardBlock(QObject *parent) : AbstractBlock(parent)
 {
-	propertyNames << "power" << "port";
+	//propertyNames << "power" << "port";
 	propertyMap["power"] = "100";
 	propertyMap["port"] = "M1";
 }

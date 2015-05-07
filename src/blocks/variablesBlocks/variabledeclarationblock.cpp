@@ -2,7 +2,7 @@
 
 VariableDeclarationBlock::VariableDeclarationBlock(QObject *parent) : AbstractBlock(parent)
 {
-	propertyNames << "name";
+	//propertyNames << "name";
 	propertyMap["name"] = "newName";
 }
 

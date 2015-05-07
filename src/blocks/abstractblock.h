@@ -36,7 +36,7 @@ protected:
 	QString getProp(const QString &key) const;
 
 	QString mBlockType;
-	QList<QString> propertyNames;
+	//QList<QString> propertyNames;
 	QVariantMap propertyMap;
 	QList<BlockModel *> mChildren;
 };
