@@ -16,6 +16,8 @@ ApplicationWindow {
     signal stopPressed()
     signal ipChanged(string ip)
     signal addBlock(string type, string path)
+    signal loadModel(url path)
+    signal saveModel(url path)
 
     menuBar: MenuBar {
         Menu {
@@ -23,10 +25,14 @@ ApplicationWindow {
 
             MenuItem {
                 text: qsTr("&Open")
-                onTriggered: messageDialog.show(qsTr("Open action triggered"));
+                onTriggered: loadDialog.open();
             }
             MenuItem {
-                text: qsTr("&Set ip")
+                text: qsTr("&Save")
+                onTriggered: saveDialog.open();
+            }
+            MenuItem {
+                text: qsTr("Set &ip")
                 onTriggered: robotIpDialog.open();
             }
             MenuItem {
@@ -35,6 +41,31 @@ ApplicationWindow {
             }
         }
     }
+
+    FileDialog {
+        id: loadDialog
+        title: "Please choose a file"
+        onAccepted: {
+            console.log("You chose: " + loadDialog.fileUrl)
+            loadFile(loadDialog.fileUrl)
+        }
+        onRejected: {
+            console.log("Canceled")
+        }
+    }
+    FileDialog {
+        id: saveDialog
+        title: "Please choose a file"
+        selectExisting: false
+        onAccepted: {
+            console.log("You chose: " + saveDialog.fileUrl)
+            saveFile(saveDialog.fileUrl)
+        }
+        onRejected: {
+            console.log("Canceled")
+        }
+    }
+
     Item {
         width: parent.width
         height: parent.height
