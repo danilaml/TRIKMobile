@@ -19,6 +19,8 @@ ApplicationWindow {
     signal loadModel(url path)
     signal saveModel(url path)
 
+    property string modeName: "untitled.tmm"
+
     menuBar: MenuBar {
         Menu {
             title: qsTr("&File")
@@ -45,9 +47,10 @@ ApplicationWindow {
     FileDialog {
         id: loadDialog
         title: "Please choose a file"
+        nameFilters: [ "TRIK Mobile models (*.tmm )"]
         onAccepted: {
             console.log("You chose: " + loadDialog.fileUrl)
-            loadFile(loadDialog.fileUrl)
+            loadModel(loadDialog.fileUrl)
         }
         onRejected: {
             console.log("Canceled")
@@ -55,11 +58,11 @@ ApplicationWindow {
     }
     FileDialog {
         id: saveDialog
-        title: "Please choose a file"
-        selectExisting: false
+        title: "Please choose a folder to save " + tmm
+        selectFolder: true // qml lack of proper save dialog workaround
         onAccepted: {
             console.log("You chose: " + saveDialog.fileUrl)
-            saveFile(saveDialog.fileUrl)
+            saveModel(saveDialog.fileUrl)
         }
         onRejected: {
             console.log("Canceled")
