@@ -2,7 +2,6 @@
 
 #include <QObject>
 #include <QMap>
-#include <QJsonDocument>
 #include "connector.h"
 #include "blockmodel.h"
 #include "blockfactory.h"

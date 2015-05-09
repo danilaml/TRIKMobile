@@ -99,7 +99,7 @@ ApplicationWindow {
             }
             Label {text: ".tmm";anchors.verticalCenter: tf.verticalCenter}
         }
-        onAccepted: {if (tf.text.length > 0) modelName = tf.text;console.log(mndrow.width + " : " + modelNameDialog.width)}
+        onAccepted: {if (tf.text.length > 0) modelName = tf.text}
     }
 
     Dialog {
