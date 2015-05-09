@@ -59,6 +59,7 @@ Item {
     Menu {
         id: contextMenu
         MenuItem {
+            visible: propertyNames.length !== 0
             text: "Edit"
         }
         MenuItem {
