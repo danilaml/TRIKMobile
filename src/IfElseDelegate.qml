@@ -67,7 +67,7 @@ Item {
     Menu {
         id: contextMenu
         MenuItem {
-            text: "Edit"
+            text: "Edit condition" // TODO: edit dialog
         }
         MenuItem {
             text: "Delete"

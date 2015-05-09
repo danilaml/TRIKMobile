@@ -11,15 +11,15 @@ ApplicationWindow {
     height: 960
     visible: true
 
-    signal sendPressed()
-    signal runPressed(string msg)
+    signal sendPressed(string name)
+    signal runPressed(string name)
     signal stopPressed()
     signal ipChanged(string ip)
     signal addBlock(string type, string path)
     signal loadModel(url path)
     signal saveModel(url path)
 
-    property string modelName: "untitled.tmm"
+    property string modelName: "untitled"
 
     menuBar: MenuBar {
         Menu {
@@ -34,7 +34,11 @@ ApplicationWindow {
                 onTriggered: saveDialog.open();
             }
             MenuItem {
-                text: qsTr("Set &ip")
+                text: qsTr("Set &name")
+                onTriggered: modelNameDialog.open();
+            }
+            MenuItem {
+                text: qsTr("Set robot &ip")
                 onTriggered: robotIpDialog.open();
             }
             MenuItem {
@@ -44,10 +48,17 @@ ApplicationWindow {
         }
     }
 
+//    statusBar: StatusBar {
+//        RowLayout {
+//            anchors.fill: parent
+//            Label { text: modelName }
+//        }
+//    }
+
     FileDialog {
         id: loadDialog
-        title: "Please choose a file"
-        nameFilters: [ "TRIK Mobile models (*.tmm )"]
+        title: qsTr("Please choose a file")
+        nameFilters: [ "TRIK Mobile model (*.tmm)"]
         onAccepted: {
             console.log("You chose: " + loadDialog.fileUrl)
             loadModel(loadDialog.fileUrl)
@@ -56,62 +67,39 @@ ApplicationWindow {
             console.log("Canceled")
         }
     }
+
     FileDialog {
+        property bool wasOpened: false
+
         id: saveDialog
-        title: "Please choose a folder to save " + tmm
+        title: qsTr("Please choose a folder to save ") + modelName
         selectFolder: true // qml lack of proper save dialog workaround
         onAccepted: {
             console.log("You chose: " + saveDialog.fileUrl)
-            saveModel(saveDialog.fileUrl + '/' + modelName)
+            saveModel(saveDialog.fileUrl + '/' + modelName + ".tmm")
         }
         onRejected: {
             console.log("Canceled")
         }
     }
 
-    Item {
-        width: parent.width
-        height: parent.height
+    Dialog {
+        id: modelNameDialog
+        title: qsTr("Choose model name")
+        standardButtons: StandardButton.Ok | StandardButton.Cancel
 
-        BlocksView {
-            id: blockModelView
-            width: parent.width//540
-            height: parent.height - buttons.height//720
-            model: blockModel
-            clip: true
-            onRemoveBlock: blockModel.removeRow(index)
-            onAddBlock: {
-                addScriptDialog.path = path;
-                addScriptDialog.open();
+        Row {
+            id: mndrow
+            spacing: 5
+            Label {text: qsTr("Model name: ");anchors.verticalCenter: tf.verticalCenter}
+            TextField {
+                id:tf
+                text: modelName
+                validator: RegExpValidator {regExp:/^[-\w^&'@{}[\],$=!#().%+~][-\w^&'@{}[\],$=!#().%+~ ]+$/}
             }
+            Label {text: ".tmm";anchors.verticalCenter: tf.verticalCenter}
         }
-
-        ButtonsGrid {
-            id: buttons
-            //anchors.top: blockModelView.bottom
-            width: parent.width
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
-            anchors.left: parent.left
-            anchors.rightMargin: 5
-            anchors.bottomMargin: 5
-            anchors.leftMargin: 5
-
-            button1.onClicked: addScriptDialog.open()
-            button3.onClicked: sendPressed()
-            button4.onClicked: runPressed("test")
-            button5.onClicked: stopPressed()
-        }
-    }
-
-    MessageDialog {
-        id: messageDialog
-        title: qsTr("May I have your attention, please?")
-
-        function show(caption) {
-            messageDialog.text = caption;
-            messageDialog.open();
-        }
+        onAccepted: {if (tf.text.length > 0) modelName = tf.text;console.log(mndrow.width + " : " + modelNameDialog.width)}
     }
 
     Dialog {
@@ -156,4 +144,38 @@ ApplicationWindow {
 
     }
 
+    Item {
+        width: parent.width
+        height: parent.height
+
+        BlocksView {
+            id: blockModelView
+            width: parent.width//540
+            height: parent.height - buttons.height//720
+            model: blockModel
+            clip: true
+            onRemoveBlock: blockModel.removeRow(index)
+            onAddBlock: {
+                addScriptDialog.path = path;
+                addScriptDialog.open();
+            }
+        }
+
+        ButtonsGrid {
+            id: buttons
+            //anchors.top: blockModelView.bottom
+            width: parent.width
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            anchors.rightMargin: 5
+            anchors.bottomMargin: 5
+            anchors.leftMargin: 5
+
+            button1.onClicked: addScriptDialog.open()
+            button3.onClicked: sendPressed(modelName)
+            button4.onClicked: runPressed(modelName)
+            button5.onClicked: stopPressed()
+        }
+    }
 }

@@ -8,7 +8,7 @@
 #include "qmlsignalhandler.h"
 #include "scriptgenerator.h"
 
-QmlSignalHandler::QmlSignalHandler(QObject *parent) : QObject(parent), mConnector("192.168.1.1")
+QmlSignalHandler::QmlSignalHandler(QObject *parent) : QObject(parent), mConnector("192.168.1.1"), mModel(new BlockModel())
 {
 }
 
@@ -17,7 +17,7 @@ QmlSignalHandler::~QmlSignalHandler()
 	delete mModel;
 }
 
-void QmlSignalHandler::handleSend()
+void QmlSignalHandler::handleSend(const QString &name)
 {
 	QMap<QString, QString> consts;
 	consts.insert("pi", "3.14159265");
@@ -25,7 +25,7 @@ void QmlSignalHandler::handleSend()
 	scriptgen.setConstants(consts);
 
 	qDebug() << scriptgen.generate(mModel);
-	mConnector.uploadProgram("test", scriptgen.generate(mModel));
+	mConnector.uploadProgram(name, scriptgen.generate(mModel));
 }
 
 void QmlSignalHandler::handleRun(const QString &name)
@@ -45,7 +45,19 @@ void QmlSignalHandler::hadleIpChange(const QString &newIp)
 
 void QmlSignalHandler::handleModelLoad(const QUrl &path)
 {
-
+	QFile modelFile(path.toLocalFile());
+	if (!modelFile.open(QIODevice::ReadOnly)) {
+		qWarning("Couldn't open save file.");
+		return;
+    }
+	QJsonDocument loadDoc(QJsonDocument::fromJson(modelFile.readAll()));
+	QJsonObject jsmodel = loadDoc.object();
+	qDebug() << "save version: " << jsmodel["version"];
+	QList<AbstractBlock *> items;
+	for (const QJsonValue &jsitem : jsmodel["model"].toArray()) {
+		items << deserializeBlock(jsitem.toObject());
+	}
+	mModel->setItems(items);
 }
 
 void QmlSignalHandler::handleModelSave(const QUrl &path)
@@ -86,6 +98,30 @@ QJsonObject QmlSignalHandler::serializeBlock(const AbstractBlock *block) const
 	}
 	jsblock["children"] = children;
 	return jsblock;
+}
+
+BlockModel *QmlSignalHandler::deserializeModel(const QJsonArray &jsmodel) const
+{
+	BlockModel *bm = new BlockModel();
+	QList<AbstractBlock *> items;
+	for (const QJsonValue &jsitem : jsmodel) {
+		items << deserializeBlock(jsitem.toObject());
+	}
+	bm->setItems(items);
+	return bm;
+}
+
+AbstractBlock *QmlSignalHandler::deserializeBlock(const QJsonObject &jsblock) const
+{
+	QString blockType = jsblock["type"].toString();
+	AbstractBlock *block = mFactory.getInstance(blockType);
+	block->setPropertyMap(jsblock["propertyMap"].toObject().toVariantMap());
+	QList<BlockModel *> models;
+	for (const QJsonValue &jsitem : jsblock["children"].toArray()) {
+		models << deserializeModel(jsitem.toArray());
+	}
+	block->setChildren(models);
+	return block;
 }
 
 BlockFactory QmlSignalHandler::factory() const

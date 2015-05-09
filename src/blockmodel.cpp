@@ -146,7 +146,10 @@ QList<AbstractBlock *> BlockModel::items() const
 
 void BlockModel::setItems(const QList<AbstractBlock *> &items)
 {
+	clear();
+	beginInsertRows(QModelIndex(), 0, items.count() - 1);
 	mItems = items;
+	endInsertRows();
 }
 
 
