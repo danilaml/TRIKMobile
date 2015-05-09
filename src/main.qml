@@ -19,7 +19,7 @@ ApplicationWindow {
     signal loadModel(url path)
     signal saveModel(url path)
 
-    property string modeName: "untitled.tmm"
+    property string modelName: "untitled.tmm"
 
     menuBar: MenuBar {
         Menu {
@@ -62,7 +62,7 @@ ApplicationWindow {
         selectFolder: true // qml lack of proper save dialog workaround
         onAccepted: {
             console.log("You chose: " + saveDialog.fileUrl)
-            saveModel(saveDialog.fileUrl)
+            saveModel(saveDialog.fileUrl + '/' + modelName)
         }
         onRejected: {
             console.log("Canceled")

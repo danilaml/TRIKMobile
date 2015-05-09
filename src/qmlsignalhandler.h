@@ -2,6 +2,7 @@
 
 #include <QObject>
 #include <QMap>
+#include <QJsonDocument>
 #include "connector.h"
 #include "blockmodel.h"
 #include "blockfactory.h"
@@ -25,8 +26,13 @@ public slots:
 	void handleRun(const QString &name);
 	void handleStop();
 	void hadleIpChange(const QString &newIp);
+	void handleModelLoad(const QUrl &path);
+	void handleModelSave(const QUrl &path);
 
 private:
+	QJsonArray serializeModel(const BlockModel *model) const;
+	QJsonObject serializeBlock(const AbstractBlock *block) const;
+
 	Connector mConnector;
 	BlockFactory mFactory;
 	BlockModel *mModel;

@@ -52,6 +52,8 @@ int main(int argc, char *argv[])
 	QObject::connect(appwindow, SIGNAL(runPressed(QString)), &mysg, SLOT(handleRun(QString)));
 	QObject::connect(appwindow, SIGNAL(ipChanged(QString)), &mysg, SLOT(hadleIpChange(QString)));
 	QObject::connect(appwindow, SIGNAL(stopPressed()), &mysg, SLOT(handleStop()));
+	QObject::connect(appwindow, SIGNAL(loadModel(QUrl)), &mysg, SLOT(handleModelLoad(QUrl)));
+	QObject::connect(appwindow, SIGNAL(saveModel(QUrl)), &mysg, SLOT(handleModelSave(QUrl)));
 
 	return app.exec();
 }
