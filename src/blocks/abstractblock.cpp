@@ -97,7 +97,6 @@ void AbstractBlock::setBlockType(const QString &blockType)
 	mBlockType = blockType;
 }
 
-
 QVariantMap AbstractBlock::getPropertyMap() const
 {
 	return propertyMap;

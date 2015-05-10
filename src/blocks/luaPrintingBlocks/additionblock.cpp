@@ -2,7 +2,7 @@
 
 AdditionBlock::AdditionBlock(QObject *parent) : AbstractBlock(parent)
 {
-	propertyNames << "left" << "right";
+	//propertyNames << "left" << "right";
 	propertyMap["left"] = "1";
 	propertyMap["right"] = "2";
 }

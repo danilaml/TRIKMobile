@@ -2,7 +2,7 @@
 
 TimerBlock::TimerBlock(QObject *parent) : AbstractBlock(parent)
 {
-	propertyNames << "delay";
+	//propertyNames << "delay";
 	propertyMap["delay"] = "1000";
 }
 

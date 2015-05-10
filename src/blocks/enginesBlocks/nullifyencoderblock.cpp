@@ -2,7 +2,7 @@
 
 NullifyEncoderBlock::NullifyEncoderBlock(QObject *parent) : AbstractBlock(parent)
 {
-	propertyNames << "port";
+	//propertyNames << "port";
 	propertyMap["port"] = "M1";
 }
 

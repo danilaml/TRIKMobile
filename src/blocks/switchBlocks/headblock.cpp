@@ -3,7 +3,7 @@
 
 HeadBlock::HeadBlock(QObject *parent) : AbstractBlock(parent)
 {
-	propertyNames << "expression" << "condition";
+	//propertyNames << "expression" << "condition";
 	propertyMap["expression"] = "port";
 	propertyMap["condition"] = "M1";
 }

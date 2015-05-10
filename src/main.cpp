@@ -10,6 +10,8 @@
 #include "blocks/conditionalBlocks/ifblock.h"
 #include "blocks/conditionalBlocks/ifelseblock.h"
 #include "blocks/drawingBlocks/sadsmileblock.h"
+#include "blocks/waitBlocks/timerblock.h"
+#include "blocks/enginesBlocks/stopblock.h"
 
 int main(int argc, char *argv[])
 {

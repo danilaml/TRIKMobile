@@ -27,7 +27,7 @@ QString ScriptGenerator::generate(BlockModel *root) const
 	resultCode.replace("@@SUBPROGRAMS@@", "");
 	resultCode.replace("@@THREADS_FORWARDING@@", "");
 	resultCode.replace("@@THREADS@@", "");
-	resultCode.replace("@@MAIN_CODE@@", mainCode);
+	resultCode.replace("@@MAIN_CODE@@", "\n" + mainCode + "\treturn;");
 	resultCode.replace("@@INITHOOKS@@", "");
 	resultCode.replace("@@TERMINATEHOOKS@@", "");
 	resultCode.replace("@@USERISRHOOKS@@", "");

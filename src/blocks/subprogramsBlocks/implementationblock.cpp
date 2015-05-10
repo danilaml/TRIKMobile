@@ -3,7 +3,7 @@
 
 ImplementationBlock::ImplementationBlock(QObject *parent) : AbstractBlock(parent)
 {
-	propertyNames << "name";
+	//propertyNames << "name";
 	propertyMap["name"] = "newFunction";
 }
 

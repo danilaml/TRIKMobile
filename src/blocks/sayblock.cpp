@@ -2,7 +2,7 @@
 
 SayBlock::SayBlock(QObject *parent) : AbstractBlock(parent)
 {
-	propertyNames << "text";
+	//propertyNames << "text";
 	propertyMap["text"] = "Hello!";
 }
 

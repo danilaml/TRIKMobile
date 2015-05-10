@@ -2,7 +2,7 @@
 
 CallBlock::CallBlock(QObject *parent) : AbstractBlock(parent)
 {
-	propertyNames << "threadId" << "name";
+	//propertyNames << "threadId" << "name";
 	propertyMap["threadId"] = "1";
 	propertyMap["name"] = "thread1";
 }
