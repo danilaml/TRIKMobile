@@ -11,7 +11,7 @@ ForBlock::ForBlock(QObject *parent) : AbstractBlock(parent)
 
 ForBlock::~ForBlock()
 {
-
+	mChildren << new BlockModel();
 }
 
 QString ForBlock::toString(int indent) const

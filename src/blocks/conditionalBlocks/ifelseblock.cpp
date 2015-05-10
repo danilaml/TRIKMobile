@@ -9,7 +9,7 @@ IfElseBlock::IfElseBlock(QObject *parent) : AbstractBlock(parent)
 
 IfElseBlock::~IfElseBlock()
 {
-
+	mChildren << new BlockModel() << new BlockModel();
 }
 
 QString IfElseBlock::toString(int indent) const

@@ -9,7 +9,7 @@ ImplementationBlock::ImplementationBlock(QObject *parent) : AbstractBlock(parent
 
 ImplementationBlock::~ImplementationBlock()
 {
-
+	mChildren << new BlockModel();
 }
 
 QString ImplementationBlock::toString(int indent) const

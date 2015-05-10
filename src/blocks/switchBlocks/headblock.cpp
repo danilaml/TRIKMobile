@@ -10,7 +10,7 @@ HeadBlock::HeadBlock(QObject *parent) : AbstractBlock(parent)
 
 HeadBlock::~HeadBlock()
 {
-
+	mChildren << new BlockModel();
 }
 
 QString HeadBlock::toString(int indent) const

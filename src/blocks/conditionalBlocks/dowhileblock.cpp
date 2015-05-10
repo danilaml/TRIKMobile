@@ -9,7 +9,7 @@ DoWhileBlock::DoWhileBlock(QObject *parent) : AbstractBlock(parent)
 
 DoWhileBlock::~DoWhileBlock()
 {
-
+	mChildren << new BlockModel();
 }
 
 QString DoWhileBlock::toString(int indent) const
