@@ -7,11 +7,12 @@ ForBlock::ForBlock(QObject *parent) : AbstractBlock(parent)
 	propertyMap["iterator"] = "i";
 	propertyMap["initialValue"] = "0";
 	propertyMap["bound"] = "10";
+    mChildren << new BlockModel();
 }
 
 ForBlock::~ForBlock()
 {
-	mChildren << new BlockModel();
+
 }
 
 QString ForBlock::toString(int indent) const

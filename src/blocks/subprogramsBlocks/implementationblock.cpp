@@ -5,11 +5,12 @@ ImplementationBlock::ImplementationBlock(QObject *parent) : AbstractBlock(parent
 {
 	//propertyNames << "name";
 	propertyMap["name"] = "newFunction";
+    mChildren << new BlockModel();
 }
 
 ImplementationBlock::~ImplementationBlock()
 {
-	mChildren << new BlockModel();
+
 }
 
 QString ImplementationBlock::toString(int indent) const

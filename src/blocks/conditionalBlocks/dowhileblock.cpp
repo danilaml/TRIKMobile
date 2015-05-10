@@ -5,11 +5,12 @@ DoWhileBlock::DoWhileBlock(QObject *parent) : AbstractBlock(parent)
 {
 	//propertyNames << "condition";
 	propertyMap["condition"] = "true";
+    mChildren << new BlockModel();
 }
 
 DoWhileBlock::~DoWhileBlock()
 {
-	mChildren << new BlockModel();
+
 }
 
 QString DoWhileBlock::toString(int indent) const

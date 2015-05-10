@@ -3,12 +3,12 @@
 
 InfiniteBlock::InfiniteBlock(QObject *parent) : AbstractBlock(parent)
 {
-
+    mChildren << new BlockModel();
 }
 
 InfiniteBlock::~InfiniteBlock()
 {
-	mChildren << new BlockModel();
+
 }
 
 QString InfiniteBlock::toString(int indent) const

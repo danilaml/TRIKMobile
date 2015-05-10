@@ -6,11 +6,12 @@ HeadBlock::HeadBlock(QObject *parent) : AbstractBlock(parent)
 	//propertyNames << "expression" << "condition";
 	propertyMap["expression"] = "port";
 	propertyMap["condition"] = "M1";
+    mChildren << new BlockModel();
 }
 
 HeadBlock::~HeadBlock()
 {
-	mChildren << new BlockModel();
+
 }
 
 QString HeadBlock::toString(int indent) const

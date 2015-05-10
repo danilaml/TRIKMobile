@@ -5,11 +5,12 @@ IfElseBlock::IfElseBlock(QObject *parent) : AbstractBlock(parent)
 {
 	//propertyNames << "condition";
 	propertyMap["condition"] = "true";
+    mChildren << new BlockModel() << new BlockModel();
 }
 
 IfElseBlock::~IfElseBlock()
 {
-	mChildren << new BlockModel() << new BlockModel();
+
 }
 
 QString IfElseBlock::toString(int indent) const
