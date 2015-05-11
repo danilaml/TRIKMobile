@@ -2,15 +2,6 @@
     "model": [
         {
             "children": [
-            ],
-            "propertyMap": {
-                "port": "M1",
-                "power": "100"
-            },
-            "type": "backwardBlock"
-        },
-        {
-            "children": [
                 [
                     {
                         "children": [
@@ -19,22 +10,22 @@
                                     "children": [
                                     ],
                                     "propertyMap": {
-                                        "port": "M1",
-                                        "power": "100"
                                     },
-                                    "type": "backwardBlock"
+                                    "type": "smileBlock"
                                 },
                                 {
                                     "children": [
                                     ],
                                     "propertyMap": {
+                                        "port": "M1",
+                                        "power": "100"
                                     },
-                                    "type": "smileBlock"
+                                    "type": "forwardBlock"
                                 }
                             ]
                         ],
                         "propertyMap": {
-                            "condition": "true"
+                            "condition": "i < 2"
                         },
                         "type": "ifBlock"
                     },
@@ -45,6 +36,36 @@
                             "delay": "1000"
                         },
                         "type": "timerBlock"
+                    },
+                    {
+                        "children": [
+                            [
+                                {
+                                    "children": [
+                                    ],
+                                    "propertyMap": {
+                                        "port": "M2",
+                                        "power": "50"
+                                    },
+                                    "type": "forwardBlock"
+                                }
+                            ],
+                            [
+                                {
+                                    "children": [
+                                    ],
+                                    "propertyMap": {
+                                        "port": "M2",
+                                        "power": "50"
+                                    },
+                                    "type": "backwardBlock"
+                                }
+                            ]
+                        ],
+                        "propertyMap": {
+                            "condition": "true"
+                        },
+                        "type": "ifElseBlock"
                     }
                 ]
             ],
@@ -57,33 +78,11 @@
         },
         {
             "children": [
-                [
-                    {
-                        "children": [
-                        ],
-                        "propertyMap": {
-                            "port": "M1",
-                            "power": "100"
-                        },
-                        "type": "forwardBlock"
-                    }
-                ],
-                [
-                    {
-                        "children": [
-                        ],
-                        "propertyMap": {
-                            "port": "M1",
-                            "power": "100"
-                        },
-                        "type": "backwardBlock"
-                    }
-                ]
             ],
             "propertyMap": {
-                "condition": "true"
+                "text": "Hello! I am TRIK!"
             },
-            "type": "ifElseBlock"
+            "type": "sayBlock"
         }
     ],
     "version": "0.9"
