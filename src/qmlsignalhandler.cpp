@@ -74,7 +74,7 @@ void QmlSignalHandler::handleModelSave(const QUrl &path)
 		qWarning("Couldn't open save file.");
 		return;
     }
-	modelFile.write(jsdoc.toJson());
+	modelFile.write(jsdoc.toJson(/*QJsonDocument::Compact*/)); // make binary after release
 }
 
 QJsonArray QmlSignalHandler::serializeModel(const BlockModel *model) const

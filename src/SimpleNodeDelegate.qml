@@ -1,6 +1,7 @@
 import QtQuick 2.4
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.3
+import QtQuick.Dialogs 1.2
 
 Item {
     id: nodeContainer
@@ -61,6 +62,7 @@ Item {
         MenuItem {
             visible: propertyNames.length !== 0
             text: "Edit"
+            onTriggered: editDialog.open()
         }
         MenuItem {
             text: "Delete"
@@ -69,6 +71,44 @@ Item {
         MenuItem {
             text: "Add inner block"
             onTriggered: addBlock(index + '/')
+        }
+    }
+
+    Dialog {
+        id: editDialog
+        title: qsTr("Edit block")
+        standardButtons: StandardButton.Save | StandardButton.Cancel
+
+        signal collectProps()
+
+        property var mapobj: propertyMap
+        onAccepted: {collectProps();propertyMap = mapobj}
+
+        Column {
+            id: content
+            spacing: 5
+            Repeater {
+                model: propertyNames.length
+
+                delegate: Row {
+                    spacing: 5
+                    Label {text: propertyNames[index];anchors.verticalCenter: tf.verticalCenter}
+                    TextField {
+                        id: tf
+                        placeholderText: propertyMap[propertyNames[index]]
+                        function getPropVal() {
+                            if (wasEdited)
+                                editDialog.mapobj[propertyNames[index]] = text
+                        }
+                        property bool wasEdited: false
+                        onTextChanged: wasEdited = true
+                        Connections {
+                             target: editDialog
+                             onCollectProps: tf.getPropVal()
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -107,7 +147,7 @@ Item {
             Component {
             Loader {
                 width: parent.width
-                source: childrenCount ? "SimpleNodeDelegate.qml" : "LeafDelegate.qml"
+                source: childrenCount == 1 ? "SimpleNodeDelegate.qml" : childrenCount == 2 ? "IfElseDelegate.qml" : "LeafDelegate.qml"
                 onLoaded: {
                     item.textLabel = blockType
                     if (childrenCount == 1)

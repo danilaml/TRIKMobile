@@ -1,6 +1,7 @@
 import QtQuick 2.4
 import QtQuick.Window 2.2
 import QtQuick.Controls 1.3
+import QtQuick.Dialogs 1.2
 
 Item {
     id: nodeContainer
@@ -67,7 +68,8 @@ Item {
     Menu {
         id: contextMenu
         MenuItem {
-            text: "Edit condition" // TODO: edit dialog
+            text: "Edit condition"
+            onTriggered: editDialog.open()
         }
         MenuItem {
             text: "Delete"
@@ -80,6 +82,24 @@ Item {
         MenuItem {
             text: "Add block to else"
             onTriggered: addBlock('1.' + index + '/')
+        }
+    }
+
+    Dialog {
+        id: editDialog
+        title: qsTr("Edit condition")
+        standardButtons: StandardButton.Save | StandardButton.Cancel
+
+        Label {text: "condition";anchors.verticalCenter: tf.verticalCenter}
+        TextField {
+            id: tf
+            placeholderText: propertyMap["condition"]
+            function getPropVal() {
+                if (wasEdited)
+                    propertyMap["condition"] = text
+            }
+            property bool wasEdited: false
+            onTextChanged: wasEdited = true
         }
     }
 

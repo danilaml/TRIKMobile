@@ -57,12 +57,12 @@ Rectangle {
         title: qsTr("Edit block")
         standardButtons: StandardButton.Save | StandardButton.Cancel
 
-        signal collectProps
+        signal collectProps()
 
         property var mapobj: propertyMap
         onAccepted: {collectProps();propertyMap = mapobj}
 
-        Column{
+        Column {
             id: content
             spacing: 5
             Repeater {
