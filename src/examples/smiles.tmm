@@ -1,0 +1,31 @@
+{
+    "model": [
+        {
+            "children": [
+                [
+                    {
+                        "children": [
+                        ],
+                        "propertyMap": {
+                        },
+                        "type": "smileBlock"
+                    }
+                ],
+                [
+                    {
+                        "children": [
+                        ],
+                        "propertyMap": {
+                        },
+                        "type": "sadSmileBlock"
+                    }
+                ]
+            ],
+            "propertyMap": {
+                "condition": "true"
+            },
+            "type": "ifElseBlock"
+        }
+    ],
+    "version": "0.9"
+}

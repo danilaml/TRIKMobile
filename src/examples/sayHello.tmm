@@ -1,0 +1,13 @@
+{
+    "model": [
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "text": "Hello! I am TRIK!"
+            },
+            "type": "sayBlock"
+        }
+    ],
+    "version": "0.9"
+}
