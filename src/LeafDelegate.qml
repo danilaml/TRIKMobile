@@ -35,7 +35,6 @@ Rectangle {
         anchors.fill: parent
         height: parent.height
         onPressAndHold: {
-            console.log(this + "pressed and held")
             contextMenu.popup()
         }
     }

@@ -6,7 +6,7 @@ import QtQuick.Dialogs 1.2
 Item {
     id: nodeContainer
     width: parent.width
-    height: rect.height + (isExpanded ? 2 * 9 * dpm  + variableHeight1 + variableHeight2: 0)
+    height: rect.height + (isExpanded ? (nodeChildrenView1.height + nodeChildrenView2.height): 0)
     clip: true // good enough, needed for "beautiful" expanding
 
     property string textLabel
@@ -25,10 +25,6 @@ Item {
     signal removeBlock(int index)
     signal addBlock(string path)
     signal blockAdded(bool expanded)
-
-    Behavior on height {
-        NumberAnimation { duration: 100 }
-    }
 
     Rectangle {
         id: rect
@@ -49,10 +45,8 @@ Item {
             onClicked: {
                 isExpanded = !isExpanded
                 nodeContainer.toggled(isExpanded, nodeChildrenView1.height + nodeChildrenView2.height)
-                console.log(nodeChildrenView1.height + " : " + nodeChildrenView2.height);
             }
             onPressAndHold: {
-                console.log(this + "pressed and held")
                 contextMenu.popup()
             }
         }
@@ -105,11 +99,11 @@ Item {
 
     Connections {
         target: thenChildren
-        onBlockAdded: {childrenHeight1 += 9 * dpm;}//blockAdded(isExpanded)} //rewrite
+        onBlockAdded: {childrenHeight1 += 9 * dpm;}
     }
     Connections {
         target: elseChildren
-        onBlockAdded: {childrenHeight2 += 9 * dpm;}//blockAdded(isExpanded)} //rewrite
+        onBlockAdded: {childrenHeight2 += 9 * dpm;}
     }
 
     SimpleNodeDelegate {
@@ -124,8 +118,8 @@ Item {
         isMenuEnabled: false
 
         onToggled: {
-            nodeContainer.toggled(isExpanded, childrenHeight1);
-            variableHeight1 += isExpanded ? childrenHeight1 : -childrenHeight1
+            variableHeight1 += expanded ? newHeight : -newHeight
+            nodeContainer.toggled(expanded, newHeight)
         }
         onRemoveBlock: {
             folderChildren.removeRow(index);
@@ -134,6 +128,7 @@ Item {
         onAddBlock: nodeContainer.addBlock('0.' + path)
         onBlockAdded: {
             if (expanded) variableHeight1 += 9 * dpm
+            nodeContainer.blockAdded(expanded)
         }
 
     }
@@ -149,8 +144,8 @@ Item {
         isMenuEnabled: false
 
         onToggled: {
-            nodeContainer.toggled(isExpanded, childrenHeight2);
-            variableHeight2 += isExpanded ? childrenHeight2 : -childrenHeight2
+            variableHeight2 += expanded ? newHeight : -newHeight
+            nodeContainer.toggled(expanded, newHeight)
         }
         onRemoveBlock: {
             thenChildren.removeRow(index);
@@ -159,6 +154,7 @@ Item {
         onAddBlock: nodeContainer.addBlock('1.' + path)
         onBlockAdded: {
             if (expanded) variableHeight2 += 9 * dpm
+            nodeContainer.blockAdded(expanded)
         }
     }
 }

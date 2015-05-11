@@ -6,14 +6,14 @@ import QtQuick.Dialogs 1.2
 Item {
     id: nodeContainer
     width: parent.width
-    height: rect.height + nodeChildrenView.height
-
+    height: rect.height + childrenViewHeight
     property string textLabel
     property var folderChildren
     property bool isExpanded: false
     property bool isMenuEnabled: true
     property int childrenHeight: 0
     property int variableHeight: 0
+    property int childrenViewHeight: nodeChildrenView.height
     property int ind: index // stupid qml workaraound
 
     property int dpm: Screen.pixelDensity
@@ -41,10 +41,9 @@ Item {
             anchors.fill: parent
             onClicked: {
                 isExpanded = !isExpanded
-                nodeContainer.toggled(isExpanded, childrenHeight)
+                nodeContainer.toggled(isExpanded, childrenHeight + variableHeight)
             }
             onPressAndHold: {
-                console.log(this + "pressed and held")
                 if (isMenuEnabled) contextMenu.popup()
             }
         }
@@ -112,14 +111,6 @@ Item {
         }
     }
 
-    function childToggled(expanded, height)
-    {
-        if (expanded)
-            variableHeight += height;
-        else
-            variableHeight -= height;
-    }
-
     Connections {
         target: folderChildren
         onBlockAdded: {childrenHeight += 9 * dpm;blockAdded(isExpanded)}
@@ -163,8 +154,11 @@ Item {
                 }
                 Connections {
                     target: item
-                    //ignoreUnknownSignal: true
-                    onToggled: childToggled(item.isExpanded, item.childrenHeight)
+                    ignoreUnknownSignals: true
+                    onToggled: {
+                        variableHeight += expanded ? newHeight : -newHeight
+                        toggled(expanded, newHeight)
+                    }
                     onRemoveBlock: {
                         folderChildren.removeRow(index);
                         childrenHeight -= 9 * dpm;
@@ -172,6 +166,7 @@ Item {
                     onAddBlock: addBlock(ind + '/' + path)
                     onBlockAdded: {
                         if (expanded) variableHeight += 9 * dpm
+                        nodeContainer.blockAdded(isExpanded) // expanded? shouldn't matter I think
                     }
                 }
             }

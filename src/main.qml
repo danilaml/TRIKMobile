@@ -60,11 +60,11 @@ ApplicationWindow {
         title: qsTr("Please choose a file")
         nameFilters: [ "TRIK Mobile model (*.tmm)"]
         onAccepted: {
-            console.log("You chose: " + loadDialog.fileUrl)
+            console.debug("You chose: " + loadDialog.fileUrl)
             loadModel(loadDialog.fileUrl)
         }
         onRejected: {
-            console.log("Canceled")
+            console.debug("Canceled")
         }
     }
 
@@ -75,11 +75,11 @@ ApplicationWindow {
         title: qsTr("Please choose a folder to save ") + modelName
         selectFolder: true // qml lack of proper save dialog workaround
         onAccepted: {
-            console.log("You chose: " + saveDialog.fileUrl)
+            console.debug("You chose: " + saveDialog.fileUrl)
             saveModel(saveDialog.fileUrl + '/' + modelName + ".tmm")
         }
         onRejected: {
-            console.log("Canceled")
+            console.debug("Canceled")
         }
     }
 
@@ -109,7 +109,7 @@ ApplicationWindow {
 
         property string ip: "192.168.1.1"
 
-        onAccepted: {ip = ipField.text; mainwindow.ipChanged(ip); console.log(ip)}
+        onAccepted: {ip = ipField.text; mainwindow.ipChanged(ip); console.debug(ip)}
 
         TextField {
             id: ipField
@@ -135,9 +135,9 @@ ApplicationWindow {
         }
 
         onAccepted : {
-            console.log(registeredBlocks)
-            console.log(myComboBox.currentIndex)
-            console.log(myComboBox.textAt(myComboBox.currentIndex))
+            console.debug(registeredBlocks)
+            console.debug(myComboBox.currentIndex)
+            console.debug(myComboBox.textAt(myComboBox.currentIndex))
             addBlock(registeredBlocks[myComboBox.currentIndex],path);
             path = "";
         }

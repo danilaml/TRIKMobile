@@ -3,10 +3,6 @@ import QtQuick.Window 2.2
 
 
 ListView {
-//    id: blockModelView
-//    width: parent.width//540
-//    height: 600
-//    model: blockModel
     signal removeBlock(int index)
     signal addBlock(string path)
 
@@ -36,7 +32,7 @@ ListView {
             }
             Connections {
                 target: item
-                //ignoreUnknownSignal: true
+                ignoreUnknownSignals: true
                 onRemoveBlock: removeBlock(index)
                 onAddBlock: addBlock(path)
             }
