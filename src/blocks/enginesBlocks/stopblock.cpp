@@ -2,7 +2,8 @@
 
 StopBlock::StopBlock(QObject *parent) : AbstractBlock(parent)
 {
-
+	//propertyNames << "port";
+	propertyMap["port"] = "M1";
 }
 
 StopBlock::~StopBlock()

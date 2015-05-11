@@ -1,0 +1,147 @@
+{
+    "model": [
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "port": "M3",
+                "power": "100"
+            },
+            "type": "forwardBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "port": "M4",
+                "power": "100"
+            },
+            "type": "forwardBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "delay": "2700"
+            },
+            "type": "timerBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "port": "M1"
+            },
+            "type": "stopBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "port": "M2"
+            },
+            "type": "stopBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "port": "M3"
+            },
+            "type": "stopBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "port": "M4"
+            },
+            "type": "stopBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "port": "M3",
+                "power": "100"
+            },
+            "type": "forwardBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "port": "M4",
+                "power": "50"
+            },
+            "type": "forwardBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "delay": "2000"
+            },
+            "type": "timerBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "port": "M1"
+            },
+            "type": "stopBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "port": "M2"
+            },
+            "type": "stopBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "port": "M3"
+            },
+            "type": "stopBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "port": "M4"
+            },
+            "type": "stopBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "port": "M3",
+                "power": "100"
+            },
+            "type": "forwardBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "port": "M4",
+                "power": "100"
+            },
+            "type": "forwardBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "delay": "2000"
+            },
+            "type": "timerBlock"
+        }
+    ],
+    "version": "0.9"
+}

@@ -5,6 +5,7 @@ IfBlock::IfBlock(QObject *parent) : AbstractBlock(parent)
 {
 	//propertyNames << "condition";
 	propertyMap["condition"] = "true";
+	mChildren << new BlockModel();
 }
 
 IfBlock::~IfBlock()

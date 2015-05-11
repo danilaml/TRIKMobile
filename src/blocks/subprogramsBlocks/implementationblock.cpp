@@ -5,6 +5,7 @@ ImplementationBlock::ImplementationBlock(QObject *parent) : AbstractBlock(parent
 {
 	//propertyNames << "name";
 	propertyMap["name"] = "newFunction";
+	mChildren << new BlockModel();
 }
 
 ImplementationBlock::~ImplementationBlock()

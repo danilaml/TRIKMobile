@@ -3,7 +3,7 @@
 
 InfiniteBlock::InfiniteBlock(QObject *parent) : AbstractBlock(parent)
 {
-
+	mChildren << new BlockModel();
 }
 
 InfiniteBlock::~InfiniteBlock()

@@ -5,6 +5,7 @@ DoWhileBlock::DoWhileBlock(QObject *parent) : AbstractBlock(parent)
 {
 	//propertyNames << "condition";
 	propertyMap["condition"] = "true";
+	mChildren << new BlockModel();
 }
 
 DoWhileBlock::~DoWhileBlock()
