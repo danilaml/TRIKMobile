@@ -62,19 +62,19 @@ Item {
     Menu {
         id: contextMenu
         MenuItem {
-            text: "Edit condition"
+            text: qsTr("Edit condition")
             onTriggered: editDialog.open()
         }
         MenuItem {
-            text: "Delete"
+            text: qsTr("Delete")
             onTriggered: removeBlock(index)
         }
         MenuItem {
-            text: "Add block to then"
+            text: qsTr("Add block to then")
             onTriggered: addBlock('0.' + index + '/')
         }
         MenuItem {
-            text: "Add block to else"
+            text: qsTr("Add block to else")
             onTriggered: addBlock('1.' + index + '/')
         }
     }

@@ -42,11 +42,11 @@ Rectangle {
     Menu {
         id: contextMenu
         MenuItem {
-            text: "Edit"
+            text: qsTr("Edit")
             onTriggered: editDialog.open()
         }
         MenuItem {
-            text: "Delete"
+            text: qsTr("Delete")
             onTriggered: removeBlock(index)
         }
     }

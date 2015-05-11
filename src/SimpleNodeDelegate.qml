@@ -33,7 +33,7 @@ Item {
             id: nodeLabel
             x: parent.x + 5
             height: 9 * dpm
-            text: textLabel + " " + statusString
+            text: textLabel + isMenuEnabled ? (" " + statusString) : "" // for then/else
             verticalAlignment: Text.AlignVCenter
         }
 
@@ -60,15 +60,15 @@ Item {
         id: contextMenu
         MenuItem {
             visible: propertyNames.length !== 0
-            text: "Edit"
+            text: qsTr("Edit")
             onTriggered: editDialog.open()
         }
         MenuItem {
-            text: "Delete"
+            text: qsTr("Delete")
             onTriggered: removeBlock(index)
         }
         MenuItem {
-            text: "Add inner block"
+            text: qsTr("Add inner block")
             onTriggered: addBlock(index + '/')
         }
     }

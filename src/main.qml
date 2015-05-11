@@ -6,7 +6,7 @@ import QtQuick.Layouts 1.1
 
 ApplicationWindow {
     id: mainwindow
-    title: qsTr("TRIKMobile")
+    title: qsTr("TRIKMobile - ") + modelName
     width: 540
     height: 960
     visible: true
@@ -62,6 +62,8 @@ ApplicationWindow {
         onAccepted: {
             console.debug("You chose: " + loadDialog.fileUrl)
             loadModel(loadDialog.fileUrl)
+            var strpath = loadDialog.fileUrl.toString() // because of some strange TypeError
+            modelName = strpath.substring(strpath.lastIndexOf('/') + 1, strpath.toString().lastIndexOf('.'))
         }
         onRejected: {
             console.debug("Canceled")
