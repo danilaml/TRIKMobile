@@ -21,34 +21,6 @@ ApplicationWindow {
 
     property string modelName: "untitled"
 
-    menuBar: MenuBar {
-        Menu {
-            title: qsTr("&File")
-            visible: loader.status === Loader.Ready
-
-            MenuItem {
-                text: qsTr("&Open")
-                onTriggered: loadDialog.open();
-            }
-            MenuItem {
-                text: qsTr("&Save")
-                onTriggered: saveDialog.open();
-            }
-            MenuItem {
-                text: qsTr("Set &name")
-                onTriggered: modelNameDialog.open();
-            }
-            MenuItem {
-                text: qsTr("Set robot &ip")
-                onTriggered: robotIpDialog.open();
-            }
-            MenuItem {
-                text: qsTr("E&xit")
-                onTriggered: Qt.quit();
-            }
-        }
-    }
-
     ColumnLayout {
         anchors.fill: parent
         anchors.right: parent.right
@@ -72,17 +44,18 @@ ApplicationWindow {
             onClicked: Qt.quit();
         }
     }
-//    statusBar: StatusBar {
-//        RowLayout {
-//            anchors.fill: parent
-//            Label { text: modelName }
-//        }
+    //    statusBar: StatusBar {
+    //        RowLayout {
+    //            anchors.fill: parent
+    //            Label { text: modelName }
+    //        }
 
-//    }
+    //    }
 
     Loader {
         id: loader
         anchors.fill: parent
+        onLoaded: mainwindow.menuBar = item.menubar
     }
 
     FileDialog {
@@ -101,6 +74,33 @@ ApplicationWindow {
     Component {
         id: mainview
         Item {
+            property MenuBar menubar: MenuBar {
+                Menu {
+                    title: qsTr("&File")
+                    visible: loader.status === Loader.Ready
+
+                    MenuItem {
+                        text: qsTr("&Open")
+                        onTriggered: loadDialog.open();
+                    }
+                    MenuItem {
+                        text: qsTr("&Save")
+                        onTriggered: saveDialog.open();
+                    }
+                    MenuItem {
+                        text: qsTr("Set &name")
+                        onTriggered: modelNameDialog.open();
+                    }
+                    MenuItem {
+                        text: qsTr("Set robot &ip")
+                        onTriggered: robotIpDialog.open();
+                    }
+                    MenuItem {
+                        text: qsTr("E&xit")
+                        onTriggered: Qt.quit();
+                    }
+                }
+            }
             FileDialog {
                 id: saveDialog
                 title: qsTr("Please choose a folder to save ") + modelName
@@ -166,9 +166,6 @@ ApplicationWindow {
                 }
 
                 onAccepted : {
-                    console.log(registeredBlocks)
-                    console.log(myComboBox.currentIndex)
-                    console.log(myComboBox.textAt(myComboBox.currentIndex))
                     addBlock(registeredBlocks[myComboBox.currentIndex],path);
                     path = "";
                 }
