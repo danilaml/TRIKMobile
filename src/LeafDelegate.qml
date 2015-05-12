@@ -43,6 +43,7 @@ Rectangle {
         id: contextMenu
         MenuItem {
             text: qsTr("Edit")
+            visible: propertyNames.length > 0
             onTriggered: editDialog.open()
         }
         MenuItem {
