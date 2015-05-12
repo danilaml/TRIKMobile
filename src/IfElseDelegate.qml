@@ -22,7 +22,7 @@ Item {
     property int dpm: Screen.pixelDensity
 
     signal toggled(bool expanded, int newHeight)
-    signal removeBlock(int index)
+    signal removeBlock(int index, int varheight)
     signal addBlock(string path)
     signal blockAdded(bool expanded)
 
@@ -67,7 +67,7 @@ Item {
         }
         MenuItem {
             text: qsTr("Delete")
-            onTriggered: removeBlock(index)
+            onTriggered: removeBlock(index, nodeChildrenView1.height + nodeChildrenView2.height)
         }
         MenuItem {
             text: qsTr("Add block to then")
@@ -84,27 +84,31 @@ Item {
         title: qsTr("Edit condition")
         standardButtons: StandardButton.Save | StandardButton.Cancel
 
+        property var mapobj: propertyMap
+
         Label {text: "condition";anchors.verticalCenter: tf.verticalCenter}
         TextField {
             id: tf
             placeholderText: propertyMap["condition"]
             function getPropVal() {
                 if (wasEdited)
-                    propertyMap["condition"] = text
+                    editDialog.mapobj["condition"] = text
             }
             property bool wasEdited: false
             onTextChanged: wasEdited = true
         }
+
+        onAccepted: {tf.getPropVal(); propertyMap = mapobj}
     }
 
-    Connections {
-        target: thenChildren
-        onBlockAdded: {childrenHeight1 += 9 * dpm;}
-    }
-    Connections {
-        target: elseChildren
-        onBlockAdded: {childrenHeight2 += 9 * dpm;}
-    }
+//    Connections {
+//        target: thenChildren
+//        onBlockAdded: {childrenHeight1 += 9 * dpm;}
+//    }
+//    Connections {
+//        target: elseChildren
+//        onBlockAdded: {childrenHeight2 += 9 * dpm;}
+//    }
 
     SimpleNodeDelegate {
         id: nodeChildrenView1
@@ -124,6 +128,7 @@ Item {
         onRemoveBlock: {
             folderChildren.removeRow(index);
             childrenHeight1 -= 9 * dpm;
+            variableHeight -= varheight
         }
         onAddBlock: nodeContainer.addBlock('0.' + path)
         onBlockAdded: {
@@ -150,6 +155,7 @@ Item {
         onRemoveBlock: {
             thenChildren.removeRow(index);
             childrenHeight2 -= 9 * dpm;
+            variableHeight -= varheight
         }
         onAddBlock: nodeContainer.addBlock('1.' + path)
         onBlockAdded: {
