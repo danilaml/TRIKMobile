@@ -19,7 +19,7 @@ Item {
     property int dpm: Screen.pixelDensity
 
     signal toggled(bool expanded, int newHeight)
-    signal removeBlock(int index)
+    signal removeBlock(int index, int varheight)
     signal addBlock(string path)
     signal blockAdded(bool expanded)
 
@@ -33,7 +33,7 @@ Item {
             id: nodeLabel
             x: parent.x + 5
             height: 9 * dpm
-            text: textLabel + isMenuEnabled ? (" " + statusString) : "" // for then/else
+            text: textLabel + (isMenuEnabled ? (" " + statusString) : "") // for then/else
             verticalAlignment: Text.AlignVCenter
         }
 
@@ -65,7 +65,7 @@ Item {
         }
         MenuItem {
             text: qsTr("Delete")
-            onTriggered: removeBlock(index)
+            onTriggered: removeBlock(index, childrenHeight)
         }
         MenuItem {
             text: qsTr("Add inner block")
@@ -161,12 +161,13 @@ Item {
                     }
                     onRemoveBlock: {
                         folderChildren.removeRow(index);
-                        childrenHeight -= 9 * dpm;
+                        nodeContainer.childrenHeight -= 9 * dpm;
+                        variableHeight -= varheight
                     }
                     onAddBlock: addBlock(ind + '/' + path)
                     onBlockAdded: {
                         if (expanded) variableHeight += 9 * dpm
-                        nodeContainer.blockAdded(isExpanded) // expanded? shouldn't matter I think
+                        nodeContainer.blockAdded(expanded)
                     }
                 }
             }

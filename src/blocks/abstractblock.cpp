@@ -24,7 +24,7 @@ AbstractBlock::~AbstractBlock()
 
 QString AbstractBlock::statusString() const
 {
-	return "not implemented";
+	return QString();//"not implemented";
 }
 
 int AbstractBlock::childrenCount() const
