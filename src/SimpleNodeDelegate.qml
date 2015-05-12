@@ -167,7 +167,7 @@ Item {
                     onAddBlock: addBlock(ind + '/' + path)
                     onBlockAdded: {
                         if (expanded) variableHeight += 9 * dpm
-                        nodeContainer.blockAdded(isExpanded) // expanded? shouldn't matter I think
+                        nodeContainer.blockAdded(expanded)
                     }
                 }
             }
