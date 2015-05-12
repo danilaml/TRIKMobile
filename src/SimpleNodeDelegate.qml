@@ -33,7 +33,7 @@ Item {
             id: nodeLabel
             x: parent.x + 5
             height: 9 * dpm
-            text: textLabel + isMenuEnabled ? (" " + statusString) : "" // for then/else
+            text: textLabel + (isMenuEnabled ? (" " + statusString) : "") // for then/else
             verticalAlignment: Text.AlignVCenter
         }
 
