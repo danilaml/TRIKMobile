@@ -85,17 +85,19 @@ Item {
         standardButtons: StandardButton.Save | StandardButton.Cancel
 
         property var mapobj: propertyMap
-
-        Label {text: "condition";anchors.verticalCenter: tf.verticalCenter}
-        TextField {
-            id: tf
-            placeholderText: propertyMap["condition"]
-            function getPropVal() {
-                if (wasEdited)
-                    editDialog.mapobj["condition"] = text
+        Row {
+            spacing: 5
+            Label {text: "condition";anchors.verticalCenter: tf.verticalCenter}
+            TextField {
+                id: tf
+                placeholderText: propertyMap["condition"]
+                function getPropVal() {
+                    if (wasEdited)
+                        editDialog.mapobj["condition"] = text
+                }
+                property bool wasEdited: false
+                onTextChanged: wasEdited = true
             }
-            property bool wasEdited: false
-            onTextChanged: wasEdited = true
         }
 
         onAccepted: {tf.getPropVal(); propertyMap = mapobj}
