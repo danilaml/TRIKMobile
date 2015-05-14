@@ -111,7 +111,7 @@ ApplicationWindow {
 
         property string ip: "192.168.1.1"
 
-        onAccepted: {ip = ipField.text; mainwindow.ipChanged(ip); console.debug(ip)}
+        onAccepted: {if (ipField.text) ip = ipField.text; mainwindow.ipChanged(ip); console.debug(ip)}
 
         TextField {
             id: ipField
