@@ -6,7 +6,7 @@ import QtQuick.Layouts 1.1
 
 ApplicationWindow {
     id: mainwindow
-    title: qsTr("TRIKMobile - ") + modelName
+    title: mainloader.status == Loader.Ready ? "TRIKMobile - " + modelName : "TRIKMobile"
     width: 540
     height: 960
     visible: true
@@ -23,7 +23,9 @@ ApplicationWindow {
 
     menuBar: MenuBar {
         Menu {
+            id: menubar
             title: qsTr("&File")
+            visible: false
 
             MenuItem {
                 text: qsTr("&Open")
@@ -55,6 +57,55 @@ ApplicationWindow {
 //        }
 //    }
 
+    ColumnLayout {
+        id: columns
+        anchors.fill: parent
+        Image {
+            Layout.alignment: Qt.AlignCenter
+            source: "images/logo.png"
+        }
+        Button {
+            Layout.alignment: Qt.AlignCenter
+            text: qsTr("New model")
+            onClicked: mainloader.active = true
+        }
+        Button {
+            Layout.alignment: Qt.AlignCenter
+            text: qsTr("Load model")
+            onClicked: loadDialog.open()//mainloader.active = true
+        }
+        Button {
+            Layout.alignment: Qt.AlignCenter
+            text: qsTr("Exit")
+            onClicked: Qt.quit()
+        }
+    }
+
+    Loader {
+        anchors.fill: parent
+        id: mainloader
+        source: "MainForm.qml"
+        active: false
+        onLoaded: {
+            columns.visible = false
+            menubar.visible = true
+            connectionsloader.sourceComponent = connections
+            item.modelName = Qt.binding(function() {return modelName})
+        }
+    }
+    Loader {id: connectionsloader}
+    Component {
+        id: connections
+        Connections {
+            target: mainloader.item
+            onSendPressed: sendPressed(name)
+            onRunPressed: runPressed(name)
+            onStopPressed: stopPressed()
+            onIpChanged: ipChanged(ip)
+            onAddBlock: addBlock(type, path)
+        }
+    }
+
     FileDialog {
         id: loadDialog
         title: qsTr("Please choose a file")
@@ -64,6 +115,7 @@ ApplicationWindow {
             loadModel(loadDialog.fileUrl)
             var strpath = loadDialog.fileUrl.toString() // because of some strange TypeError
             modelName = strpath.substring(strpath.lastIndexOf('/') + 1, strpath.toString().lastIndexOf('.'))
+            if (!mainloader.active) mainloader.active = true;
         }
         onRejected: {
             console.debug("Canceled")
@@ -82,102 +134,6 @@ ApplicationWindow {
         }
         onRejected: {
             console.debug("Canceled")
-        }
-    }
-
-    Dialog {
-        id: modelNameDialog
-        title: qsTr("Choose model name")
-        standardButtons: StandardButton.Ok | StandardButton.Cancel
-
-        Row {
-            id: mndrow
-            spacing: 5
-            Label {text: qsTr("Model name: ");anchors.verticalCenter: tf.verticalCenter}
-            TextField {
-                id:tf
-                text: modelName
-                validator: RegExpValidator {regExp:/^[-\w^&'@{}[\],$=!#().%+~][-\w^&'@{}[\],$=!#().%+~ ]+$/}
-            }
-            Label {text: ".tmm";anchors.verticalCenter: tf.verticalCenter}
-        }
-        onAccepted: {if (tf.text.length > 0) modelName = tf.text}
-    }
-
-    Dialog {
-        id : robotIpDialog
-        title: qsTr("Set robot ip")
-        standardButtons: StandardButton.Ok | StandardButton.Cancel
-
-        property string ip: "192.168.1.1"
-
-        onAccepted: {if (ipField.text) ip = ipField.text; mainwindow.ipChanged(ip); console.debug(ip)}
-
-        TextField {
-            id: ipField
-            placeholderText: "192.168.1.1"
-            inputMethodHints: Qt.ImhFormattedNumbersOnly
-            validator: RegExpValidator {
-                regExp: /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
-            }
-        }
-    }
-
-    Dialog {
-        id: addScriptDialog
-        title: qsTr("Choose block")
-        standardButtons: StandardButton.Ok | StandardButton.Cancel
-
-        property string path : ""
-        property var block: null;
-
-        ComboBox {
-            id : myComboBox
-            model : registeredBlocks
-        }
-
-        onAccepted : {
-            console.debug(registeredBlocks)
-            console.debug(myComboBox.currentIndex)
-            console.debug(myComboBox.textAt(myComboBox.currentIndex))
-            addBlock(registeredBlocks[myComboBox.currentIndex],path);
-            path = "";
-        }
-
-    }
-
-    Item {
-        width: parent.width
-        height: parent.height
-
-        BlocksView {
-            id: blockModelView
-            width: parent.width//540
-            height: parent.height - buttons.height//720
-            model: blockModel
-            clip: true
-            onRemoveBlock: blockModel.removeRow(index)
-            onAddBlock: {
-                addScriptDialog.path = path;
-                addScriptDialog.open();
-            }
-        }
-
-        ButtonsGrid {
-            id: buttons
-            //anchors.top: blockModelView.bottom
-            width: parent.width
-            anchors.right: parent.right
-            anchors.bottom: parent.bottom
-            anchors.left: parent.left
-            anchors.rightMargin: 5
-            anchors.bottomMargin: 5
-            anchors.leftMargin: 5
-
-            button1.onClicked: addScriptDialog.open()
-            button3.onClicked: sendPressed(modelName)
-            button4.onClicked: runPressed(modelName)
-            button5.onClicked: stopPressed()
         }
     }
 }

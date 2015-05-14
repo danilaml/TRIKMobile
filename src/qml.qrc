@@ -6,5 +6,6 @@
         <file>SimpleNodeDelegate.qml</file>
         <file>ButtonsGrid.qml</file>
         <file>IfElseDelegate.qml</file>
+        <file>MainForm.qml</file>
     </qresource>
 </RCC>
