@@ -63,6 +63,7 @@ ApplicationWindow {
         Image {
             Layout.alignment: Qt.AlignCenter
             source: "images/logo.png"
+            scale: 2
         }
         Button {
             Layout.alignment: Qt.AlignCenter
