@@ -33,7 +33,7 @@ public:
 
 	Q_INVOKABLE void addBlock(AbstractBlock *block, const QString &path = "");
 
-	void clear();
+	Q_INVOKABLE void clear();
 
 	QString toString(int indent = 0);
 

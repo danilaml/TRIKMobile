@@ -36,6 +36,10 @@ ApplicationWindow {
                 onTriggered: saveDialog.open();
             }
             MenuItem {
+                text: qsTr("&Clear model")
+                onTriggered: yesnodialog.show(qsTr("Are you sure?"))
+            }
+            MenuItem {
                 text: qsTr("Set &name")
                 onTriggered: modelNameDialog.open();
             }
@@ -44,11 +48,35 @@ ApplicationWindow {
                 onTriggered: robotIpDialog.open();
             }
             MenuItem {
+                text: qsTr("Exit to &main menu")
+                onTriggered: {
+                    mainloader.item.clearModel()
+                    mainloader.active = false
+                    mainwindow.title = "untitled"
+                    menubar.visible = false
+                    columns.visible = true
+                }
+            }
+            MenuItem {
                 text: qsTr("E&xit")
                 onTriggered: Qt.quit();
             }
         }
     }
+
+    MessageDialog {
+        id: yesnodialog
+        title: "Clear model"
+        standardButtons: StandardButton.Yes | StandardButton.No
+
+        function show(text) {
+            yesnodialog.text = text
+            yesnodialog.open()
+        }
+
+        onYes: mainloader.item.clearModel() // for now
+    }
+
 
 //    statusBar: StatusBar {
 //        RowLayout {

@@ -14,6 +14,10 @@ Item {
 
     property string modelName//: "untitled"
 
+    function clearModel() {
+        blockModel.clear()
+    }
+
     Dialog {
         id: modelNameDialog
         title: qsTr("Choose model name")
