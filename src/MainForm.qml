@@ -12,6 +12,10 @@ Item {
 
     property string modelName
 
+    function clearModel() {
+        blockModel.clear()
+    }
+
     Dialog {
         id: addScriptDialog
         title: qsTr("Choose block")
