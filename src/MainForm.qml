@@ -9,52 +9,8 @@ Item {
     signal stopPressed()
     signal ipChanged(string ip)
     signal addBlock(string type, string path)
-//    signal loadModel()
-//    signal saveModel(url path)
 
-    property string modelName//: "untitled"
-
-    function clearModel() {
-        blockModel.clear()
-    }
-
-    Dialog {
-        id: modelNameDialog
-        title: qsTr("Choose model name")
-        standardButtons: StandardButton.Ok | StandardButton.Cancel
-
-        Row {
-            id: mndrow
-            spacing: 5
-            Label {text: qsTr("Model name: ");anchors.verticalCenter: tf.verticalCenter}
-            TextField {
-                id:tf
-                text: modelName
-                validator: RegExpValidator {regExp:/^[-\w^&'@{}[\],$=!#().%+~][-\w^&'@{}[\],$=!#().%+~ ]+$/}
-            }
-            Label {text: ".tmm";anchors.verticalCenter: tf.verticalCenter}
-        }
-        onAccepted: {if (tf.text.length > 0) modelName = tf.text}
-    }
-
-    Dialog {
-        id : robotIpDialog
-        title: qsTr("Set robot ip")
-        standardButtons: StandardButton.Ok | StandardButton.Cancel
-
-        property string ip: "192.168.1.1"
-
-        onAccepted: {if (ipField.text) ip = ipField.text; mainwindow.ipChanged(ip); console.debug(ip)}
-
-        TextField {
-            id: ipField
-            placeholderText: "192.168.1.1"
-            inputMethodHints: Qt.ImhFormattedNumbersOnly
-            validator: RegExpValidator {
-                regExp: /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
-            }
-        }
-    }
+    property string modelName
 
     Dialog {
         id: addScriptDialog
@@ -113,4 +69,3 @@ Item {
         }
     }
 }
-
