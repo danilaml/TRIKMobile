@@ -95,7 +95,8 @@ HEADERS += \
     blocks/enginesBlocks/nullifyencoderblock.h
 
 RESOURCES += qml.qrc \
-    templates.qrc
+    templates.qrc \
+    images.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
