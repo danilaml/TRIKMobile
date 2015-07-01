@@ -64,7 +64,26 @@ SOURCES += main.cpp \
     blocks/functionsBlocks/randomblock.cpp \
     blocks/functionsBlocks/sgnblock.cpp \
     blocks/functionsBlocks/sinblock.cpp \
-    blocks/functionsBlocks/sqrtblock.cpp
+    blocks/functionsBlocks/sqrtblock.cpp \
+    blocks/gamepadBlocks/gamepadconnectionindicatorblock.cpp \
+    blocks/gamepadBlocks/gamepadwheelblock.cpp \
+    blocks/gamepadBlocks/gamepadpadblock.cpp \
+    blocks/gamepadBlocks/gamepadpadpresssensorblock.cpp \
+    blocks/gyroscopeBlocks/gyroscopeyblock.cpp \
+    blocks/gyroscopeBlocks/gyroscopezblock.cpp \
+    blocks/ledColorsBlocks/ledredblock.cpp \
+    blocks/ledColorsBlocks/offblock.cpp \
+    blocks/ledColorsBlocks/orangeblock.cpp \
+    blocks/sensorsBlocks/motionblock.cpp \
+    blocks/sensorsBlocks/downblock.cpp \
+    blocks/sensorsBlocks/enterblock.cpp \
+    blocks/sensorsBlocks/escblock.cpp \
+    blocks/sensorsBlocks/leftblock.cpp \
+    blocks/sensorsBlocks/rightblock.cpp \
+    blocks/signsBlocks/greaterblock.cpp \
+    blocks/signsBlocks/lessblock.cpp \
+    blocks/signsBlocks/notgreaterblock.cpp \
+    blocks/signsBlocks/notlessblock.cpp
 
 HEADERS += \
     connector.h \
@@ -122,7 +141,26 @@ HEADERS += \
     blocks/functionsBlocks/randomblock.h \
     blocks/functionsBlocks/sgnblock.h \
     blocks/functionsBlocks/sinblock.h \
-    blocks/functionsBlocks/sqrtblock.h
+    blocks/functionsBlocks/sqrtblock.h \
+    blocks/gamepadBlocks/gamepadconnectionindicatorblock.h \
+    blocks/gamepadBlocks/gamepadwheelblock.h \
+    blocks/gamepadBlocks/gamepadpadblock.h \
+    blocks/gamepadBlocks/gamepadpadpresssensorblock.h \
+    blocks/gyroscopeBlocks/gyroscopeyblock.h \
+    blocks/gyroscopeBlocks/gyroscopezblock.h \
+    blocks/ledColorsBlocks/ledredblock.h \
+    blocks/ledColorsBlocks/offblock.h \
+    blocks/ledColorsBlocks/orangeblock.h \
+    blocks/sensorsBlocks/motionblock.h \
+    blocks/sensorsBlocks/downblock.h \
+    blocks/sensorsBlocks/enterblock.h \
+    blocks/sensorsBlocks/escblock.h \
+    blocks/sensorsBlocks/leftblock.h \
+    blocks/sensorsBlocks/rightblock.h \
+    blocks/signsBlocks/greaterblock.h \
+    blocks/signsBlocks/lessblock.h \
+    blocks/signsBlocks/notgreaterblock.h \
+    blocks/signsBlocks/notlessblock.h
 
 RESOURCES += qml.qrc \
     templates.qrc \
