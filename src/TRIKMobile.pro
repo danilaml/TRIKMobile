@@ -83,7 +83,12 @@ SOURCES += main.cpp \
     blocks/signsBlocks/greaterblock.cpp \
     blocks/signsBlocks/lessblock.cpp \
     blocks/signsBlocks/notgreaterblock.cpp \
-    blocks/signsBlocks/notlessblock.cpp
+    blocks/signsBlocks/notlessblock.cpp \
+    blocks/subprogramsBlocks/subprogramcall.cpp \
+    blocks/switchBlocks/defaultblock.cpp \
+    blocks/switchBlocks/middleblock.cpp \
+    blocks/switchBlocks/onecaseblock.cpp \
+    blocks/variablesBlocks/constantdeclarationblock.cpp
 
 HEADERS += \
     connector.h \
@@ -160,7 +165,12 @@ HEADERS += \
     blocks/signsBlocks/greaterblock.h \
     blocks/signsBlocks/lessblock.h \
     blocks/signsBlocks/notgreaterblock.h \
-    blocks/signsBlocks/notlessblock.h
+    blocks/signsBlocks/notlessblock.h \
+    blocks/subprogramsBlocks/subprogramcallblock.h \
+    blocks/switchBlocks/defaultblock.h \
+    blocks/switchBlocks/middleblock.h \
+    blocks/switchBlocks/onecaseblock.h \
+    blocks/variablesBlocks/constantdeclarationblock.h
 
 RESOURCES += qml.qrc \
     templates.qrc \
