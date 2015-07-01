@@ -6,7 +6,7 @@ SgnBlock::SgnBlock(QObject *parent) : AbstractBlock(parent)
 	propertyMap["argument"] = "1";
 }
 
-SgnBlock::~SgnBlockk()
+SgnBlock::~SgnBlock()
 {
 
 }

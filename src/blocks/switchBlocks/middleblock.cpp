@@ -29,17 +29,17 @@ QString MiddleBlock::blockType() const
 	return "middleBlock";
 }
 
-QString HeadBlock::statusString() const
+QString MiddleBlock::statusString() const
 {
 	return QString("Condition: %1").arg(getProp("condition"));
 }
 
-QString HeadBlock::condition() const
+QString MiddleBlock::condition() const
 {
 	return getProp("condition");
 }
 
-void HeadBlock::setCondition(const QString &condition)
+void MiddleBlock::setCondition(const QString &condition)
 {
 	propertyMap["condition"] = condition;
 }

@@ -6,7 +6,7 @@ SqrtBlock::SqrtBlock(QObject *parent) : AbstractBlock(parent)
 	propertyMap["argument"] = "1";
 }
 
-SqrtBlock::~SqrtBlockk()
+SqrtBlock::~SqrtBlock()
 {
 
 }

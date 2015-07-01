@@ -16,7 +16,7 @@ QString TimeBlock::toString(int indent) const
 	return addIndent(res, indent);
 }
 
-QString RandomizeBlock::blockType() const
+QString TimeBlock::blockType() const
 {
 	return "timeBlock";
 }

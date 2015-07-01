@@ -6,7 +6,7 @@ SinBlock::SinBlock(QObject *parent) : AbstractBlock(parent)
 	propertyMap["argument"] = "1";
 }
 
-SinBlock::~SinBlockk()
+SinBlock::~SinBlock()
 {
 
 }
