@@ -49,7 +49,22 @@ SOURCES += main.cpp \
     blocks/sayblock.cpp \
     blocks/accelerometerBlocks/accelerometeryblock.cpp \
     blocks/accelerometerBlocks/accelerometerzblock.cpp \
-    blocks/enginesBlocks/nullifyencoderblock.cpp
+    blocks/enginesBlocks/nullifyencoderblock.cpp \
+    blocks/drawingBlocks/clearscreenblock.cpp \
+    blocks/functionsBlocks/randomizeblock.cpp \
+    blocks/functionsBlocks/timeblock.cpp \
+    blocks/functionsBlocks/acosblock.cpp \
+    blocks/functionsBlocks/asinblock.cpp \
+    blocks/functionsBlocks/atanblock.cpp \
+    blocks/functionsBlocks/ceilblock.cpp \
+    blocks/functionsBlocks/cosblock.cpp \
+    blocks/functionsBlocks/expblock.cpp \
+    blocks/functionsBlocks/floorblock.cpp \
+    blocks/functionsBlocks/lnblock.cpp \
+    blocks/functionsBlocks/randomblock.cpp \
+    blocks/functionsBlocks/sgnblock.cpp \
+    blocks/functionsBlocks/sinblock.cpp \
+    blocks/functionsBlocks/sqrtblock.cpp
 
 HEADERS += \
     connector.h \
@@ -92,7 +107,22 @@ HEADERS += \
     blocks/sayblock.h \
     blocks/accelerometerBlocks/accelerometeryblock.h \
     blocks/accelerometerBlocks/accelerometerzblock.h \
-    blocks/enginesBlocks/nullifyencoderblock.h
+    blocks/enginesBlocks/nullifyencoderblock.h \
+    blocks/drawingBlocks/clearscreenblock.h \
+    blocks/functionsBlocks/randomizeblock.h \
+    blocks/functionsBlocks/timeblock.h \
+    blocks/functionsBlocks/acosblock.h \
+    blocks/functionsBlocks/asinblock.h \
+    blocks/functionsBlocks/atanblock.h \
+    blocks/functionsBlocks/ceilblock.h \
+    blocks/functionsBlocks/cosblock.h \
+    blocks/functionsBlocks/expblock.h \
+    blocks/functionsBlocks/floorblock.h \
+    blocks/functionsBlocks/lnblock.h \
+    blocks/functionsBlocks/randomblock.h \
+    blocks/functionsBlocks/sgnblock.h \
+    blocks/functionsBlocks/sinblock.h \
+    blocks/functionsBlocks/sqrtblock.h
 
 RESOURCES += qml.qrc \
     templates.qrc \
