@@ -1,0 +1,46 @@
+{
+    "model": [
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "port": "M1, M2, M3, M4",
+                "power": "100"
+            },
+            "type": "forwardBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "port": "M1, M2, M3, M4"
+            },
+            "type": "stopBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "port": "M1, M2, M3, M4",
+                "power": "100"
+            },
+            "type": "backwardBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+                "port": "M1, M2, M3, M4"
+            },
+            "type": "stopBlock"
+        },
+        {
+            "children": [
+            ],
+            "propertyMap": {
+            },
+            "type": "smileBlock"
+        }
+    ],
+    "version": "0.9"
+}
