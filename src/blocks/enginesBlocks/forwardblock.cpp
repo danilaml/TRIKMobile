@@ -14,10 +14,18 @@ ForwardBlock::~ForwardBlock()
 
 QString ForwardBlock::toString(int indent) const
 {
-	QString res = readTemplate("engines/forward.t");
-	res.replace("@@PORT@@", getProp("port")).replace("@@POWER@@", getProp("power"));
+	QString property = getProp("port");
+	property.remove(' ');
+	QStringList const list = property.split(",", QString::SkipEmptyParts);
+	QString result;
+	for (QString const &line : list)
+	{
+		QString res = readTemplate("engines/forward.t");
+		res.replace("@@PORT@@", line).replace("@@POWER@@", getProp("power"));
+		result += res + "\n";
+	}
 
-	return addIndent(res, indent);
+	return addIndent(result, indent);
 }
 
 QString ForwardBlock::statusString() const

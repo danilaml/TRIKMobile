@@ -13,10 +13,18 @@ NullifyEncoderBlock::~NullifyEncoderBlock()
 
 QString NullifyEncoderBlock::toString(int indent) const
 {
-	QString res = readTemplate("engines/nullifyEncoder.t");
-	res.replace("@@PORT@@", getProp("port"));
+	QString property = getProp("port");
+	property.remove(' ');
+	QStringList const list = property.split(",", QString::SkipEmptyParts);
+	QString result;
+	for (QString const &line : list)
+	{
+		QString res = readTemplate("engines/nullifyEncoder.t");
+		res.replace("@@PORT@@", line);
+		result += res + "\n";
+	}
 
-	return addIndent(res, indent);
+	return addIndent(result, indent);
 }
 
 QString NullifyEncoderBlock::blockType() const
